@@ -19,16 +19,20 @@
                 <div class="contacts-panel">
                     <div class="brand-section">
                         <img src="./resources/images/logo.png" alt="Phonical" />
-
                         <div class="action">
                             <button class="btn-action">
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </button>
-
                             <div class="dropdown-section">
                                 <ul class="menu-items">
                                     <li>
                                         <a href="#">Create Group</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Info</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Logout</a>
                                     </li>
                                 </ul>
                             </div>
@@ -36,8 +40,9 @@
                     </div>
 
                     <div class="search-section">
-                        <input type="text" placeholder="Search..." />
+                        <input type="text" placeholder="Search here..." class="form-control" />
                     </div>
+
                     <div class="contacts-section">
                         <div class="media-card">
                             <img src="./resources/images/girl1.jpeg" alt="User Image" class="img img-dp" />
@@ -65,9 +70,16 @@
                         </div>
                     </div>
                     <div class="communication-section"></div>
-
                     <div class="chat-footer-section">
                         <div class="audio-controls">
+                            <button class="btn btn-audio-control">
+                                <i class="fa-solid fa-microphone"></i>
+                            </button>
+
+                            <button class="btn btn-audio-control">
+                                <i class="fa-solid fa-stop"></i>
+                            </button>
+
                             <button class="btn btn-audio-control">
                                 <i class="fa-solid fa-pause"></i>
                             </button>
@@ -76,11 +88,12 @@
                                 <i class="fa-solid fa-play"></i>
                             </button>
 
-                            <button class="btn btn-audio-control">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-
                             <input type="range" />
+
+                            <spa class="timer">
+                                <span class="audio-time">00:20</span>
+                                / <span class="total-time">10:00</span>
+                            </spa>
                         </div>
 
                         <audio>
@@ -91,15 +104,11 @@
 
                         <div class="recorder-controls">
                             <button class="btn btn-audio-control">
-                                <i class="fa-solid fa-microphone"></i>
+                                <i class="fa-solid fa-trash"></i>
                             </button>
 
                             <button class="btn btn-audio-control">
-                                <i class="fa-solid fa-stop"></i>
-                            </button>
-
-                            <button class="btn btn-audio-control">
-                                <i class="fa-solid fa-paper-plane"></i>
+                                <i class="fa-solid fa-paper-plane btn-send"></i>
                             </button>
                         </div>
                     </div>

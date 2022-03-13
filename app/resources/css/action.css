@@ -16,10 +16,20 @@
 
 .dropdown-section {
     position: absolute;
-    height: 0;
-    top: 0;
+    top: 30px;
     left: 0;
     overflow: hidden;
+    height: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.action:focus-within .dropdown-section {
+    top: 25px;
+    z-index: 2;
+    background-color: #fff;
+    border-radius: 6px;
+    height: auto;
+    transition: all 0.3s ease-in-out;
 }
 
 .dropdown-section ul {
@@ -28,14 +38,30 @@
     list-style-type: none;
 }
 
-.action:focus-within .dropdown-section {
-    top: 20px;
-    z-index: 2;
-    height: 100px;
+.dropdown-section li {
+    width: 150px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+}
+
+.dropdown-section li a {
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
 }
 
 .chat-footer-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.timer {
+    font-size: small;
+    margin-left: 10px;
+}
+
+.btn-send {
+    transform: rotate(50deg);
 }

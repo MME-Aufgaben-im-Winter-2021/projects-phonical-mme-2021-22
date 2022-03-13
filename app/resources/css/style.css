@@ -34,6 +34,7 @@ body {
     font-family: "Space Grotesk", sans-serif;
     margin: 0;
     padding: 0;
+    background-image: url("../images/bg-login.jpeg");
 }
 
 .ui {
@@ -75,7 +76,6 @@ body {
 
 .chat-container .contacts-panel .brand-section {
     height: 59px;
-    overflow: hidden;
     border-bottom: 1px solid var(--secondary-color);
     display: flex;
     justify-content: space-between;
@@ -86,14 +86,6 @@ body {
 .chat-container .contacts-panel .search-section {
     padding: 10px;
     border-bottom: 1px solid var(--secondary-color);
-}
-
-.chat-container .contacts-panel .search-section input {
-    padding: 5px;
-    width: 95%;
-    border-radius: 7px;
-    border: none;
-    height: 22px;
 }
 
 .chat-container .contacts-panel .contacts-section {
@@ -166,4 +158,91 @@ body {
 
 .d-flex-between h1 {
     margin: 0;
+}
+
+.form-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/bg-login.jpeg");
+    height: 100vh;
+}
+
+.form-section {
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    box-shadow: 0px 0px 10px var(--secondary-color);
+    border-radius: 6px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: small;
+    margin-bottom: 0.5rem;
+}
+
+.btn-group {
+    margin-bottom: 0;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.btn {
+    margin: 0.25rem 0.125rem;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    width: 100%;
 }
