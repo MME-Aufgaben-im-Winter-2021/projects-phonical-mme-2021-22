@@ -13,6 +13,12 @@
     --jet: #343434ff;
 }
 
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
 .attachment-full {
     position: fixed;
     top: 0;
@@ -149,4 +155,15 @@ body {
     height: 50px;
     border-top: 1px solid var(--secondary-color);
     padding: 0 20px;
+}
+
+.d-flex-between {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.d-flex-between h1 {
+    margin: 0;
 }
