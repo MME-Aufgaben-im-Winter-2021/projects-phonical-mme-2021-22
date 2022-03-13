@@ -2,128 +2,155 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap"); */
 /* Beispiel für die einfache Einbindung eines Farbschema, generiert auf coolors.co */
 :root {
-  --primary: #f8cdcd;
-  --turquoise-green: #b9e3c6ff;
-  --ocean-green: #59c9a5ff;
-  --ruby: #d81e5bff;
-  --prussian-blue: #23395bff;
-  --canary: #fffd98ff;
-  --snow: #f7f2f4ff;
-  --jet: #343434ff;
+    --primary: #f8cdcd;
+    --secondary-color: #f09595;
+    --turquoise-green: #b9e3c6ff;
+    --ocean-green: #59c9a5ff;
+    --ruby: #d81e5bff;
+    --prussian-blue: #23395bff;
+    --canary: #fffd98ff;
+    --snow: #f7f2f4ff;
+    --jet: #343434ff;
 }
 
 .attachment-full {
-  position: fixed;
-  top: 0;
-  left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .hidden {
-  display: none !important;
+    display: none !important;
 }
 
 body {
-  background-color: var(--snow);
-  font-family: "Space Grotesk", sans-serif;
-  margin: 0;
-  padding: 0;
+    background-color: var(--snow);
+    font-family: "Space Grotesk", sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .ui {
-  display: flex;
-  flex-direction: column;
-  width: 90vw;
-  margin: 0 auto;
-  padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    margin: 0 auto;
+    padding: 0;
 }
 
 .ui h1 {
-  text-align: center;
-  color: var(--jet);
+    text-align: center;
+    color: var(--jet);
 }
 
 .main-screen {
-  background-color: var(--primary);
+    background-color: var(--primary);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    position: relative;
 }
 
 .chat-container {
-  width: 100%;
-  display: flex;
-  height: 100vh;
+    max-width: 1420px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .chat-container .contacts-panel {
-  max-width: 300px;
-  width: 20%;
-  border-right: 1px solid #000;
-  display: flex;
-  flex-direction: column;
+    max-width: 300px;
+    width: 20%;
+    border-right: 1px solid var(--secondary-color);
+    display: flex;
+    flex-direction: column;
 }
 
 .chat-container .contacts-panel .brand-section {
-  height: 59px;
-  overflow: hidden;
-  border-bottom: 1px solid #000;
+    height: 59px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--secondary-color);
 }
 
 .chat-container .contacts-panel .brand-section .media-card {
-  position: absolute;
-  top: -18px;
-  border: none;
+    position: absolute;
+    top: -18px;
+    border: none;
+}
+
+.chat-container .contacts-panel .search-section {
+    padding: 10px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.chat-container .contacts-panel .search-section input {
+    padding: 5px;
+    width: 95%;
+    border-radius: 7px;
+    border: none;
+    height: 22px;
 }
 
 .chat-container .contacts-panel .contacts-section {
-  flex: 1;
+    flex: 1;
 }
 
 .chat-container .contacts-panel .title-section {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #000;
-  align-items: center;
-  height: 70px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--secondary-color);
+    align-items: center;
+    height: 70px;
 }
 
 .btn-create {
-  margin-right: 5px;
-  padding: 5px 10px;
+    margin-right: 5px;
+    padding: 5px 10px;
 }
 
 .media-card {
-  display: flex;
-  align-items: center;
-  padding-left: 10px;
-  border-bottom: 1px solid #000;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    border-bottom: 1px solid var(--secondary-color);
 }
 
 .media-card img {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  margin-right: 10px;
+    width: 35px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .brand-section .media-card img {
-  width: 100px;
-  height: auto;
-  border-radius: 50%;
-  margin-right: 10px;
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.contacts-section .media-card img {
+    max-height: 35px;
 }
 
 .chat-container .communication-panel {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .chat-container .communication-panel .communication-section {
-  flex: 1;
+    flex: 1;
 }
 
 .chat-container .communication-panel .title-section {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #000;
-  align-items: center;
-  height: 70px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--secondary-color);
+    align-items: center;
+    height: 70px;
+}
+
+.footer-section {
+    padding: 10px;
 }
