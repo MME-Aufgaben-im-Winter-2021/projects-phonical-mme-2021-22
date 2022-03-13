@@ -60,7 +60,19 @@ body {
   flex-direction: column;
 }
 
-.chat-container .contacts-panel .contact-section {
+.chat-container .contacts-panel .brand-section {
+  height: 59px;
+  overflow: hidden;
+  border-bottom: 1px solid #000;
+}
+
+.chat-container .contacts-panel .brand-section .media-card {
+  position: absolute;
+  top: -18px;
+  border: none;
+}
+
+.chat-container .contacts-panel .contacts-section {
   flex: 1;
 }
 
@@ -89,4 +101,29 @@ body {
   height: 35px;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.brand-section .media-card img {
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat-container .communication-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.chat-container .communication-panel .communication-section {
+  flex: 1;
+}
+
+.chat-container .communication-panel .title-section {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
+  align-items: center;
+  height: 70px;
 }
