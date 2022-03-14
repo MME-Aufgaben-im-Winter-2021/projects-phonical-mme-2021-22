@@ -6,14 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat</title>
-    <link rel="stylesheet" href="./resources/css/audio.css" />
-    <script src="https://kit.fontawesome.com/b8800cc292.js" crossorigin="anonymous"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <link rel="stylesheet" href="./resources/css/style.css" />
 </head>
 
 <body>
@@ -25,7 +18,7 @@
                         <img src="./resources/images/logo.png" alt="Phonical" />
                         <div class="action">
                             <button class="btn-action">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                <i class="fa fa-ellipsis-v"></i>
                             </button>
                             <div class="dropdown-section">
                                 <ul class="menu-items">
@@ -45,27 +38,25 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="search-section">
                         <input type="text" placeholder="Search here..." class="form-control" />
                     </div>
-
                     <div class="contacts-section">
                         <div class="media-card">
                             <img src="./resources/images/girl1.jpeg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">A</h5>
+                            <h5 class="chat-title">Ada</h5>
                         </div>
                         <div class="media-card">
                             <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">B</h5>
+                            <h5 class="chat-title">Let's Try</h5>
                         </div>
                         <div class="media-card">
                             <img src="./resources/images/boy1.jpeg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">C</h5>
+                            <h5 class="chat-title">John</h5>
                         </div>
                         <div class="media-card">
                             <img src="./resources/images/girl2.jpeg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">D</h5>
+                            <h5 class="chat-title">Emma</h5>
                         </div>
                     </div>
                 </div>
@@ -73,63 +64,81 @@
                     <div class="header-bar">
                         <div class="media-card">
                             <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">A</h5>
+                            <h5 class="chat-title">Let's Try</h5>
                         </div>
                         <button class="btn btn-info">
-                            <i class="fa-solid fa-info fa-outline"></i>
+                            <i class="fa fa-info-circle"></i>
                         </button>
                     </div>
                     <div class="communication-section"></div>
                     <div class="chat-footer-section">
                         <div class="voice-memo-recorder-wrap pull-right">
                             <i class="btn-record fa fa-microphone ml-auto"></i>
-            
                             <div class="ml-auto btn-stop-wrap">
-                              <span class="recording-timer"></span>
-                              <i class="btn-stop fa fa-stop"></i>
+                                <span class="recording-timer"></span>
+                                <i class="btn-stop fa fa-stop"></i>
                             </div>
-            
                             <i class="btn-delete-memo fa fa-trash"></i>
-            
                             <section class="comment-voice-memo">
-                              <div class="player-loading-affect">
-                                <i class="fa fa-spinner fa-pulse"></i>
-                              </div>
-            
-                              <div class="voice-memo-wrapper">
-                                <div class="hidden-audio-container"></div>
-            
-                                <div class="voice-memo-player">
-                                  <div class="player-controls">
-                                    <div class="player-actions-wrap">
-                                      <i class="btn-play-audio fa fa-play"></i>
-                                      <i class="btn-pause-audio fa fa-pause"></i>
-                                    </div>
-                                    <div class="player-slider-wrap">
-                                      <input
-                                        class="player-progress-bar"
-                                        max="100"
-                                        min="0"
-                                        step="1"
-                                        type="range"
-                                        value="0"
-                                      />
-                                    </div>
-            
-                                    <div class="player-timer-wrap">
-                                      <span class="cur-time">00:00</span>/<span
-                                        class="duration"
-                                        >00:05</span
-                                      >
-                                    </div>
-            
-                                    <i class="fa fa-send btn-upload-memo"></i>
-                                  </div>
+                                <div class="player-loading-affect">
+                                    <i class="fa fa-spinner fa-pulse"></i>
                                 </div>
-                              </div>
+                                <div class="voice-memo-wrapper">
+                                    <div class="hidden-audio-container"></div>
+                                    <div class="voice-memo-player">
+                                        <div class="player-controls">
+                                            <div class="player-actions-wrap">
+                                                <i class="btn-play-audio fa fa-play"></i>
+                                                <i class="btn-pause-audio fa fa-pause"></i>
+                                            </div>
+                                            <div class="player-slider-wrap">
+                                                <input class="player-progress-bar" max="100" min="0" step="1" type="range" value="0" />
+                                            </div>
+                                            <div class="player-timer-wrap">
+                                                <span class="cur-time">00:00</span>/<span class="duration">00:05</span>
+                                            </div>
+                                            <i class="fa fa-send btn-upload-memo"></i>
+                                        </div>
+                                    </div>
+                                </div>
                             </section>
                         </div>
                     </div>
+                </div>
+
+                <div class="chat-info-panel">
+                    <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
+                    <h3 class="chat-title">Let's Try</h3>
+                    <p class="description">This is a public group</p>
+
+                    <div class="divider"></div>
+
+                    <div class="participants">
+                        <p class="desc"><b>3</b> Participants</p>
+
+                        <a class="btn btn-icon"><i class="fa fa-plus"></i> Add People</a>
+
+                        <div class="media-card">
+                            <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
+                            <h5 class="chat-title">Let's Try</h5>
+                        </div>
+
+                        <div class="media-card">
+                            <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
+                            <h5 class="chat-title">Let's Try</h5>
+                        </div>
+                        <div class="media-card">
+                            <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
+                            <h5 class="chat-title">Let's Try</h5>
+                        </div>
+
+                        <span class="load-more">More...</span>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <a class="btn btn-icon"><i class="fa fa-trash"></i> Delete</a>
+
                 </div>
             </div>
         </div>

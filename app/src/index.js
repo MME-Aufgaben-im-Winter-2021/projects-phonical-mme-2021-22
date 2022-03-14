@@ -8,6 +8,16 @@ function login() {
 function signup() {
   document.location.href = "chat.html";
 }
+
+function redirect_to_login() {
+  $(".login-form").show();
+  $(".signup-form").hide();
+}
+
+function redirect_to_signup() {
+  $(".login-form").hide();
+  $(".signup-form").show();
+}
 /*******************************************************************************
 ## UI -> Comments -> comment.js
 ## This will handle audio comments
@@ -255,7 +265,7 @@ function createAudio(blob) {
   $(audio).addClass("hidden-audio");
   $audio_container.html(audio);
   $(".voice-memo-recorder-wrap").addClass(
-  "recorded"); // load audio completely before play
+    "recorded"); // load audio completely before play
 
   $grand_wrap.addClass("loading");
   audio.addEventListener("durationchange", function(e) {
