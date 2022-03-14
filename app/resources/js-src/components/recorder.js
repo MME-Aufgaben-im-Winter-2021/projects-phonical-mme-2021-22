@@ -38,13 +38,7 @@ function startRecording() {
       startTimer();
     })
     .catch(function (err) {
-      frappe.show_alert(
-        {
-          message: __("Microphone not found/not allowed."),
-          indicator: "red",
-        },
-        5
-      );
+      console.log("Microphone not found/not allowed.");
     });
 }
 
@@ -128,3 +122,5 @@ function startTimer() {
     $(".recording-timer").html(time);
   }, 1000);
 }
+
+// Audio Functions

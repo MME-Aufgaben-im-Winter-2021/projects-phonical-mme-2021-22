@@ -27,66 +27,7 @@ $(document).on("click", ".btn-upload-memo", function () {
 });
 
 function upload_voice_memo(duration) {
-  voice_uploader(duration).then(function (r) {
-    frappe.show_alert({
-      message: __("Voice memo uploaded successfully."),
-      indicator: "green"
-    }, 5);
-    delete window.current_audio_comment_blob;
-    cur_frm.reload_doc();
-    $(".voice-memo-recorder-wrap").removeClass("recorded");
-  }).catch(function () {
-    frappe.show_alert({
-      message: __("Unable to upload voice memo, please try again or use text comment."),
-      indicator: "red"
-    }, 5);
-  });
-}
-
-function voice_uploader(duration) {
-  return new Promise(function (resolve, reject) {
-    var xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          var response = JSON.parse(xhr.response);
-          var args = {
-            file_name: response.message.name,
-            file_url: response.message.file_url,
-            file_duration: duration,
-            doc_type: cur_frm.doctype,
-            doc_name: cur_frm.docname
-          };
-          frappe.call({
-            method: "qarobar.api.comment.audio_comment.insert_comment",
-            args: args,
-            btn: $(".btn-upload-memo"),
-            freeze: true,
-            callback: function callback(r) {
-              resolve(r);
-            },
-            error: function error(r) {
-              reject();
-            }
-          });
-        } else {
-          frappe.request.cleanup({}, error);
-          reject();
-        }
-      }
-    };
-
-    xhr.open("POST", "/api/method/upload_file", true);
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("X-Frappe-CSRF-Token", frappe.csrf_token);
-    var file_name = Math.random().toString(36).substring(7) + ".mp3";
-    var form_data = new FormData();
-    form_data.append("file", window.current_audio_comment_blob, file_name);
-    form_data.append("is_private", 1);
-    form_data.append("folder", "Home/Audio Comments");
-    xhr.send(form_data);
-  });
+  console.log("uploading");
 }
 
 var getDuration = function getDuration(url, next) {
@@ -197,7 +138,7 @@ $(document).on("click", ".btn-pause-audio", function (e) {
 });
 $(document).on("change", ".player-progress-bar", function (e) {
   e.preventDefault();
-  frappe.show_alert("in progress");
+  console.log("in progress");
   return;
   var el = e.target;
   var $this = $(el);
@@ -285,10 +226,7 @@ function startRecording() {
     $(".voice-memo-recorder-wrap").addClass("recording");
     startTimer();
   }).catch(function (err) {
-    frappe.show_alert({
-      message: __("Microphone not found/not allowed."),
-      indicator: "red"
-    }, 5);
+    console.log("Microphone not found/not allowed.");
   });
 } // stop recording
 

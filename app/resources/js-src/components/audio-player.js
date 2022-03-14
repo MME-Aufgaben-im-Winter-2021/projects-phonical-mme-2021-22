@@ -65,7 +65,7 @@ $(document).on("click", ".btn-pause-audio", (e) => {
   
 $(document).on("change", ".player-progress-bar", (e) => {
     e.preventDefault();
-    frappe.show_alert("in progress");
+    console.log("in progress");
     return;
     const el = e.target;
     const $this = $(el);
