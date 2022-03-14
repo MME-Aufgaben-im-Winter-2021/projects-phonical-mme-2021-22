@@ -1,0 +1,126 @@
+/*******************************************************************************
+## voice_recorder -> voice-recorder.scss
+## This file will use to style voice recorder for document's comment section
+*******************************************************************************/
+
+.voice-memo-recorder-wrap {
+    width: 100%;
+    max-width: 320px;
+    height: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    i {
+      font-size: 14px;
+      line-height: 1;
+      color: #d3d3d3;
+      cursor: pointer;
+    }
+  
+    .btn-record {
+      display: inline-block;
+      color: #1a5594;
+    }
+  
+    .btn-stop-wrap {
+      display: none;
+    }
+  
+    .btn-stop {
+      color: #dc3545;
+    }
+  
+    .btn-upload-memo {
+      display: none;
+      margin-right: 10px;
+  
+      i {
+        font-size: 13px;
+        color: #1a5594;
+        margin-right: 5px;
+      }
+    }
+  
+    .comment-voice-memo {
+      display: none;
+    }
+  
+    &.recording {
+      .btn-record {
+        display: none;
+      }
+      .btn-stop-wrap {
+        display: inline-block;
+      }
+    }
+  
+    &.recorded {
+      margin-top: 7px;
+  
+      .btn-stop,
+      .btn-record,
+      .btn-recording-timer {
+        display: none;
+      }
+  
+      .comment-voice-memo {
+        display: flex;
+  
+        .voice-memo-player {
+          margin-top: 6px;
+          width: 100%;
+          margin-right: 10px;
+  
+          .btn-delete-memo {
+            color: #dc3545;
+            font-size: 16px;
+            margin-top: -2px;
+          }
+  
+          .player-actions-wrap,
+          .player-slider-wrap,
+          .player-timer-wrap {
+            margin-right: 10px;
+          }
+  
+          .player-slider-wrap {
+            top: -3px;
+            position: relative;
+          }
+        }
+  
+        &.loading .player-loading-affect {
+          margin-top: 0;
+          z-index: 2;
+        }
+      }
+  
+      .btn-upload-memo {
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+  
+      @media (max-width: 360px) {
+        width: 45%;
+      }
+    }
+}
+  
+.ml-auto {
+    margin-left: auto;
+}
+  
+@media (max-width: 576px) {
+    .comment-box {
+      padding: 45px var(--padding-xl);
+    }
+  
+    .voice-memo-recorder-wrap,
+    .voice-memo-recorder-wrap.recorded {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 100%;
+    }
+}
