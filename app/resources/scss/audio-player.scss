@@ -36,7 +36,7 @@
             .player-progress-bar {
                 -webkit-appearance: none;
                 width: 100%;
-                background: linear-gradient(to right, #d3d3d3 0%, #d3d3d3 100%);
+                background: linear-gradient(to right, var(--secondary) 0%, var(--secondary) 100%);
                 border-radius: 25px;
 
                 &:focus {
@@ -54,7 +54,7 @@
                     height: 12px;
                     width: 12px;
                     border-radius: 50%;
-                    background: #1a5594;
+                    background: var(--secondary);
                     cursor: pointer;
                     -webkit-appearance: none;
                     margin-top: -4px;
@@ -73,15 +73,10 @@
 
             .btn-pause-audio {
                 display: none;
-
-                &:hover {
-                    color: #1a5594;
-                }
             }
 
             .btn-play-audio {
                 display: inline-block;
-                color: #1a5594;
             }
         }
 
@@ -99,7 +94,6 @@
         .player-timer-wrap {
             font-size: 12px;
         }
-
     }
 
     &.loading {
@@ -119,14 +113,13 @@
             i {
                 display: inline-block;
             }
-
         }
     }
 
     +span {
         position: absolute;
         top: 34px;
-        color: var(--text-muted);
+        color: var(--text-color);
     }
 
     @media (max-width: 576px) {

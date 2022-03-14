@@ -5,14 +5,14 @@
     background-color: #FFFFFF;
     box-shadow: 0 2px 12px 0 rgba(30, 30, 30, 0.08);
 }
-  
+
 .ql-mention-list {
     list-style: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
-  
+
 .ql-mention-list-item {
     cursor: pointer;
     height: 44px;
@@ -21,12 +21,12 @@
     padding: 0 20px;
     vertical-align: middle;
 }
-  
+
 .ql-mention-list-item.selected {
     background-color: #D3E1EB;
     text-decoration: none;
 }
-  
+
 .mention {
     height: 24px;
     width: 65px;
@@ -34,7 +34,7 @@
     background-color: #D3E1EB;
     padding: 3px 0;
 }
-  
+
 .mention>span {
     margin: 0 3px;
 }

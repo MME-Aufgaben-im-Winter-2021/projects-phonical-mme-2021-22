@@ -1,1 +1,1 @@
-//@prepros-append ./components/pre-login
+document.location.href = "login.html";

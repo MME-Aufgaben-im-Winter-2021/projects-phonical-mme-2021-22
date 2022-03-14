@@ -5,7 +5,7 @@
 ## https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
 ## https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 *******************************************************************************/
-/* eslint-disable */
+
 URL = window.URL || window.webkitURL;
 
 let mediaRecorder;
@@ -37,7 +37,7 @@ function startRecording() {
       $(".voice-memo-recorder-wrap").addClass("recording");
       startTimer();
     })
-    .catch(function (err) {
+    .catch(function(err) {
       console.log("Microphone not found/not allowed.");
     });
 }
@@ -54,10 +54,10 @@ function createAudio(blob) {
 
   const $duration = $(".voice-memo-recorder-wrap").find(".duration");
   const $grand_wrap = $(".voice-memo-recorder-wrap").find(
-    ".comment-voice-memo"
+    ".comment-voice-memo",
   );
   const $audio_container = $(".voice-memo-recorder-wrap").find(
-    ".hidden-audio-container"
+    ".hidden-audio-container",
   );
   const audio = new Audio(url);
 

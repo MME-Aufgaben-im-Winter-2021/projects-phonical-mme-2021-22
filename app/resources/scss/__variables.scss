@@ -1,17 +1,25 @@
-$primary: #f8cdcd;
+/*
+// dark theme
+:root {
+    // main screen and panel backgrounds
 
-$secondary-color: #f09595;
+    --primary: #242736;
+    // for button backgrounds and border colors
 
-$turquoise-green: #b9e3c6ff;
+    --secondary: #2e3c4b;
+    // for the headings, paragraphs, button and text colors
+    --text-color: rgb(224, 204, 204);
+}
+*/
 
-$ocean-green: #59c9a5ff;
+// light theme
+:root {
+    // main screen and panel backgrounds
+    --primary: #f8cdcd;
 
-$ruby: #d81e5bff;
+    // for button backgrounds and border colors
+    --secondary: #f09595;
 
-$prussian-blue: #23395bff;
-
-$canary: #fffd98ff;
-
-$snow: #f7f2f4ff;
-
-$jet: #343434ff;
+    // for the headings, paragraphs, button and text colors
+    --text-color: rgb(0, 0, 0);
+}

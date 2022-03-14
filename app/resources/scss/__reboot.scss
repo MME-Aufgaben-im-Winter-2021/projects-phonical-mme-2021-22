@@ -1,18 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap");
 @import "../../../node_modules/font-awesome/scss/font-awesome.scss";
 
-:root {
-    --primary: #f8cdcd;
-    --secondary-color: #b3cee5;
-    --turquoise-green: $turquoise-green;
-    --ocean-green: $ocean-green;
-    --ruby: $ruby;
-    --prussian-blue: $prussian-blue;
-    --canary: $canary;
-    --snow: $snow;
-    --jet: $jet;
-}
-
 *,
 ::after,
 ::before {
@@ -20,9 +8,20 @@
 }
 
 body {
-    background-color: var(--snow);
+    background-color: var(--primary);
     font-family: "Space Grotesk", sans-serif;
     margin: 0;
     padding: 0;
     background-image: url("../images/bg-login.jpeg");
+    color: var(--text-color);
+}
+
+label,
+a,
+button {
+    color: var(--text-color);
+}
+
+i {
+    color: var(--text-color);
 }
