@@ -4,21 +4,25 @@
 function login() {
   document.location.href = "chat.html";
 }
+
+function signup() {
+  document.location.href = "chat.html";
+}
 /*******************************************************************************
 ## UI -> Comments -> comment.js
 ## This will handle audio comments
 *******************************************************************************/
 /* eslint-disable */
 
-$(document).on("click", ".btn-delete-memo", function () {
+$(document).on("click", ".btn-delete-memo", function() {
   var confirmation = confirm("delete this audio?");
   if (!confirmation) return;
   delete window.current_audio_comment_blob;
   $(".voice-memo-recorder-wrap").removeClass("recorded");
 });
-$(document).on("click", ".btn-upload-memo", function () {
+$(document).on("click", ".btn-upload-memo", function() {
   var $allAudios = $(".hidden-audio");
-  $allAudios.each(function (i) {
+  $allAudios.each(function(i) {
     $allAudios[i].pause();
     $allAudios[i].currentTime = 0;
   });
@@ -35,7 +39,7 @@ function upload_voice_memo(duration) {
 var getDuration = function getDuration(url, next) {
   var _player = new Audio(url);
 
-  _player.addEventListener("durationchange", function (e) {
+  _player.addEventListener("durationchange", function(e) {
     if (this.duration != Infinity) {
       var duration = format_time(this.duration);
 
@@ -87,16 +91,17 @@ function format_time(duration) {
 *******************************************************************************/
 
 
-$(document).on("click", ".btn-play-audio", function (e) {
+$(document).on("click", ".btn-play-audio", function(e) {
   var el = e.target;
   var $this = $(el);
   var $grand_wrap = $this.parents(".comment-voice-memo");
   var $main_wrap = $this.parents(".voice-memo-wrapper");
-  var $audio_id = $main_wrap.find(".hidden-audio-id").find("span").attr("id");
+  var $audio_id = $main_wrap.find(".hidden-audio-id").find("span").attr(
+    "id");
   var $audio_container = $main_wrap.find(".hidden-audio-container");
   var $audio_exists = $audio_container.find(".hidden-audio");
   var $otherAudios = $(".hidden-audio");
-  $otherAudios.each(function (i) {
+  $otherAudios.each(function(i) {
     $otherAudios[i].pause();
   }); // in case audio already fetched
 
@@ -118,10 +123,10 @@ $(document).on("click", ".btn-play-audio", function (e) {
   $audio.on("pause", audio_pause);
   $audio.on("ended", audio_ended); // load audio completely before play
 
-  audio.addEventListener("durationchange", function (e) {
+  audio.addEventListener("durationchange", function(e) {
     if (audio.duration != Infinity) {
       audio.currentTime = 0;
-      setTimeout(function () {
+      setTimeout(function() {
         audio.play();
         $grand_wrap.removeClass("loading");
       }, 500);
@@ -131,14 +136,14 @@ $(document).on("click", ".btn-play-audio", function (e) {
   audio.load();
   audio.currentTime = 24 * 60 * 60;
 });
-$(document).on("click", ".btn-pause-audio", function (e) {
+$(document).on("click", ".btn-pause-audio", function(e) {
   var el = e.target;
   var $this = $(el);
   var $main_wrap = $this.parents(".voice-memo-wrapper");
   var $audio = $main_wrap.find(".hidden-audio");
   $audio[0].pause();
 });
-$(document).on("change", ".player-progress-bar", function (e) {
+$(document).on("change", ".player-progress-bar", function(e) {
   e.preventDefault();
   console.log("in progress");
   return;
@@ -174,7 +179,8 @@ function audio_timeupdate(e) {
   var current_val = current_time / unit_per;
   current_val = parseInt(current_val);
   $slide_progress.val(current_val);
-  var $bg = "linear-gradient(to right, #1a5594 0%, #1a5594 " + current_val + "%, #d3d3d3 " + current_val + "%, #d3d3d3 100%)";
+  var $bg = "linear-gradient(to right, #1a5594 0%, #1a5594 " + current_val +
+    "%, #d3d3d3 " + current_val + "%, #d3d3d3 100%)";
   $slide_progress.css("background", $bg);
 }
 
@@ -211,14 +217,14 @@ $(document).on("click", ".btn-stop", stopRecording); // start recording
 function startRecording() {
   navigator.mediaDevices.getUserMedia({
     audio: true
-  }).then(function (stream) {
+  }).then(function(stream) {
     mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.start();
     var audioChunks = [];
-    mediaRecorder.addEventListener("dataavailable", function (event) {
+    mediaRecorder.addEventListener("dataavailable", function(event) {
       audioChunks.push(event.data);
     });
-    mediaRecorder.addEventListener("stop", function () {
+    mediaRecorder.addEventListener("stop", function() {
       var audioBlob = new Blob(audioChunks);
       createAudio(audioBlob);
       clearInterval(window.rec_timer);
@@ -227,7 +233,7 @@ function startRecording() {
     });
     $(".voice-memo-recorder-wrap").addClass("recording");
     startTimer();
-  }).catch(function (err) {
+  }).catch(function(err) {
     console.log("Microphone not found/not allowed.");
   });
 } // stop recording
@@ -243,17 +249,19 @@ function createAudio(blob) {
   var url = URL.createObjectURL(blob);
   var $duration = $(".voice-memo-recorder-wrap").find(".duration");
   var $grand_wrap = $(".voice-memo-recorder-wrap").find(".comment-voice-memo");
-  var $audio_container = $(".voice-memo-recorder-wrap").find(".hidden-audio-container");
+  var $audio_container = $(".voice-memo-recorder-wrap").find(
+    ".hidden-audio-container");
   var audio = new Audio(url);
   $(audio).addClass("hidden-audio");
   $audio_container.html(audio);
-  $(".voice-memo-recorder-wrap").addClass("recorded"); // load audio completely before play
+  $(".voice-memo-recorder-wrap").addClass(
+  "recorded"); // load audio completely before play
 
   $grand_wrap.addClass("loading");
-  audio.addEventListener("durationchange", function (e) {
+  audio.addEventListener("durationchange", function(e) {
     if (audio.duration != Infinity) {
       audio.currentTime = 0;
-      setTimeout(function () {
+      setTimeout(function() {
         $duration.html(format_time(audio.duration));
         $(".player-progress-bar").val(0);
         $grand_wrap.removeClass("loading");
@@ -275,10 +283,10 @@ function startTimer() {
   var seconds = 0;
   var minutes = 0;
   var d_seconds,
-      d_minutes = null;
+    d_minutes = null;
   var time = null;
   $(".recording-timer").html("00:00");
-  window.rec_timer = setInterval(function () {
+  window.rec_timer = setInterval(function() {
     seconds++;
 
     if (seconds > 60) {

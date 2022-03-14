@@ -81,6 +81,8 @@ body {
     display: block;
     font-size: small;
     margin-bottom: 0.5rem;
+    color: #212529;
+    font-weight: bold;
 }
 
 .form-control {
@@ -148,6 +150,11 @@ body {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
     width: 100%;
+}
+
+.btn-link {
+    background-color: transparent;
+    color: #212529;
 }
 
 .main-screen {
@@ -393,44 +400,50 @@ body {
     min-height: 33px;
     height: auto;
 }
+
 .comment-voice-memo .player-loading-affect {
     display: none;
 }
+
 .comment-voice-memo .voice-memo-wrapper {
     width: 100%;
 }
+
 .comment-voice-memo .voice-memo-player {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     width: 90%;
     margin-top: 3px;
 }
+
 .comment-voice-memo .voice-memo-player .player-controls,
 .comment-voice-memo .voice-memo-player .player-timer-wrap {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     margin: 0px;
 }
+
 .comment-voice-memo .voice-memo-player .player-slider-wrap {
     -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
+    -ms-flex: 1;
+    flex: 1;
 }
+
 .comment-voice-memo .voice-memo-player .player-slider-wrap .player-progress-bar {
     -webkit-appearance: none;
     width: 100%;
@@ -438,15 +451,18 @@ body {
     background: linear-gradient(to right, #d3d3d3 0%, #d3d3d3 100%);
     border-radius: 25px;
 }
-  .comment-voice-memo .voice-memo-player .player-slider-wrap .player-progress-bar:focus {
+
+.comment-voice-memo .voice-memo-player .player-slider-wrap .player-progress-bar:focus {
     outline: none;
 }
+
 .comment-voice-memo .voice-memo-player .player-slider-wrap .player-progress-bar::-webkit-slider-runnable-track {
     width: 100%;
     height: 4px;
     cursor: pointer;
     border-radius: 25px;
 }
+
 .comment-voice-memo .voice-memo-player .player-slider-wrap .player-progress-bar::-webkit-slider-thumb {
     height: 12px;
     width: 12px;
@@ -456,37 +472,47 @@ body {
     -webkit-appearance: none;
     margin-top: -4px;
 }
+
 .comment-voice-memo .voice-memo-player i {
     font-size: 14px;
     line-height: 1;
     color: #d3d3d3;
     cursor: pointer;
 }
+
 .comment-voice-memo .voice-memo-player .player-actions-wrap {
     margin-right: 7px;
 }
+
 .comment-voice-memo .voice-memo-player .player-actions-wrap .btn-pause-audio {
     display: none;
 }
+
 .comment-voice-memo .voice-memo-player .player-actions-wrap .btn-pause-audio:hover {
     color: #1a5594;
 }
+
 .comment-voice-memo .voice-memo-player .player-actions-wrap .btn-play-audio {
     display: inline-block;
     color: #1a5594;
 }
+
 .comment-voice-memo .voice-memo-player .playing .player-actions-wrap .btn-pause-audio {
     display: inline-block;
 }
+
 .comment-voice-memo .voice-memo-player .playing .player-actions-wrap .btn-play-audio {
     display: none;
 }
+
 .comment-voice-memo .voice-memo-player .player-timer-wrap {
     font-size: 12px;
 }
+
 .comment-voice-memo.loading {
     position: relative;
 }
+
 .comment-voice-memo.loading .player-loading-affect {
     position: absolute;
     width: 100%;
@@ -496,34 +522,39 @@ body {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     border-radius: 2px;
     margin-top: 3px;
 }
+
 .comment-voice-memo.loading .player-loading-affect i {
     display: inline-block;
 }
-.comment-voice-memo + span {
+
+.comment-voice-memo+span {
     position: absolute;
     top: 34px;
     color: var(--text-muted);
 }
+
 @media (max-width: 576px) {
     .comment-voice-memo .voice-memo-player {
-      width: 100%;
+        width: 100%;
     }
+
     .comment-voice-memo .voice-memo-player .player-slider-wrap {
-      position: relative;
-      top: -3px;
+        position: relative;
+        top: -3px;
     }
-    .comment-voice-memo + span {
-      display: block;
-      position: relative;
-      top: 10px;
+
+    .comment-voice-memo+span {
+        display: block;
+        position: relative;
+        top: 10px;
     }
 }
 
@@ -547,131 +578,151 @@ body {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
+
 .voice-memo-recorder-wrap i {
     font-size: 14px;
     line-height: 1;
     color: #d3d3d3;
     cursor: pointer;
 }
+
 .voice-memo-recorder-wrap .btn-record {
     display: inline-block;
     color: #1a5594;
 }
+
 .voice-memo-recorder-wrap .btn-stop-wrap {
     display: none;
 }
+
 .voice-memo-recorder-wrap .btn-stop {
     color: #dc3545;
 }
+
 .voice-memo-recorder-wrap .btn-upload-memo,
 .voice-memo-recorder-wrap .btn-delete-memo {
     display: none;
     margin-right: 10px;
 }
+
 .voice-memo-recorder-wrap .btn-upload-memo i,
 .voice-memo-recorder-wrap .btn-delete-memo i {
     font-size: 13px;
     color: #1a5594;
     margin-right: 5px;
 }
+
 .voice-memo-recorder-wrap .comment-voice-memo {
     display: none;
 }
+
 .voice-memo-recorder-wrap.recording .btn-record {
     display: none;
 }
+
 .voice-memo-recorder-wrap.recording .btn-stop-wrap {
     display: inline-block;
 }
+
 .voice-memo-recorder-wrap.recorded {
     margin-top: 7px;
 }
+
 .voice-memo-recorder-wrap.recorded .btn-stop,
 .voice-memo-recorder-wrap.recorded .btn-record,
 .voice-memo-recorder-wrap.recorded .btn-recording-timer {
     display: none;
 }
+
 .voice-memo-recorder-wrap.recorded .comment-voice-memo {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
 }
+
 .voice-memo-recorder-wrap.recorded .comment-voice-memo .voice-memo-player {
     margin-top: 6px;
     width: 100%;
     margin-right: 10px;
 }
+
 .voice-memo-recorder-wrap.recorded .comment-voice-memo .voice-memo-player .btn-delete-memo {
     color: #dc3545;
     font-size: 16px;
     margin-top: -2px;
 }
+
 .voice-memo-recorder-wrap.recorded .comment-voice-memo .voice-memo-player .player-actions-wrap,
 .voice-memo-recorder-wrap.recorded .comment-voice-memo .voice-memo-player .player-slider-wrap,
 .voice-memo-recorder-wrap.recorded .comment-voice-memo .voice-memo-player .player-timer-wrap {
     margin-right: 10px;
 }
+
 .voice-memo-recorder-wrap.recorded .comment-voice-memo .voice-memo-player .player-slider-wrap {
     top: -3px;
     position: relative;
 }
+
 .voice-memo-recorder-wrap.recorded .comment-voice-memo.loading .player-loading-affect {
     margin-top: 0;
     z-index: 2;
 }
+
 .voice-memo-recorder-wrap.recorded .btn-delete-memo {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     color: #dc3545;
     margin-right: 40px;
 }
+
 .voice-memo-recorder-wrap.recorded .btn-upload-memo {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     color: green;
     -webkit-transform: rotate(55deg);
-          transform: rotate(55deg);
+    transform: rotate(55deg);
 }
+
 @media (max-width: 360px) {
     .voice-memo-recorder-wrap.recorded {
-      width: 45%;
+        width: 45%;
     }
 }
-  
+
 .ml-auto {
     margin-left: auto;
 }
-  
+
 @media (max-width: 576px) {
     .comment-box {
-      padding: 45px var(--padding-xl);
+        padding: 45px var(--padding-xl);
     }
-  
+
     .voice-memo-recorder-wrap,
-.voice-memo-recorder-wrap.recorded {
-      margin-top: 20px;
-      width: 100%;
-      max-width: 100%;
+    .voice-memo-recorder-wrap.recorded {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 100%;
     }
 }
