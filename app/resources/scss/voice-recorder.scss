@@ -5,7 +5,6 @@
 
 .voice-memo-recorder-wrap {
     width: 100%;
-    max-width: 320px;
     height: 10px;
     display: flex;
     justify-content: space-between;
@@ -31,7 +30,8 @@
       color: #dc3545;
     }
   
-    .btn-upload-memo {
+    .btn-upload-memo,
+    .btn-delete-memo {
       display: none;
       margin-right: 10px;
   
@@ -66,6 +66,7 @@
   
       .comment-voice-memo {
         display: flex;
+        width: 100%;
   
         .voice-memo-player {
           margin-top: 6px;
@@ -95,11 +96,21 @@
           z-index: 2;
         }
       }
+
+      .btn-delete-memo {
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #dc3545;
+        margin-right: 40px;
+      }
   
       .btn-upload-memo {
         display: inline-flex;
         justify-content: space-between;
         align-items: center;
+        color: green;
+        transform: rotate(55deg);
       }
   
       @media (max-width: 360px) {

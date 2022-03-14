@@ -28,6 +28,8 @@ $(document).on("click", ".btn-upload-memo", function () {
 
 function upload_voice_memo(duration) {
   console.log("uploading");
+  delete window.current_audio_comment_blob;
+  $(".voice-memo-recorder-wrap").removeClass("recorded");
 }
 
 var getDuration = function getDuration(url, next) {

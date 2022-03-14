@@ -21,7 +21,7 @@
         flex-direction: column;
 
         .brand-section {
-            height: 59px;
+            height: 62px;
             border-bottom: 1px solid var(--secondary-color);
             display: flex;
             justify-content: space-between;
@@ -61,6 +61,10 @@
             justify-content: space-between;
             border-bottom: 1px solid var(--secondary-color);
             padding: 0 10px;
+
+            .media-card {
+                border: none;
+            }
         }
 
         .voice-recorder-section {

@@ -3,148 +3,151 @@
 ## This file will use to style custom audio player that will look like slider
 *******************************************************************************/
 .comment-voice-memo {
-    min-height: 33px;
-    height: auto;
+  min-height: 33px;
+  height: auto;
 
-    .player-loading-affect {
-      display: none;
-    }
+  .player-loading-affect {
+    display: none;
+  }
 
-    .voice-memo-wrapper {
-      width: 100%;
-    }
+  .voice-memo-wrapper {
+    width: 100%;
+  }
 
-    .voice-memo-player {
+  .voice-memo-player {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 3px;
+
+    .player-controls,
+    .player-timer-wrap {
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
-      width: 90%;
-      margin-top: 3px;
+      align-items: center;
+      margin: 0px;
+    }
 
-      .player-controls,
-      .player-timer-wrap {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 0px;
-      }
+    // player slider
+    .player-slider-wrap {
+      flex: 1;
 
-      // player slider
-      .player-slider-wrap {
-        flex: 1;
-
-        .player-progress-bar {
-          -webkit-appearance: none;
+      .player-progress-bar {
+        -webkit-appearance: none;
+        width: 100%;
+        background: linear-gradient(to right, #d3d3d3 0%, #d3d3d3 100%);
+        border-radius: 25px;
+        &:focus {
+          outline: none;
+        }
+        &::-webkit-slider-runnable-track {
           width: 100%;
-          background: linear-gradient(to right, #d3d3d3 0%, #d3d3d3 100%);
+          height: 4px;
+          cursor: pointer;
           border-radius: 25px;
-          &:focus {
-            outline: none;
-          }
-          &::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 4px;
-            cursor: pointer;
-            border-radius: 25px;
-          }
-          &::-webkit-slider-thumb {
-            height: 12px;
-            width: 12px;
-            border-radius: 50%;
-            background: #1a5594;
-            cursor: pointer;
-            -webkit-appearance: none;
-            margin-top: -4px;
-          }
-        }
-      }
-
-      i {
-        font-size: 14px;
-        line-height: 1;
-        color: #d3d3d3;
-        cursor: pointer;
-      }
-
-      // player controls
-      .player-actions-wrap {
-        margin-right: 7px;
-
-        .btn-pause-audio {
-          display: none;
-
-          &:hover {
-            color: #1a5594;
-          }
         }
 
-        .btn-play-audio {
-          display: inline-block;
+        &::-webkit-slider-thumb {
+          height: 12px;
+          width: 12px;
+          border-radius: 50%;
+          background: #1a5594;
+          cursor: pointer;
+          -webkit-appearance: none;
+          margin-top: -4px;
+        }
+      }
+    }
+
+    i {
+      font-size: 14px;
+      line-height: 1;
+      color: #d3d3d3;
+      cursor: pointer;
+    }
+
+    // player controls
+    .player-actions-wrap {
+      margin-right: 7px;
+
+      .btn-pause-audio {
+        display: none;
+
+        &:hover {
           color: #1a5594;
         }
       }
 
-      .playing .player-actions-wrap {
-        .btn-pause-audio {
-          display: inline-block;
-        }
-
-        .btn-play-audio {
-          display: none;
-        }
-      }
-
-      // player timer
-      .player-timer-wrap {
-        font-size: 12px;
+      .btn-play-audio {
+        display: inline-block;
+        color: #1a5594;
       }
     }
 
-    &.loading {
-      position: relative;
+    .playing .player-actions-wrap {
+      .btn-pause-audio {
+        display: inline-block;
+      }
 
-      .player-loading-affect {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: #f9fafa;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 2px;
-        margin-top: 3px;
+      .btn-play-audio {
+        display: none;
+      }
+    }
 
-        i {
-          display: inline-block;
-        }
+    // player timer
+    .player-timer-wrap {
+      font-size: 12px;
+    }
+
+  }
+
+  &.loading {
+    position: relative;
+
+    .player-loading-affect {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 2px;
+      margin-top: 3px;
+
+      i {
+        display: inline-block;
+      }
+
+    }
+  }
+
+  + span {
+    position: absolute;
+    top: 34px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 576px) {
+    .voice-memo-player {
+      width: 100%;
+
+      .player-slider-wrap {
+        position: relative;
+        top: -3px;
       }
     }
 
     + span {
-      position: absolute;
-      top: 34px;
-      color: var(--text-muted);
+      display: block;
+      position: relative;
+      top: 10px;
     }
-
-    @media (max-width: 576px) {
-      .voice-memo-player {
-        width: 100%;
-
-        .player-slider-wrap {
-          position: relative;
-          top: -3px;
-        }
-      }
-
-      + span {
-        display: block;
-        position: relative;
-        top: 10px;
-      }
-    }
+  }
 }
 
 .audio-controls {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
