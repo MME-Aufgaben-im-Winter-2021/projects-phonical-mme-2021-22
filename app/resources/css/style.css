@@ -135,6 +135,13 @@ body {
     flex: 1;
 }
 
+.chat-container .communication-panel .header-bar {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--secondary-color);
+    padding: 0 10px;
+}
+
 .chat-container .communication-panel .voice-recorder-section {
     display: flex;
     justify-content: space-between;
