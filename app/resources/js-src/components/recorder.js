@@ -22,7 +22,7 @@ function startRecording() {
       mediaRecorder.start();
 
       const audioChunks = [];
-      mediaRecorder.addEventListener("data-available", (event) => {
+      mediaRecorder.addEventListener("dataavailable", (event) => {
         audioChunks.push(event.data);
       });
 
