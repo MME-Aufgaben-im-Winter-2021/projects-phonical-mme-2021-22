@@ -1,3 +1,4 @@
+/* eslint-disable */
 var getDuration = function(url, next) {
   let _player = new Audio(url);
   _player.addEventListener(

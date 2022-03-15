@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof =
@@ -19,6 +20,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof =
  *
  * Date: 2021-03-02T17:08Z
  */
+
 (function(global, factory) {
   "use strict";
 
@@ -1756,6 +1758,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof =
                     "class") || "");
               });
           },
+          /* eslint-disable */
           "ATTR": function ATTR(name, operator, check) {
             return function(elem) {
               var result = Sizzle.attr(elem, name);
