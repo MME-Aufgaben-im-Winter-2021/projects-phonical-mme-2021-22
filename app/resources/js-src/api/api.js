@@ -1,7 +1,3 @@
-/* eslint-disable */ 
-import { Appwrite } from "appwrite";
-import { Server } from "./config";
-
 let api = {
   sdk: null,
 
@@ -49,5 +45,3 @@ let api = {
     return api.provider().database.deleteDocument(collectionId, documentId);
   },
 };
-
-export default api;
