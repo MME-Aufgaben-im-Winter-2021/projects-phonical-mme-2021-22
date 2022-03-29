@@ -1,247 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat</title>
 
     <link rel="stylesheet" href="./resources/css/style.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <div class="chat-container">
-            <div class="main-screen">
-                <div class="contacts-panel">
-                    <div class="brand-section">
-                        <img src="./resources/images/logo.png" alt="Phonical" />
+      <div class="chat-container">
+        <div class="main-screen">
+          <div class="contacts-panel">
+            <div class="brand-section">
+              <img src="./resources/images/logo.png" alt="Phonical" />
 
-                        <div class="action">
-                            <button class="btn-action">
-                                <i class="fa fa-ellipsis-v"></i>
-                            </button>
+              <div class="action">
+                <button class="btn-action">
+                  <i class="fa fa-ellipsis-v"></i>
+                </button>
 
-                            <div class="dropdown-section">
-                                <ul class="menu-items">
-                                    <li>
-                                        <a href="#" class="btn-open-group">Create Group</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="open-settings">Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">Logout</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="search-section">
-                        <input type="text" placeholder="Search here..." class="form-control" />
-                    </div>
-
-                    <div class="contacts-section">
-                        <div class="media-card">
-                            <img src="./resources/images/girl1.jpeg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">User A</h5>
-                        </div>
-
-                        <div class="media-card">
-                            <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">Group Name</h5>
-                        </div>
-
-                        <div class="media-card">
-                            <img src="./resources/images/boy1.jpeg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">User B</h5>
-                        </div>
-
-                        <div class="media-card">
-                            <img src="./resources/images/girl2.jpeg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">User C</h5>
-                        </div>
-                    </div>
+                <div class="dropdown-section">
+                  <ul class="menu-items">
+                    <li>
+                      <a href="#" class="btn-open-group">Create Group</a>
+                    </li>
+                    <li>
+                      <a href="#" class="open-settings">Settings</a>
+                    </li>
+                    <li>
+                      <a href="#" onclick="logout()">Logout</a>
+                    </li>
+                  </ul>
                 </div>
-
-                <div class="communication-panel">
-                    <div class="header-bar">
-                        <div class="media-card">
-                            <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">Group Name</h5>
-                        </div>
-
-                        <button class="btn btn-info" onclick="toggle_chat_screen()">
-                            <i class="fa fa-info-circle"></i>
-                        </button>
-                    </div>
-
-                    <div class="communication-section"></div>
-
-                    <div class="chat-footer-section">
-                        <div class="voice-memo-recorder-wrap pull-right">
-                            <i class="btn-record fa fa-microphone ml-auto"></i>
-
-                            <div class="ml-auto btn-stop-wrap">
-                                <span class="recording-timer"></span>
-                                <i class="btn-stop fa fa-stop"></i>
-                            </div>
-
-                            <i class="btn-delete-memo fa fa-trash"></i>
-
-                            <section class="comment-voice-memo">
-                                <div class="player-loading-affect">
-                                    <i class="fa fa-spinner fa-pulse"></i>
-                                </div>
-
-                                <div class="voice-memo-wrapper">
-                                    <div class="hidden-audio-container"></div>
-
-                                    <div class="voice-memo-player">
-                                        <div class="player-controls">
-                                            <div class="player-actions-wrap">
-                                                <i class="btn-play-audio fa fa-play"></i>
-                                                <i class="btn-pause-audio fa fa-pause"></i>
-                                            </div>
-                                            <div class="player-slider-wrap">
-                                                <input class="player-progress-bar" max="100" min="0" step="1" type="range" value="0" />
-                                            </div>
-
-                                            <div class="player-timer-wrap">
-                                                <span class="cur-time">00:00</span>/<span class="duration">00:05</span>
-                                            </div>
-
-                                            <i class="fa fa-send btn-upload-memo"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="chat-info-panel hide">
-                    <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
-                    <h3 class="chat-title">Group Name</h3>
-                    <p class="description">This is a public group</p>
-
-                    <div class="divider"></div>
-
-                    <div class="participants">
-                        <p class="desc"><b>3</b> Participants</p>
-
-                        <a class="btn btn-icon"><i class="fa fa-plus"></i> Add People</a>
-
-                        <div class="media-card">
-                            <img src="./resources/images/girl1.jpeg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">User A</h5>
-                        </div>
-
-                        <div class="media-card">
-                            <img src="./resources/images/boy1.jpeg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">User B</h5>
-                        </div>
-
-                        <div class="media-card">
-                            <img src="./resources/images/girl2.jpeg" alt="User Image" class="img img-dp" />
-                            <h5 class="chat-title">User C</h5>
-                        </div>
-
-                        <span class="load-more">More...</span>
-                    </div>
-
-                    <div class="divider"></div>
-
-                    <a class="btn btn-icon"><i class="fa fa-trash"></i> Delete</a>
-                </div>
-
-                <div class="chat-overlay"></div>
-                <div class="settings-panel">
-                    <div class="settings">
-                        <button class="btn btn-icon btn-close btn-close-settings">
-                            <i class="fa fa-times"></i>
-                        </button>
-
-                        <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
-
-                        <div class="form-group">
-                            <label for="username" class="form-label">Image</label>
-                            <input type="file" class="form-control" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="username" class="form-label">Name</label>
-                            <input type="text" class="form-control" placeholder="John" value="John" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="mail" class="form-label">Email</label>
-                            <input type="text" class="form-control" placeholder="John" value="john@doe.example" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Password" class="form-label">Password</label>
-                            <input type="password" class="form-control" placeholder="*******" value="*******" />
-                        </div>
-
-                        <button class="btn btn-primary btn-block btn-close-settings">
-                            Save
-                        </button>
-                    </div>
-                </div>
-
-                <div class="create-group-panel">
-                    <button class="btn btn-icon btn-close btn-close-group">
-                        <i class="fa fa-times"></i>
-                    </button>
-
-                    <div class="create-group">
-
-
-                        <div class="form-group mt-3">
-                            <label for="username" class="form-label">Image</label>
-                            <input type="file" class="form-control" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="username" class="form-label">Group Name</label>
-                            <input type="text" class="form-control" placeholder="John" value="John" />
-                        </div>
-
-                        <div class="members">
-                            <div class="divider"></div>
-                            <span>Members</span>
-
-                            <div class="media-card">
-                                <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
-                                <h5 class="chat-title">Let's Try</h5>
-                            </div>
-
-                            <div class="media-card">
-                                <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
-                                <h5 class="chat-title">Let's Try</h5>
-                            </div>
-
-                            <div class="media-card">
-                                <img src="./resources/images/group.jpg" alt="User Image" class="img img-dp" />
-                                <h5 class="chat-title">Let's Try</h5>
-                            </div>
-                        </div>
-                        <div class="divider"></div>
-
-                        <a class="btn btn-icon"><i class="fa fa-plus"></i> Add More</a>
-                        <button class="btn btn-primary btn-block btn-close-group">
-                            Save
-                        </button>
-                    </div>
-                </div>
+              </div>
             </div>
+
+            <div class="search-section">
+              <input
+                type="text"
+                placeholder="Search here..."
+                class="form-control"
+              />
+            </div>
+
+            <div class="contacts-section">
+              <div class="media-card">
+                <img
+                  src="./resources/images/girl1.jpeg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Ada</h5>
+              </div>
+
+              <div class="media-card">
+                <img
+                  src="./resources/images/group.jpg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Let's Try</h5>
+              </div>
+
+              <div class="media-card">
+                <img
+                  src="./resources/images/boy1.jpeg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">John</h5>
+              </div>
+
+              <div class="media-card">
+                <img
+                  src="./resources/images/girl2.jpeg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Emma</h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="communication-panel">
+            <div class="header-bar">
+              <div class="media-card">
+                <img
+                  src="./resources/images/group.jpg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Let's Try</h5>
+              </div>
+
+              <button class="btn btn-info" onclick="toggle_chat_screen()">
+                <i class="fa fa-info-circle"></i>
+              </button>
+            </div>
+
+            <div class="communication-section"></div>
+
+            <div class="chat-footer-section">
+              <div class="voice-memo-recorder-wrap pull-right">
+                <i class="btn-record fa fa-microphone ml-auto"></i>
+
+                <div class="ml-auto btn-stop-wrap">
+                  <span class="recording-timer"></span>
+                  <i class="btn-stop fa fa-stop"></i>
+                </div>
+
+                <i class="btn-delete-memo fa fa-trash"></i>
+
+                <section class="comment-voice-memo">
+                  <div class="player-loading-affect">
+                    <i class="fa fa-spinner fa-pulse"></i>
+                  </div>
+
+                  <div class="voice-memo-wrapper">
+                    <div class="hidden-audio-container"></div>
+
+                    <div class="voice-memo-player">
+                      <div class="player-controls">
+                        <div class="player-actions-wrap">
+                          <i class="btn-play-audio fa fa-play"></i>
+                          <i class="btn-pause-audio fa fa-pause"></i>
+                        </div>
+                        <div class="player-slider-wrap">
+                          <input
+                            class="player-progress-bar"
+                            max="100"
+                            min="0"
+                            step="1"
+                            type="range"
+                            value="0"
+                          />
+                        </div>
+
+                        <div class="player-timer-wrap">
+                          <span class="cur-time">00:00</span>/<span
+                            class="duration"
+                            >00:05</span
+                          >
+                        </div>
+
+                        <i class="fa fa-send btn-upload-memo"></i>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-info-panel hide">
+            <img
+              src="./resources/images/group.jpg"
+              alt="User Image"
+              class="img img-dp"
+            />
+            <h3 class="chat-title">Let's Try</h3>
+            <p class="description">This is a public group</p>
+
+            <div class="divider"></div>
+
+            <div class="participants">
+              <p class="desc"><b>3</b> Participants</p>
+
+              <a class="btn btn-icon"><i class="fa fa-plus"></i> Add People</a>
+
+              <div class="media-card">
+                <img
+                  src="./resources/images/group.jpg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Let's Try</h5>
+              </div>
+
+              <div class="media-card">
+                <img
+                  src="./resources/images/group.jpg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Let's Try</h5>
+              </div>
+              <div class="media-card">
+                <img
+                  src="./resources/images/group.jpg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Let's Try</h5>
+              </div>
+
+              <span class="load-more">More...</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <a class="btn btn-icon"><i class="fa fa-trash"></i> Delete</a>
+          </div>
+
+          <div class="chat-overlay"></div>
+          <div class="settings-panel">
+            <div class="settings">
+              <button class="btn btn-icon btn-close btn-close-settings">
+                <i class="fa fa-times"></i>
+              </button>
+
+              <img
+                src="./resources/images/group.jpg"
+                alt="User Image"
+                class="img img-dp"
+              />
+
+              <div class="form-group">
+                <label for="username" class="form-label">Image</label>
+                <input type="file" class="form-control" />
+              </div>
+
+              <div class="form-group">
+                <label for="username" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="John"
+                  value="John"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="mail" class="form-label">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="John"
+                  value="john@doe.example"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="Password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="*******"
+                  value="*******"
+                />
+              </div>
+
+              <button class="btn btn-primary btn-block btn-close-settings">
+                Save
+              </button>
+            </div>
+          </div>
+
+          <div class="create-group-panel">
+            <button class="btn btn-icon btn-close btn-close-group">
+              <i class="fa fa-times"></i>
+            </button>
+
+            <div class="create-group">
+              <div class="form-group mt-3">
+                <label for="username" class="form-label">Image</label>
+                <input type="file" class="form-control" />
+              </div>
+
+              <div class="form-group">
+                <label for="username" class="form-label">Group Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="John"
+                  value="John"
+                />
+              </div>
+
+              <div class="members">
+                <div class="divider"></div>
+                <span>Members</span>
+
+                <div class="media-card">
+                  <img
+                    src="./resources/images/group.jpg"
+                    alt="User Image"
+                    class="img img-dp"
+                  />
+                  <h5 class="chat-title">Let's Try</h5>
+                </div>
+
+                <div class="media-card">
+                  <img
+                    src="./resources/images/group.jpg"
+                    alt="User Image"
+                    class="img img-dp"
+                  />
+                  <h5 class="chat-title">Let's Try</h5>
+                </div>
+
+                <div class="media-card">
+                  <img
+                    src="./resources/images/group.jpg"
+                    alt="User Image"
+                    class="img img-dp"
+                  />
+                  <h5 class="chat-title">Let's Try</h5>
+                </div>
+              </div>
+              <div class="divider"></div>
+
+              <a class="btn btn-icon"><i class="fa fa-plus"></i> Add More</a>
+              <button class="btn btn-primary btn-block btn-close-group">
+                Save
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </main>
 
-    <script src="./src/index.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@7.0.0"></script>
 
+    <script src="./src/index.js"></script>
+    <script>
+      fetchAccount();
+    </script>
+  </body>
 </html>
