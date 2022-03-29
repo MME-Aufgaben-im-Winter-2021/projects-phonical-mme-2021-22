@@ -4,3 +4,6 @@
 //@prepros-append ./components/audio-player
 //@prepros-append ./components/recorder
 //@prepros-append ./components/chat
+//@prepros-append ./api/config
+//@prepros-append ./api/api
+//@prepros-append ./api/user
