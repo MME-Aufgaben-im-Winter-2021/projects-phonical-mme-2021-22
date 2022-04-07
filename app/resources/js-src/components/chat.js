@@ -15,6 +15,7 @@ $(".btn-close-settings").on("click", () => {
 });
 
 $(".open-settings").on("click", () => {
+  update_settings_panel();
   $(".main-screen").addClass("settings-on-board");
 });
 
@@ -25,3 +26,10 @@ $(".btn-close-group").on("click", () => {
 $(".btn-open-group").on("click", () => {
   $(".main-screen").addClass("create-group-on-board");
 });
+
+async function update_settings_panel() {
+  const account = await api.getAccount();
+
+  $("#settings_panel_name").val(account.name);
+  $("#settings_panel_email").val(account.email);
+}

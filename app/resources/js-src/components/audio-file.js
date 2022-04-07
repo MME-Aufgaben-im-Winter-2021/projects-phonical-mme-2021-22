@@ -1,26 +1,9 @@
-/* eslint-disable */
-var getDuration = function(url, next) {
-  let _player = new Audio(url);
-  _player.addEventListener(
-    "durationchange",
-    function(e) {
-      if (this.duration !== Infinity) {
-        const duration = format_time(this.duration);
-        _player.remove();
-        next(duration);
-      }
-    },
-    false,
-  );
-  _player.load();
-  _player.currentTime = 24 * 60 * 60; //fake big time
-  _player.volume = 0;
-};
 /*******************************************************************************
 ## UI -> Comments -> comment.js
 ## This will handle audio comments
 *******************************************************************************/
-$(document).on("click", ".btn-delete-memo", function() {
+
+$(document).on("click", ".btn-delete-memo", function () {
   let confirmation = confirm("delete this audio?");
   if (!confirmation) return;
 
@@ -29,14 +12,37 @@ $(document).on("click", ".btn-delete-memo", function() {
 });
 
 $(document).on("click", ".btn-upload-memo", () => {
-  const $allAudios = $(".hidden-audio");
-
-  $allAudios.each((i) => {
-    $allAudios[i].pause();
-    $allAudios[i].currentTime = 0;
-  });
-
+  let appwrite = new Appwrite();
+  appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
   let url = URL.createObjectURL(window.current_audio_comment_blob);
+
+  let promise = appwrite.storage.createFile('1', '1', url);
+
+  promise.then(
+    function (response) {
+      console.log(response);
+    },
+    function (error) {
+      console.log(error);
+    }
+  );
+
+  // let promise = sdk.storage.createFile(
+  //   "[BUCKET_ID]",
+  //   "[FILE_ID]",
+  //   document.getElementById("uploader").files[0]
+  // );
+
+  // promise.then(
+  //   function (response) {
+  //     console.log(response); // Success
+  //   },
+  //   function (error) {
+  //     console.log(error); // Failure
+  //   }
+  // );
+
+
   getDuration(url, upload_voice_memo);
 });
 
@@ -46,11 +52,30 @@ function upload_voice_memo(duration) {
   $(".voice-memo-recorder-wrap").removeClass("recorded");
 }
 
+var getDuration = function (url, next) {
+  let _player = new Audio(url);
+  _player.addEventListener(
+    "durationchange",
+    function (e) {
+      if (this.duration != Infinity) {
+        const duration = format_time(this.duration);
+        _player.remove();
+        next(duration);
+      }
+    },
+    false
+  );
+  _player.load();
+  _player.currentTime = 24 * 60 * 60; //fake big time
+  _player.volume = 0;
+};
+
 function format_time(duration) {
-  let time = parseInt(duration),
-    // hours = 3600s, skipping for now
-    // minutes calculation
-    minutes = parseInt(time / 60);
+  let time = parseInt(duration);
+  // hours = 3600s, skipping for now
+
+  // minutes calculation
+  let minutes = parseInt(time / 60);
 
   if (minutes > 0) {
     let minutes_time = minutes * 3600;

@@ -39,11 +39,14 @@
             </div>
 
             <div class="search-section">
-              <input
-                type="text"
-                placeholder="Search here..."
-                class="form-control"
-              />
+              <form action="" autocomplete="off">
+                <input
+                  type="search"
+                  placeholder="Search here..."
+                  class="form-control"
+                  autocomplete=""
+                />
+              </form>
             </div>
 
             <div class="contacts-section">
@@ -179,6 +182,46 @@
                 />
                 <h5 class="chat-title">Let's Try</h5>
               </div>
+              <div class="media-card">
+                <img
+                  src="./resources/images/group.jpg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Let's Try</h5>
+              </div>
+              <div class="media-card">
+                <img
+                  src="./resources/images/group.jpg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Let's Try</h5>
+              </div>
+              <div class="media-card">
+                <img
+                  src="./resources/images/group.jpg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Let's Try</h5>
+              </div>
+              <div class="media-card">
+                <img
+                  src="./resources/images/group.jpg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Let's Try</h5>
+              </div>
+              <div class="media-card">
+                <img
+                  src="./resources/images/group.jpg"
+                  alt="User Image"
+                  class="img img-dp"
+                />
+                <h5 class="chat-title">Let's Try</h5>
+              </div>
 
               <div class="media-card">
                 <img
@@ -213,14 +256,19 @@
               </button>
 
               <img
-                src="./resources/images/group.jpg"
+                src=""
                 alt="User Image"
                 class="img img-dp"
+                id="settings_panel_image"
               />
 
               <div class="form-group">
                 <label for="username" class="form-label">Image</label>
-                <input type="file" class="form-control" />
+                <input
+                  type="file"
+                  class="form-control"
+                  id="settings_panel_image_upload"
+                />
               </div>
 
               <div class="form-group">
@@ -229,7 +277,7 @@
                   type="text"
                   class="form-control"
                   placeholder="John"
-                  value="John"
+                  id="settings_panel_name"
                 />
               </div>
 
@@ -238,8 +286,8 @@
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="John"
-                  value="john@doe.example"
+                  placeholder="mail@example.com"
+                  id="settings_panel_email"
                 />
               </div>
 
@@ -249,7 +297,7 @@
                   type="password"
                   class="form-control"
                   placeholder="*******"
-                  value="*******"
+                  id="settings_panel_password"
                 />
               </div>
 

@@ -8821,14 +8821,36 @@ $(document).on("click", ".btn-delete-memo", function () {
 });
 
 $(document).on("click", ".btn-upload-memo", () => {
-  const $allAudios = $(".hidden-audio");
-
-  $allAudios.each((i) => {
-    $allAudios[i].pause();
-    $allAudios[i].currentTime = 0;
-  });
-
+  let appwrite = new Appwrite();
+  appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
   let url = URL.createObjectURL(window.current_audio_comment_blob);
+
+  let promise = appwrite.storage.createFile('1', '1', url);
+
+  promise.then(
+    function (response) {
+      console.log(response);
+    },
+    function (error) {
+      console.log(error);
+    }
+  );
+
+  // let promise = sdk.storage.createFile(
+  //   "[BUCKET_ID]",
+  //   "[FILE_ID]",
+  //   document.getElementById("uploader").files[0]
+  // );
+
+  // promise.then(
+  //   function (response) {
+  //     console.log(response); // Success
+  //   },
+  //   function (error) {
+  //     console.log(error); // Failure
+  //   }
+  // );
+
   getDuration(url, upload_voice_memo);
 });
 
@@ -9160,20 +9182,28 @@ $(".media-card").on("click", (e) => {
 });
 
 $(".btn-close-settings").on("click", () => {
-  $(".main-screen").removeClass("settings-on-board")
-}); 
+  $(".main-screen").removeClass("settings-on-board");
+});
 
 $(".open-settings").on("click", () => {
-  $(".main-screen").addClass("settings-on-board")
-}); 
+  update_settings_panel();
+  $(".main-screen").addClass("settings-on-board");
+});
 
 $(".btn-close-group").on("click", () => {
-  $(".main-screen").removeClass("create-group-on-board")
-}); 
+  $(".main-screen").removeClass("create-group-on-board");
+});
 
 $(".btn-open-group").on("click", () => {
-  $(".main-screen").addClass("create-group-on-board")
-}); 
+  $(".main-screen").addClass("create-group-on-board");
+});
+
+async function update_settings_panel() {
+  const account = await api.getAccount();
+
+  $("#settings_panel_name").val(account.name);
+  $("#settings_panel_email").val(account.email);
+}
 
 const Server = {
   endpoint: "https://appwrite.software-engineering.education/v1",
