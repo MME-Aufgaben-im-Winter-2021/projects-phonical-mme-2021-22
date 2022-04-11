@@ -1,0 +1,316 @@
+api.listDocuments("625386922d06f1c7786f").then((r) => {
+  list_contacts(r.documents);
+  window.contacts = r.documents;
+});
+
+function list_contacts(params) {
+  for (const row of params) {
+    $(".contacts-section").append(
+      `<div class="media-card" data-contact_id="${row.$id}">
+      <img
+      src="./assets/dist/images/dummy.jpeg"
+      alt="Room Image"
+      class="img img-dp"
+      />
+      <h5 class="chat-title">${row.title}</h5>
+      </div>`
+    );
+  }
+}
+
+$(document).on("click", ".media-card", (e) => {
+  const contact_id = $(e.target).data("contact_id");
+  window.current_room = contact_id;
+
+  for (const row of window.contacts) {
+    if (contact_id == row.$id) {
+      $(".header-bar")
+        .find(".media-card > img")
+        .attr("src", "/app/assets/dist/images/dummy.jpeg");
+
+      $(".header-bar").find(".chat-title").html(row.title);
+    }
+  }
+
+  $(".chat-info-panel").addClass("hide");
+});
+
+function toggle_chat_screen() {
+  $(".chat-info-panel").toggleClass("hide");
+
+  const contact_id = window.current_room;
+
+  for (const row of window.contacts) {
+    if (contact_id == row.$id) {
+      $(".chat-info-panel > img").attr(
+        "src",
+        "/app/assets/dist/images/dummy.jpeg"
+      );
+
+      $(".chat-info-panel").find(".chat-title").html(row.title);
+      $(".chat-info-panel").find(".description").html(row.description);
+    }
+  }
+}
+
+/******************************************************
+ *
+ ******************************************************/
+
+$(document).on("click", ".btn-upload-memo", () => {
+  let appwrite = new Appwrite();
+  appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
+
+  upload_voice_memo(appwrite);
+
+  // getDuration(url, upload_voice_memo);
+});
+
+function upload_voice_memo(appwrite) {
+  var fileOfBlob = new File(
+    [window.current_audio_comment_blob],
+    "aFileName.mp3"
+  );
+
+  let promise = appwrite.storage.createFile("unique()", fileOfBlob, [], []);
+
+  promise.then(
+    function (response) {
+      appwrite.storage.getFile(response.$id);
+
+      console.log(response);
+      let promise = api.createDocument("625174ac6a2388c76fca", {
+        room_id: window.current_room,
+        user_id: "",
+        audio_link: "",
+      });
+
+      promise.then(
+        function (response) {},
+        function (error) {
+          console.log(error);
+        }
+      );
+    },
+    function (error) {
+      console.log(error);
+    }
+  );
+
+  delete window.current_audio_comment_blob;
+  $(".voice-memo-recorder-wrap").removeClass("recorded");
+}
+
+$(document).on("click", ".btn-delete-memo", function () {
+  let confirmation = confirm("delete this audio?");
+  if (!confirmation) return;
+
+  delete window.current_audio_comment_blob;
+  $(".voice-memo-recorder-wrap").removeClass("recorded");
+});
+
+var getDuration = function (url, next) {
+  let _player = new Audio(url);
+  _player.addEventListener(
+    "durationchange",
+    function (e) {
+      if (this.duration != Infinity) {
+        const duration = format_time(this.duration);
+        _player.remove();
+        next(duration);
+      }
+    },
+    false
+  );
+  _player.load();
+  _player.currentTime = 24 * 60 * 60; //fake big time
+  _player.volume = 0;
+};
+
+function format_time(duration) {
+  let time = parseInt(duration);
+  // hours = 3600s, skipping for now
+
+  // minutes calculation
+  let minutes = parseInt(time / 60);
+
+  if (minutes > 0) {
+    let minutes_time = minutes * 3600;
+    time -= minutes_time;
+
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+
+    minutes = minutes + ":";
+  } else {
+    minutes = "00:";
+  }
+
+  // seconds calculation
+  let seconds = parseInt(time);
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+
+  let formatted_time = minutes + seconds;
+
+  return formatted_time;
+}
+
+/*******************************************************************************
+## UI -> audio_player -> audio-player.js
+## This will handle custom audio player events
+*******************************************************************************/
+$(document).on("click", ".btn-play-audio", (e) => {
+  const el = e.target;
+  const $this = $(el);
+  const $grand_wrap = $this.parents(".comment-voice-memo");
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $audio_id = $main_wrap.find(".hidden-audio-id").find("span").attr("id");
+  const $audio_container = $main_wrap.find(".hidden-audio-container");
+  const $audio_exists = $audio_container.find(".hidden-audio");
+  const $otherAudios = $(".hidden-audio");
+
+  $otherAudios.each((i) => {
+    $otherAudios[i].pause();
+  });
+
+  // in case audio already fetched
+  if ($audio_exists.length) {
+    $audio_exists[0].play();
+    return;
+  }
+
+  $grand_wrap.addClass("loading");
+
+  // in case audio not fetched till now
+  const file = "/private/files/" + $audio_id + ".mp3";
+  let audio = new Audio(file);
+  const $audio = $(audio);
+  $audio.addClass("hidden-audio");
+  $audio_container.append($audio);
+
+  // event bindings to newly fetched audio
+  $audio.on("timeupdate", audio_timeupdate);
+  $audio.on("play", audio_play);
+  $audio.on("pause", audio_pause);
+  $audio.on("ended", audio_ended);
+
+  // load audio completely before play
+  audio.addEventListener("durationchange", (e) => {
+    if (audio.duration != Infinity) {
+      audio.currentTime = 0;
+      setTimeout(() => {
+        audio.play();
+        $grand_wrap.removeClass("loading");
+      }, 500);
+      return;
+    }
+  });
+
+  audio.load();
+  audio.currentTime = 24 * 60 * 60;
+});
+
+$(document).on("click", ".btn-pause-audio", (e) => {
+  const el = e.target;
+  const $this = $(el);
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $audio = $main_wrap.find(".hidden-audio");
+
+  $audio[0].pause();
+});
+
+$(document).on("change", ".player-progress-bar", (e) => {
+  e.preventDefault();
+  console.log("in progress");
+  return;
+  const el = e.target;
+  const $this = $(el);
+  const val = $this.val();
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $audio = $main_wrap.find(".hidden-audio");
+  let audio = $audio[0];
+
+  const unit_per = audio.duration / 100;
+  const new_cur_time = parseInt(val * unit_per);
+  audio.currentTime = new_cur_time;
+});
+
+// Audio Functions
+function audio_play(e) {
+  const audio = e.target;
+  const $this = $(audio);
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $player_controls = $main_wrap.find(".player-controls");
+  $player_controls.addClass("playing");
+}
+
+function audio_timeupdate(e) {
+  const audio = e.target;
+  const $this = $(audio);
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $cur_time = $main_wrap.find(".cur-time");
+  const current_time = audio.currentTime;
+  const duration = audio.duration;
+  const unit_per = duration / 100;
+  const $slide_progress = $main_wrap.find(".player-progress-bar");
+
+  $cur_time.html(format_time(current_time));
+
+  let current_val = current_time / unit_per;
+
+  current_val = parseInt(current_val);
+
+  $slide_progress.val(current_val);
+  let $bg =
+    "linear-gradient(to right, #1a5594 0%, #1a5594 " +
+    current_val +
+    "%, #d3d3d3 " +
+    current_val +
+    "%, #d3d3d3 100%)";
+
+  $slide_progress.css("background", $bg);
+}
+
+function audio_pause(e) {
+  const audio = e.target;
+  const $this = $(audio);
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $player_controls = $main_wrap.find(".player-controls");
+  $player_controls.removeClass("playing");
+}
+
+function audio_ended(e) {
+  const audio = e.target;
+  audio.currentTime = 0;
+  const $this = $(audio);
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $player_controls = $main_wrap.find(".player-controls");
+  $player_controls.removeClass("playing");
+}
+
+$(".btn-close-settings").on("click", () => {
+  $(".main-screen").removeClass("settings-on-board");
+});
+
+$(".open-settings").on("click", () => {
+  update_settings_panel();
+  $(".main-screen").addClass("settings-on-board");
+});
+
+$(".btn-close-group").on("click", () => {
+  $(".main-screen").removeClass("create-group-on-board");
+});
+
+$(".btn-open-group").on("click", () => {
+  $(".main-screen").addClass("create-group-on-board");
+});
+
+async function update_settings_panel() {
+  const account = await api.getAccount();
+
+  $("#settings_panel_name").val(account.name);
+  $("#settings_panel_email").val(account.email);
+}
