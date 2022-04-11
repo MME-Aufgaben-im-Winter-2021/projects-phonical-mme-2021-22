@@ -1,7 +1,12 @@
+/* eslint-disable */
 const signup = async ({ email, password, name }) => {
   try {
     const account = await api.createAccount(email, password, name);
     await api.createSession(email, password);
+    await api.createDocument(Server.profileCollectionId, {
+      user_id: account.$id,
+      user_name: name,
+    });
     document.location.href = "chat.html";
   } catch (e) {
     alert(e);

@@ -1,3 +1,39 @@
+/* eslint-disable */
+async function updateAccount() {
+  const name = document.getElementById("settings_panel_name").value;
+  const profile_image = document.getElementById("settings_panel_image_upload")
+    .files[0];
+
+  api.provider().account.updateName(name);
+  const user_id = await api.fetch_user();
+
+  const profiles = await api.listDocuments(Server.profileCollectionId);
+
+  const profile =
+    profiles.documents.filter((profile) => profile.user_id == user_id)[0] || null;
+
+  if (profile) {
+    let file = await api.provider().storage.createFile("unique()", profile_image, [], []);
+
+    api.updateDocument(Server.profileCollectionId, profile.$id, {
+      user_name: name,
+      profile_image: file.$id
+    });
+  }
+}
+
+async function search_user() {
+  const search_txt = document.getElementById("search_user_input").value;
+
+  const profiles = await api.listDocuments(Server.profileCollectionId);
+
+  for(const row in profiles.documents){
+    if(search_txt.row.user_name){
+      
+    }
+  }
+}
+
 api.listDocuments("625386922d06f1c7786f").then((r) => {
   list_contacts(r.documents);
   window.contacts = r.documents;
@@ -23,27 +59,33 @@ function fetch_messages(room_id) {
 
   api.listDocuments("625174ac6a2388c76fca").then((r) => {
     for (const row of r.documents) {
-      // temp code to delete messages
-      // api.deleteDocument("625174ac6a2388c76fca", row.$id)
-      // api.provider().storage.deleteFile(row.audio_link)
+      //   temp code to delete messages
+      //   api.deleteDocument("625174ac6a2388c76fca", row.$id)
+      //   api.provider().storage.deleteFile(row.audio_link)
 
       if (row.room_id == room_id) {
-        // getting uploaded audio link
-        let url = api.provider().storage.getFileDownload(row.audio_link);
-
-        $(".communication-section").append(
-          `<div class="audio" data-message_id="${row.$id}">
-              <h5 class="message_user">${row.title}</h5>
-        
-              <audio controls>
-                <source src="${url.href}" type="audio/mpeg">
-                Your browser does not support the audio tag.
-              </audio>
-        </div>`
-        );
+        append_message(row);
       }
     }
   });
+}
+
+function append_message(row) {
+  // getting uploaded audio link
+  let url = api.provider().storage.getFileDownload(row.audio_link);
+
+  $(".communication-section").append(
+    `<div ${
+      row.user_id == api.fetch_user() ? 'class="audio me"' : 'class="audio"'
+    }" data-message_id="${row.$id}">
+	  <h5 class="message_user">${api.get_user_name(row.user_id)}</h5>
+
+	  <audio controls>
+		<source src="${url.href}" type="audio/mpeg">
+		Your browser does not support the audio tag.
+	  </audio>
+</div>`
+  );
 }
 
 $(document).on("click", ".media-card", (e) => {
@@ -51,7 +93,7 @@ $(document).on("click", ".media-card", (e) => {
   console.log(contact_id);
   const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null;
   console.log(room);
-  
+
   if (room) {
     console.log("test");
     $(".header-bar")

@@ -5,6 +5,7 @@
 ## https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
 ## https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 *******************************************************************************/
+/* eslint-disable */
 
 URL = window.URL || window.webkitURL;
 
