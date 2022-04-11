@@ -6,6 +6,7 @@ const Server = {
 
 let api = {
   sdk: null,
+  user: null,
 
   provider: () => {
     if (api.sdk) return api.sdk;
@@ -13,6 +14,13 @@ let api = {
     appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
     api.sdk = appwrite;
     return appwrite;
+  },
+  
+  fetch_user: async () => {
+    if (api.user) return api.user;
+    let user = await api.getAccount();
+    api.user = user.$id;
+    return user.$id;
   },
 
   createAccount: (email, password, name) => {

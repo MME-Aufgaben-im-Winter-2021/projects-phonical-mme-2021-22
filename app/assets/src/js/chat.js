@@ -18,21 +18,52 @@ function list_contacts(params) {
   }
 }
 
+function fetch_messages(room_id) {
+  $(".communication-section").html("");
+
+  api.listDocuments("625174ac6a2388c76fca").then((r) => {
+    for (const row of r.documents) {
+      // temp code to delete messages
+      // api.deleteDocument("625174ac6a2388c76fca", row.$id)
+      // api.provider().storage.deleteFile(row.audio_link)
+
+      if (row.room_id == room_id) {
+        // getting uploaded audio link
+        let url = api.provider().storage.getFileDownload(row.audio_link);
+
+        $(".communication-section").append(
+          `<div class="audio" data-message_id="${row.$id}">
+              <h5 class="message_user">${row.title}</h5>
+        
+              <audio controls>
+                <source src="${url.href}" type="audio/mpeg">
+                Your browser does not support the audio tag.
+              </audio>
+        </div>`
+        );
+      }
+    }
+  });
+}
+
 $(document).on("click", ".media-card", (e) => {
   const contact_id = $(e.target).data("contact_id");
-  window.current_room = contact_id;
+  console.log(contact_id);
+  const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null;
+  console.log(room);
+  
+  if (room) {
+    console.log("test");
+    $(".header-bar")
+      .find("img")
+      .attr("src", "/app/assets/dist/images/dummy.jpeg");
 
-  for (const row of window.contacts) {
-    if (contact_id == row.$id) {
-      $(".header-bar")
-        .find(".media-card > img")
-        .attr("src", "/app/assets/dist/images/dummy.jpeg");
+    $(".header-bar").find(".chat-title").html(room.title);
 
-      $(".header-bar").find(".chat-title").html(row.title);
-    }
+    $(".chat-info-panel").addClass("hide");
+    window.current_room = contact_id;
+    fetch_messages(contact_id);
   }
-
-  $(".chat-info-panel").addClass("hide");
 });
 
 function toggle_chat_screen() {
@@ -54,7 +85,7 @@ function toggle_chat_screen() {
 }
 
 /******************************************************
- *
+ * send and receive message
  ******************************************************/
 
 $(document).on("click", ".btn-upload-memo", () => {
@@ -62,27 +93,25 @@ $(document).on("click", ".btn-upload-memo", () => {
   appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
 
   upload_voice_memo(appwrite);
-
-  // getDuration(url, upload_voice_memo);
 });
 
 function upload_voice_memo(appwrite) {
-  var fileOfBlob = new File(
-    [window.current_audio_comment_blob],
-    "aFileName.mp3"
-  );
+  // getting audio blob for the conversion of file
+  var fileOfBlob = new File([window.cur_blob], Math.random() + ".mp3");
 
+  // uploading it to server
   let promise = appwrite.storage.createFile("unique()", fileOfBlob, [], []);
 
   promise.then(
-    function (response) {
-      appwrite.storage.getFile(response.$id);
+    async function (response) {
+      // getting current user
+      let user = await api.fetch_user();
 
-      console.log(response);
+      // creating message
       let promise = api.createDocument("625174ac6a2388c76fca", {
         room_id: window.current_room,
-        user_id: "",
-        audio_link: "",
+        user_id: user,
+        audio_link: response.$id,
       });
 
       promise.then(
@@ -97,7 +126,8 @@ function upload_voice_memo(appwrite) {
     }
   );
 
-  delete window.current_audio_comment_blob;
+  // del blob
+  delete window.cur_blob;
   $(".voice-memo-recorder-wrap").removeClass("recorded");
 }
 
@@ -105,63 +135,14 @@ $(document).on("click", ".btn-delete-memo", function () {
   let confirmation = confirm("delete this audio?");
   if (!confirmation) return;
 
-  delete window.current_audio_comment_blob;
+  delete window.cur_blob;
   $(".voice-memo-recorder-wrap").removeClass("recorded");
 });
 
-var getDuration = function (url, next) {
-  let _player = new Audio(url);
-  _player.addEventListener(
-    "durationchange",
-    function (e) {
-      if (this.duration != Infinity) {
-        const duration = format_time(this.duration);
-        _player.remove();
-        next(duration);
-      }
-    },
-    false
-  );
-  _player.load();
-  _player.currentTime = 24 * 60 * 60; //fake big time
-  _player.volume = 0;
-};
+/******************************************************
+ * audio player
+ ******************************************************/
 
-function format_time(duration) {
-  let time = parseInt(duration);
-  // hours = 3600s, skipping for now
-
-  // minutes calculation
-  let minutes = parseInt(time / 60);
-
-  if (minutes > 0) {
-    let minutes_time = minutes * 3600;
-    time -= minutes_time;
-
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-
-    minutes = minutes + ":";
-  } else {
-    minutes = "00:";
-  }
-
-  // seconds calculation
-  let seconds = parseInt(time);
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
-
-  let formatted_time = minutes + seconds;
-
-  return formatted_time;
-}
-
-/*******************************************************************************
-## UI -> audio_player -> audio-player.js
-## This will handle custom audio player events
-*******************************************************************************/
 $(document).on("click", ".btn-play-audio", (e) => {
   const el = e.target;
   const $this = $(el);
@@ -238,6 +219,59 @@ $(document).on("change", ".player-progress-bar", (e) => {
   audio.currentTime = new_cur_time;
 });
 
+/******************************************************
+ * helping function
+ ******************************************************/
+
+var getDuration = function (url, next) {
+  let _player = new Audio(url);
+  _player.addEventListener(
+    "durationchange",
+    function (e) {
+      if (this.duration != Infinity) {
+        const duration = format_time(this.duration);
+        _player.remove();
+        next(duration);
+      }
+    },
+    false
+  );
+  _player.load();
+  _player.currentTime = 24 * 60 * 60; //fake big time
+  _player.volume = 0;
+};
+
+function format_time(duration) {
+  let time = parseInt(duration);
+  // hours = 3600s, skipping for now
+
+  // minutes calculation
+  let minutes = parseInt(time / 60);
+
+  if (minutes > 0) {
+    let minutes_time = minutes * 3600;
+    time -= minutes_time;
+
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+
+    minutes = minutes + ":";
+  } else {
+    minutes = "00:";
+  }
+
+  // seconds calculation
+  let seconds = parseInt(time);
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+
+  let formatted_time = minutes + seconds;
+
+  return formatted_time;
+}
+
 // Audio Functions
 function audio_play(e) {
   const audio = e.target;
@@ -291,6 +325,7 @@ function audio_ended(e) {
   $player_controls.removeClass("playing");
 }
 
+// DRIVER
 $(".btn-close-settings").on("click", () => {
   $(".main-screen").removeClass("settings-on-board");
 });

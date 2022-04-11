@@ -49,7 +49,7 @@ function stopRecording() {
 
 // make ui element from recorded audio
 function createAudio(blob) {
-  window.current_audio_comment_blob = blob;
+  window.cur_blob = blob;
   let url = URL.createObjectURL(blob);
 
   const $duration = $(".voice-memo-recorder-wrap").find(".duration");
