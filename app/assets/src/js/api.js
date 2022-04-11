@@ -1,7 +1,7 @@
 const Server = {
   endpoint: "https://appwrite.software-engineering.education/v1",
   project: "62066441987f0d2d4aa8",
-  collectionID: "messaages",
+  profileCollectionId: "62423c047b6cc775bd24",
 };
 
 let api = {
@@ -15,8 +15,15 @@ let api = {
     api.sdk = appwrite;
     return appwrite;
   },
-  
+
   fetch_user: async () => {
+    if (api.user) return api.user;
+    let user = await api.getAccount();
+    api.user = user.$id;
+    return user.$id;
+  },
+
+  get_user_name: async () => {
     if (api.user) return api.user;
     let user = await api.getAccount();
     api.user = user.$id;

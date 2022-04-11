@@ -39,14 +39,14 @@
             </div>
 
             <div class="search-section">
-              <form action="" autocomplete="off">
                 <input
                   type="search"
                   placeholder="Search here..."
                   class="form-control"
                   autocomplete=""
+                  id="search_user_input"
+                  onkeydown="search_user()"
                 />
-              </form>
             </div>
 
             <div class="contacts-section"></div>
@@ -64,9 +64,7 @@
               </button>
             </div>
 
-            <div class="communication-section">
-             
-            </div>
+            <div class="communication-section"></div>
 
             <div class="chat-footer-section">
               <div class="voice-memo-recorder-wrap pull-right">
@@ -215,7 +213,6 @@
 
               <img
                 src=""
-                alt="User Image"
                 class="img img-dp"
                 id="settings_panel_image"
               />
@@ -239,27 +236,7 @@
                 />
               </div>
 
-              <div class="form-group">
-                <label for="mail" class="form-label">Email</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="mail@example.com"
-                  id="settings_panel_email"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="Password" class="form-label">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="*******"
-                  id="settings_panel_password"
-                />
-              </div>
-
-              <button class="btn btn-primary btn-block btn-close-settings">
+              <button class="btn btn-primary btn-block btn-close-settings" onclick="updateAccount()">
                 Save
               </button>
             </div>
