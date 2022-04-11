@@ -1,3 +1,4 @@
+/* eslint-disable */
 async function updateAccount() {
   const name = document.getElementById("settings_panel_name").value;
   const profile_image = document.getElementById("settings_panel_image_upload")

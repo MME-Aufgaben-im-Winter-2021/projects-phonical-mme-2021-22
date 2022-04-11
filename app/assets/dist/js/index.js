@@ -1,4 +1,3 @@
-
 /*!
  * jQuery JavaScript Library v3.6.0 -ajax,-ajax/jsonp,-ajax/load,-ajax/script,-ajax/var/location,-ajax/var/nonce,-ajax/var/rquery,-ajax/xhr,-manipulation/_evalUrl,-deprecated/ajax-event-alias,-effects,-effects/Tween,-effects/animatedSelector
  * https://jquery.com/
@@ -12,6 +11,8 @@
  *
  * Date: 2021-03-02T17:08Z
  */
+/* eslint-disable */
+
 ( function( global, factory ) {
 
 	"use strict";
@@ -1890,7 +1891,7 @@ Expr = Sizzle.selectors = {
 			return function( elem ) {
 				var result = Sizzle.attr( elem, name );
 
-				if ( result == null ) {
+				if ( result === null ) {
 					return operator === "!=";
 				}
 				if ( !operator ) {
@@ -2245,7 +2246,7 @@ Expr = Sizzle.selectors = {
 
 				// Support: IE<8
 				// New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
-				( ( attr = elem.getAttribute( "type" ) ) == null ||
+				( ( attr = elem.getAttribute( "type" ) ) === null ||
 					attr.toLowerCase() === "text" );
 		},
 
@@ -2490,7 +2491,7 @@ function condense( unmatched, map, filter, context, xml ) {
 		newUnmatched = [],
 		i = 0,
 		len = unmatched.length,
-		mapped = map != null;
+		mapped = map !== null;
 
 	for ( ; i < len; i++ ) {
 		if ( ( elem = unmatched[ i ] ) ) {
@@ -2684,7 +2685,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				elems = seed || byElement && Expr.find[ "TAG" ]( "*", outermost ),
 
 				// Use integer dirruns iff this is the outermost matcher
-				dirrunsUnique = ( dirruns += contextBackup == null ? 1 : Math.random() || 0.1 ),
+				dirrunsUnique = ( dirruns += contextBackup === null ? 1 : Math.random() || 0.1 ),
 				len = elems.length;
 
 			if ( outermost ) {
@@ -2699,7 +2700,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 			// Add elements passing elementMatchers directly to results
 			// Support: IE<9, Safari
 			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
-			for ( ; i !== len && ( elem = elems[ i ] ) != null; i++ ) {
+			for ( ; i !== len && ( elem = elems[ i ] ) !== null; i++ ) {
 				if ( byElement && elem ) {
 					j = 0;
 
@@ -2961,7 +2962,7 @@ if ( !support.attributes || !assert( function( el ) {
 // Support: IE<9
 // Use getAttributeNode to fetch booleans when getAttribute lies
 if ( !assert( function( el ) {
-	return el.getAttribute( "disabled" ) == null;
+	return el.getAttribute( "disabled" ) === null;
 } ) ) {
 	addHandle( booleans, function( elem, name, isXML ) {
 		var val;
@@ -3326,7 +3327,7 @@ jQuery.fn.extend( {
 	},
 
 	addBack: function( selector ) {
-		return this.add( selector == null ?
+		return this.add( selector === null ?
 			this.prevObject : this.prevObject.filter( selector )
 		);
 	}
@@ -3373,7 +3374,7 @@ jQuery.each( {
 		return siblings( elem.firstChild );
 	},
 	contents: function( elem ) {
-		if ( elem.contentDocument != null &&
+		if ( elem.contentDocument !== null &&
 
 			// Support: IE 11+
 			// <object> elements with no `data` attribute has an object
@@ -3916,7 +3917,7 @@ jQuery.extend( {
 				// Get a promise for this deferred
 				// If obj is provided, the promise aspect is added to the object
 				promise: function( obj ) {
-					return obj != null ? jQuery.extend( obj, promise ) : promise;
+					return obj !== null ? jQuery.extend( obj, promise ) : promise;
 				}
 			},
 			deferred = {};
@@ -4148,7 +4149,7 @@ if ( document.readyState === "complete" ||
 var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 	var i = 0,
 		len = elems.length,
-		bulk = key == null;
+		bulk = key === null;
 
 	// Sets many values
 	if ( toType( key ) === "object" ) {
@@ -4871,7 +4872,7 @@ function showHide( elements, show ) {
 
 	// Set the display of the elements in a second loop to avoid constant reflow
 	for ( index = 0; index < length; index++ ) {
-		if ( values[ index ] != null ) {
+		if ( values[ index ] !== null ) {
 			elements[ index ].style.display = values[ index ];
 		}
 	}
@@ -5117,6 +5118,7 @@ function expectSync( elem, type ) {
 // Support: IE <=9 only
 // Accessing document.activeElement can throw unexpectedly
 // https://bugs.jquery.com/ticket/13393
+
 function safeActiveElement() {
 	try {
 		return document.activeElement;
@@ -5142,12 +5144,12 @@ function on( elem, types, selector, data, fn, one ) {
 		return elem;
 	}
 
-	if ( data == null && fn == null ) {
+	if ( data === null && fn === null ) {
 
 		// ( types, fn )
 		fn = selector;
 		data = selector = undefined;
-	} else if ( fn == null ) {
+	} else if ( fn === null ) {
 		if ( typeof selector === "string" ) {
 
 			// ( types, selector, fn )
@@ -6128,7 +6130,7 @@ function remove( elem, selector, keepData ) {
 		nodes = selector ? jQuery.filter( selector, elem ) : elem,
 		i = 0;
 
-	for ( ; ( node = nodes[ i ] ) != null; i++ ) {
+	for ( ; ( node = nodes[ i ] ) !== null; i++ ) {
 		if ( !keepData && node.nodeType === 1 ) {
 			jQuery.cleanData( getAll( node ) );
 		}
@@ -6285,7 +6287,7 @@ jQuery.fn.extend( {
 		var elem,
 			i = 0;
 
-		for ( ; ( elem = this[ i ] ) != null; i++ ) {
+		for ( ; ( elem = this[ i ] ) !== null; i++ ) {
 			if ( elem.nodeType === 1 ) {
 
 				// Prevent memory leaks
@@ -6300,8 +6302,8 @@ jQuery.fn.extend( {
 	},
 
 	clone: function( dataAndEvents, deepDataAndEvents ) {
-		dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
-		deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
+		dataAndEvents = dataAndEvents === null ? false : dataAndEvents;
+		deepDataAndEvents = deepDataAndEvents === null ? dataAndEvents : deepDataAndEvents;
 
 		return this.map( function() {
 			return jQuery.clone( this, dataAndEvents, deepDataAndEvents );
@@ -6534,7 +6536,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		// in computed dimensions. (gh-4529)
 		reliableTrDimensions: function() {
 			var table, tr, trChild, trStyle;
-			if ( reliableTrDimensionsVal == null ) {
+			if ( reliableTrDimensionsVal === null ) {
 				table = document.createElement( "table" );
 				tr = document.createElement( "tr" );
 				trChild = document.createElement( "div" );
@@ -6931,7 +6933,7 @@ jQuery.extend( {
 			}
 
 			// Make sure that null and NaN values aren't set (#7116)
-			if ( value == null || value !== value ) {
+			if ( value === null || value !== value ) {
 				return;
 			}
 
@@ -7247,7 +7249,7 @@ jQuery.extend( {
 		ret = jQuery.find.attr( elem, name );
 
 		// Non-existent attributes return null, we normalize to undefined
-		return ret == null ? undefined : ret;
+		return ret === null ? undefined : ret;
 	},
 
 	attrHooks: {
@@ -7308,7 +7310,7 @@ jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( _i, name )
 			// Avoid an infinite loop by temporarily removing this function from the getter
 			handle = attrHandle[ lowercaseName ];
 			attrHandle[ lowercaseName ] = ret;
-			ret = getter( elem, name, isXML ) != null ?
+			ret = getter( elem, name, isXML ) !== null ?
 				lowercaseName :
 				null;
 			attrHandle[ lowercaseName ] = handle;
@@ -7668,7 +7670,7 @@ jQuery.fn.extend( {
 				}
 
 				// Handle cases where value is null/undef or number
-				return ret == null ? "" : ret;
+				return ret === null ? "" : ret;
 			}
 
 			return;
@@ -7690,7 +7692,7 @@ jQuery.fn.extend( {
 			}
 
 			// Treat null/undefined as ""; convert numbers to string
-			if ( val == null ) {
+			if ( val === null ) {
 				val = "";
 
 			} else if ( typeof val === "number" ) {
@@ -7698,7 +7700,7 @@ jQuery.fn.extend( {
 
 			} else if ( Array.isArray( val ) ) {
 				val = jQuery.map( val, function( value ) {
-					return value == null ? "" : value + "";
+					return value === null ? "" : value + "";
 				} );
 			}
 
@@ -7718,7 +7720,7 @@ jQuery.extend( {
 			get: function( elem ) {
 
 				var val = jQuery.find.attr( elem, "value" );
-				return val != null ?
+				return val !== null ?
 					val :
 
 					// Support: IE <=10 - 11 only
@@ -7882,7 +7884,7 @@ jQuery.extend( jQuery.event, {
 		}
 
 		// Clone any incoming data and prepend the event, creating the handler arg list
-		data = data == null ?
+		data = data === null ?
 			[ event ] :
 			jQuery.makeArray( data, [ event ] );
 
@@ -8108,7 +8110,7 @@ function buildParams( prefix, obj, traditional, add ) {
 
 				// Item is non-scalar (array or object), encode its numeric index.
 				buildParams(
-					prefix + "[" + ( typeof v === "object" && v != null ? i : "" ) + "]",
+					prefix + "[" + ( typeof v === "object" && v !== null ? i : "" ) + "]",
 					v,
 					traditional,
 					add
@@ -8143,10 +8145,10 @@ jQuery.param = function( a, traditional ) {
 				valueOrFunction;
 
 			s[ s.length ] = encodeURIComponent( key ) + "=" +
-				encodeURIComponent( value == null ? "" : value );
+				encodeURIComponent( value === null ? "" : value );
 		};
 
-	if ( a == null ) {
+	if ( a === null ) {
 		return "";
 	}
 
@@ -8191,7 +8193,7 @@ jQuery.fn.extend( {
 		} ).map( function( _i, elem ) {
 			var val = jQuery( this ).val();
 
-			if ( val == null ) {
+			if ( val === null ) {
 				return null;
 			}
 
@@ -8383,10 +8385,10 @@ jQuery.offset = {
 			options = options.call( elem, i, jQuery.extend( {}, curOffset ) );
 		}
 
-		if ( options.top != null ) {
+		if ( options.top !== null ) {
 			props.top = ( options.top - curOffset.top ) + curTop;
 		}
-		if ( options.left != null ) {
+		if ( options.left !== null ) {
 			props.left = ( options.left - curOffset.left ) + curLeft;
 		}
 
@@ -8720,7 +8722,7 @@ jQuery.isNumeric = function( obj ) {
 };
 
 jQuery.trim = function( text ) {
-	return text == null ?
+	return text === null ?
 		"" :
 		( text + "" ).replace( rtrim, "" );
 };
@@ -8988,7 +8990,7 @@ function createAudio(blob) {
   // load audio completely before play
   $grand_wrap.addClass("loading");
   audio.addEventListener("durationchange", (e) => {
-    if (audio.duration != Infinity) {
+    if (audio.duration !== Infinity) {
       audio.currentTime = 0;
       setTimeout(() => {
         $duration.html(format_time(audio.duration));
@@ -9056,7 +9058,7 @@ async function updateAccount() {
   const profiles = await api.listDocuments(Server.profileCollectionId);
 
   const profile =
-    profiles.documents.filter((profile) => profile.user_id == user_id)[0] || null;
+    profiles.documents.filter((profile) => profile.user_id === user_id)[0] || null;
 
   if (profile) {
     let file = await api.provider().storage.createFile("unique()", profile_image, [], []);
@@ -9109,7 +9111,7 @@ function fetch_messages(room_id) {
       //   api.deleteDocument("625174ac6a2388c76fca", row.$id)
       //   api.provider().storage.deleteFile(row.audio_link)
 
-      if (row.room_id == room_id) {
+      if (row.room_id === room_id) {
         append_message(row);
       }
     }
@@ -9122,7 +9124,7 @@ function append_message(row) {
 
   $(".communication-section").append(
     `<div ${
-      row.user_id == api.fetch_user() ? 'class="audio me"' : 'class="audio"'
+      row.user_id === api.fetch_user() ? 'class="audio me"' : 'class="audio"'
     }" data-message_id="${row.$id}">
 	  <h5 class="message_user">${api.get_user_name(row.user_id)}</h5>
 
@@ -9137,7 +9139,7 @@ function append_message(row) {
 $(document).on("click", ".media-card", (e) => {
   const contact_id = $(e.target).data("contact_id");
   console.log(contact_id);
-  const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null;
+  const room = window.contacts.filter((r) => r.$id === contact_id)[0] || null;
   console.log(room);
 
   if (room) {
@@ -9160,7 +9162,7 @@ function toggle_chat_screen() {
   const contact_id = window.current_room;
 
   for (const row of window.contacts) {
-    if (contact_id == row.$id) {
+    if (contact_id === row.$id) {
       $(".chat-info-panel > img").attr(
         "src",
         "/app/assets/dist/images/dummy.jpeg"
@@ -9268,7 +9270,7 @@ $(document).on("click", ".btn-play-audio", (e) => {
 
   // load audio completely before play
   audio.addEventListener("durationchange", (e) => {
-    if (audio.duration != Infinity) {
+    if (audio.duration !== Infinity) {
       audio.currentTime = 0;
       setTimeout(() => {
         audio.play();
@@ -9316,7 +9318,7 @@ var getDuration = function (url, next) {
   _player.addEventListener(
     "durationchange",
     function (e) {
-      if (this.duration != Infinity) {
+      if (this.duration !== Infinity) {
         const duration = format_time(this.duration);
         _player.remove();
         next(duration);
