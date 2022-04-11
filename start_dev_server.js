@@ -1,4 +1,4 @@
-/* eslint-env node */
+/* eslint-disable */
 
 import "dotenv/config";
 import express from "express";
