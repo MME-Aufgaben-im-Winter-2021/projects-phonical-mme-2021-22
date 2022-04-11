@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat</title>
 
-    <link rel="stylesheet" href="./resources/css/style.css" />
+    <link rel="stylesheet" href="./assets/dist/css/style.css" />
   </head>
 
   <body>
@@ -15,7 +15,7 @@
         <div class="main-screen">
           <div class="contacts-panel">
             <div class="brand-section">
-              <img src="./resources/images/logo.png" alt="Phonical" />
+              <img src="./assets/dist/images/logo.png" alt="Phonical" />
 
               <div class="action">
                 <button class="btn-action">
@@ -49,54 +49,14 @@
               </form>
             </div>
 
-            <div class="contacts-section">
-              <div class="media-card">
-                <img
-                  src="./resources/images/girl1.jpeg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Ada</h5>
-              </div>
-
-              <div class="media-card">
-                <img
-                  src="./resources/images/group.jpg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Let's Try</h5>
-              </div>
-
-              <div class="media-card">
-                <img
-                  src="./resources/images/boy1.jpeg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">John</h5>
-              </div>
-
-              <div class="media-card">
-                <img
-                  src="./resources/images/girl2.jpeg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Emma</h5>
-              </div>
-            </div>
+            <div class="contacts-section"></div>
           </div>
 
           <div class="communication-panel">
             <div class="header-bar">
               <div class="media-card">
-                <img
-                  src="./resources/images/group.jpg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Let's Try</h5>
+                <img src="" class="img img-dp" />
+                <h5 class="chat-title"></h5>
               </div>
 
               <button class="btn btn-info" onclick="toggle_chat_screen()">
@@ -160,12 +120,12 @@
 
           <div class="chat-info-panel hide">
             <img
-              src="./resources/images/group.jpg"
-              alt="User Image"
+              src=""
+              alt="Room Image"
               class="img img-dp"
             />
-            <h3 class="chat-title">Let's Try</h3>
-            <p class="description">This is a public group</p>
+            <h3 class="chat-title"></h3>
+            <p class="description"></p>
 
             <div class="divider"></div>
 
@@ -176,7 +136,7 @@
 
               <div class="media-card">
                 <img
-                  src="./resources/images/group.jpg"
+                  src="./assets/dist/images/group.jpg"
                   alt="User Image"
                   class="img img-dp"
                 />
@@ -184,7 +144,7 @@
               </div>
               <div class="media-card">
                 <img
-                  src="./resources/images/group.jpg"
+                  src="./assets/dist/images/group.jpg"
                   alt="User Image"
                   class="img img-dp"
                 />
@@ -192,7 +152,7 @@
               </div>
               <div class="media-card">
                 <img
-                  src="./resources/images/group.jpg"
+                  src="./assets/dist/images/group.jpg"
                   alt="User Image"
                   class="img img-dp"
                 />
@@ -200,7 +160,7 @@
               </div>
               <div class="media-card">
                 <img
-                  src="./resources/images/group.jpg"
+                  src="./assets/dist/images/group.jpg"
                   alt="User Image"
                   class="img img-dp"
                 />
@@ -208,7 +168,7 @@
               </div>
               <div class="media-card">
                 <img
-                  src="./resources/images/group.jpg"
+                  src="./assets/dist/images/group.jpg"
                   alt="User Image"
                   class="img img-dp"
                 />
@@ -216,7 +176,7 @@
               </div>
               <div class="media-card">
                 <img
-                  src="./resources/images/group.jpg"
+                  src="./assets/dist/images/group.jpg"
                   alt="User Image"
                   class="img img-dp"
                 />
@@ -225,7 +185,7 @@
 
               <div class="media-card">
                 <img
-                  src="./resources/images/group.jpg"
+                  src="./assets/dist/images/group.jpg"
                   alt="User Image"
                   class="img img-dp"
                 />
@@ -233,7 +193,7 @@
               </div>
               <div class="media-card">
                 <img
-                  src="./resources/images/group.jpg"
+                  src="./assets/dist/images/group.jpg"
                   alt="User Image"
                   class="img img-dp"
                 />
@@ -334,7 +294,7 @@
 
                 <div class="media-card">
                   <img
-                    src="./resources/images/group.jpg"
+                    src="./assets/dist/images/group.jpg"
                     alt="User Image"
                     class="img img-dp"
                   />
@@ -343,7 +303,7 @@
 
                 <div class="media-card">
                   <img
-                    src="./resources/images/group.jpg"
+                    src="./assets/dist/images/group.jpg"
                     alt="User Image"
                     class="img img-dp"
                   />
@@ -352,7 +312,7 @@
 
                 <div class="media-card">
                   <img
-                    src="./resources/images/group.jpg"
+                    src="./assets/dist/images/group.jpg"
                     alt="User Image"
                     class="img img-dp"
                   />
@@ -371,11 +331,11 @@
       </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/appwrite@7.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@6.0.1"></script>
 
-    <script src="./src/index.js"></script>
+    <script src="./assets/dist/js/index.js"></script>
     <script>
-      fetchAccount();
+      // fetchAccount();
     </script>
   </body>
 </html>

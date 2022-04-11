@@ -4,6 +4,7 @@ import Keys from './constants/keys';
 import './quill.mention.css';
 import './blots/mention';
 
+
 class Mention {
   constructor(quill, options) {
     this.isOpen = false;
