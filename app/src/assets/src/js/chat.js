@@ -1,4 +1,23 @@
 /* eslint-disable */
+async function update_settings_panel() {
+  const account = await api.getAccount();
+  const profiles = await api.listDocuments(Server.profileCollectionId);
+  let profile_image = null;
+
+  for (const row of profiles.documents) {
+    if (row.user_id == account.$id) {
+      profile_image = row.profile_image;
+    }
+  }
+
+  $("#settings_panel_name").val(account.name);
+
+  if (profile_image) {
+    let url = api.provider().storage.getFileDownload(profile_image);
+    $("#settings_panel_image").attr("src", url);
+  }
+}
+
 async function updateAccount() {
   const name = document.getElementById("settings_panel_name").value;
   const profile_image = document.getElementById("settings_panel_image_upload")
@@ -35,15 +54,41 @@ async function updateAccount() {
   update_settings_panel();
 }
 
+$("#search_user_input").on("keypress", function (event) {
+  if ($("#search_user_input").val() && event.keyCode == "13") {
+    $(".contacts-section").html("")
+    search_user();
+  }
+});
+
+$("#search_user_input").on("input", function (event) {
+  if ($("#search_user_input").val() == "") {
+    $(".contacts-section").html("")
+    list_contacts(window.contacts)
+  }else{
+    $(".contacts-section").html("")
+    search_user();
+  }
+});
+
 async function search_user() {
   const search_txt = document.getElementById("search_user_input").value;
 
   const profiles = await api.listDocuments(Server.profileCollectionId);
 
-  for(const row in profiles.documents){
-    if(search_txt.row.user_name){
+  let flag = true;
+
+  for (const row of profiles.documents) {
+    if (row.user_email && search_txt && row.user_email.includes(search_txt)) {
+      flag = false
+      append_contact(row, true)
+      break;
       
     }
+  }
+
+  if(flag){
+    $(".contacts-section").html("<p class='contact-not-found'>User Not Found</p>")
   }
 }
 
@@ -54,17 +99,30 @@ api.listDocuments("625386922d06f1c7786f").then((r) => {
 
 function list_contacts(params) {
   for (const row of params) {
-    $(".contacts-section").append(
-      `<div class="media-card" data-contact_id="${row.$id}">
-      <img
-      src="./assets/dist/images/dummy.jpeg"
-      alt="Room Image"
-      class="img img-dp"
-      />
-      <h5 class="chat-title">${row.title}</h5>
-      </div>`
-    );
+    append_contact(row)
   }
+}
+
+function append_contact(row, is_new_contact = false) {
+  let profile_image = "./assets/dist/images/dummy.jpeg"
+
+  if(row.profile_image && is_new_contact) {
+    profile_image = api.provider().storage.getFileDownload(row.profile_image)
+  }
+
+  if(row.room_image && !is_new_contact) {
+    profile_image = api.provider().storage.getFileDownload(row.room_image)
+  }
+  $(".contacts-section").append(
+    `<div class="media-card" data-contact_id="${row.$id}" data-new-contact="${is_new_contact}">
+    <img
+    src="${profile_image}"
+    alt="Room Image"
+    class="img img-dp"
+    />
+    <h5 class="chat-title">${ is_new_contact? row.user_name: row.title }</h5>
+    </div>`
+  );
 }
 
 function fetch_messages(room_id) {
@@ -103,15 +161,19 @@ function append_message(row) {
 
 $(document).on("click", ".media-card", (e) => {
   const contact_id = $(e.target).data("contact_id");
-  console.log(contact_id);
+  const new_room = $(e.target).data("new-contact");
+
+  if(new_room){
+    create_new_room(contact_id)
+    return
+  }
+
   const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null;
-  console.log(room);
 
   if (room) {
-    console.log("test");
     $(".header-bar")
       .find("img")
-      .attr("src", "/app/assets/dist/images/dummy.jpeg");
+      .attr("src", "/app/src/assets/dist/images/dummy.jpeg");
 
     $(".header-bar").find(".chat-title").html(room.title);
 
@@ -120,6 +182,18 @@ $(document).on("click", ".media-card", (e) => {
     fetch_messages(contact_id);
   }
 });
+
+async function create_new_room(user) {
+  const cur_user = await api.fetch_user()
+  const profile = await api.getDocument(Server.profileCollectionId, user);
+
+  if(!profile) return;
+
+  const room = await api.createDocument(Server.roomCollectionId, { title: profile.user_name}, ["role:all"])
+
+  await api.createDocument(Server.roomUsersCollectionId, { room_id: room.$id, user_id: cur_user})
+  await api.createDocument(Server.roomUsersCollectionId, { room_id: room.$id, user_id: profile.user_id})
+}
 
 function toggle_chat_screen() {
   $(".chat-info-panel").toggleClass("hide");
@@ -392,22 +466,3 @@ $(".btn-close-group").on("click", () => {
 $(".btn-open-group").on("click", () => {
   $(".main-screen").addClass("create-group-on-board");
 });
-
-async function update_settings_panel() {
-  const account = await api.getAccount();
-  const profiles = await api.listDocuments(Server.profileCollectionId);
-  let profile_image = null;
-
-  for (const row of profiles.documents) {
-    if (row.user_id == account.$id) {
-      profile_image = row.profile_image;
-    }
-  }
-
-  $("#settings_panel_name").val(account.name);
-  
-  if (profile_image) {
-    let url = api.provider().storage.getFileDownload(profile_image);
-    $("#settings_panel_image").attr("src", url);
-  }
-}

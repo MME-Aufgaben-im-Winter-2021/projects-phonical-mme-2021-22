@@ -111,7 +111,7 @@
     cursor: pointer;
 
     img {
-      max-height: 35px;
+      height: 35px;
     }
   }
 }
@@ -370,4 +370,10 @@
 
 .mt-3 {
   margin-top: 30px;
+}
+
+.contact-not-found {
+  padding: 0 10px;
+  font-size: medium;
+  font-weight: bold;
 }

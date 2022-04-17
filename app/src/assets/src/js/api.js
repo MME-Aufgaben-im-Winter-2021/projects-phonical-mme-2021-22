@@ -3,6 +3,8 @@ const Server = {
   endpoint: "https://appwrite.software-engineering.education/v1",
   project: "62066441987f0d2d4aa8",
   profileCollectionId: "62423c047b6cc775bd24",
+  roomCollectionId: "625386922d06f1c7786f",
+  roomUsersCollectionId: "6258a657ba21a69301d8",
 };
 
 let api = {
@@ -47,17 +49,21 @@ let api = {
     return api.provider().account.deleteSession("current");
   },
 
-  createDocument: (collectionId, data) => {
+  createDocument: (collectionId, data, read=[]) => {
     return api
       .provider()
-      .database.createDocument(collectionId, "unique()", data);
+      .database.createDocument(collectionId, "unique()", data, read);
   },
 
   listDocuments: (collectionId) => {
     return api.provider().database.listDocuments(collectionId);
   },
 
-  updateDocument: (collectionId, documentId, data, read, write) => {
+  getDocument: (collectionId, documentId) => {
+    return api.provider().database.getDocument(collectionId, documentId);
+  },
+
+  updateDocument: (collectionId, documentId, data, read = [], write = []) => {
     return api
       .provider()
       .database.updateDocument(collectionId, documentId, data, read, write);

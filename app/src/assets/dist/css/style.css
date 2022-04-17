@@ -3368,7 +3368,7 @@ i {
 }
 
 .contacts-section .media-card img {
-    max-height: 35px;
+    height: 35px;
 }
 
 .chat-footer-section {
@@ -3647,6 +3647,12 @@ i {
 
 .mt-3 {
     margin-top: 30px;
+}
+
+.contact-not-found {
+    padding: 0 10px;
+    font-size: medium;
+    font-weight: bold;
 }
 
 /*******************************************************************************

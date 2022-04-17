@@ -6,6 +6,7 @@ const signup = async ({ email, password, name }) => {
     await api.createDocument(Server.profileCollectionId, {
       user_id: account.$id,
       user_name: name,
+      user_email: account.email
     });
     document.location.href = "chat.html";
   } catch (e) {
