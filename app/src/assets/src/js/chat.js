@@ -10,16 +10,29 @@ async function updateAccount() {
   const profiles = await api.listDocuments(Server.profileCollectionId);
 
   const profile =
-    profiles.documents.filter((profile) => profile.user_id == user_id)[0] || null;
+    profiles.documents.filter((profile) => profile.user_id == user_id)[0] ||
+    null;
 
   if (profile) {
-    let file = await api.provider().storage.createFile("unique()", profile_image, [], []);
+    // deleting old image for storage friendly code
+    let old_profile_image = profile.profile_image;
+
+    if (old_profile_image && profile_image) {
+      api.provider().storage.deleteFile(old_profile_image);
+    }
+
+    // updating new image
+    let file = await api
+      .provider()
+      .storage.createFile("unique()", profile_image, [], []);
 
     api.updateDocument(Server.profileCollectionId, profile.$id, {
       user_name: name,
-      profile_image: file.$id
+      profile_image: file.$id,
     });
   }
+
+  update_settings_panel();
 }
 
 async function search_user() {
@@ -131,18 +144,13 @@ function toggle_chat_screen() {
  ******************************************************/
 
 $(document).on("click", ".btn-upload-memo", () => {
-  let appwrite = new Appwrite();
-  appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
-
-  upload_voice_memo(appwrite);
-});
-
-function upload_voice_memo(appwrite) {
   // getting audio blob for the conversion of file
   var fileOfBlob = new File([window.cur_blob], Math.random() + ".mp3");
 
   // uploading it to server
-  let promise = appwrite.storage.createFile("unique()", fileOfBlob, [], []);
+  let promise = api
+    .provider()
+    .storage.createFile("unique()", fileOfBlob, [], []);
 
   promise.then(
     async function (response) {
@@ -171,7 +179,7 @@ function upload_voice_memo(appwrite) {
   // del blob
   delete window.cur_blob;
   $(".voice-memo-recorder-wrap").removeClass("recorded");
-}
+}),
 
 $(document).on("click", ".btn-delete-memo", function () {
   let confirmation = confirm("delete this audio?");
@@ -387,7 +395,19 @@ $(".btn-open-group").on("click", () => {
 
 async function update_settings_panel() {
   const account = await api.getAccount();
+  const profiles = await api.listDocuments(Server.profileCollectionId);
+  let profile_image = null;
+
+  for (const row of profiles.documents) {
+    if (row.user_id == account.$id) {
+      profile_image = row.profile_image;
+    }
+  }
 
   $("#settings_panel_name").val(account.name);
-  $("#settings_panel_email").val(account.email);
+  
+  if (profile_image) {
+    let url = api.provider().storage.getFileDownload(profile_image);
+    $("#settings_panel_image").attr("src", url);
+  }
 }
