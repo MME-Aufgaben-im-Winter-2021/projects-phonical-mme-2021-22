@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat</title>
 
-    <link rel="stylesheet" href="./src/assets/dist/css/style.css" />
+    <link rel="stylesheet" href="./assets/dist/css/style.css" />
   </head>
 
   <body>
@@ -15,7 +15,7 @@
         <div class="main-screen">
           <div class="contacts-panel">
             <div class="brand-section">
-              <img src="./src/assets/dist/images/logo.png" alt="Phonical" />
+              <img src="./assets/dist/images/logo.png" alt="Phonical" />
 
               <div class="action">
                 <button class="btn-action">
@@ -39,28 +39,29 @@
             </div>
 
             <div class="search-section">
-                <input
-                  type="search"
-                  placeholder="Search here..."
-                  class="form-control"
-                  autocomplete=""
-                  id="search_user_input"
-                />
+              <input
+                type="search"
+                placeholder="Type user email & hit enter"
+                class="form-control"
+                autocomplete=""
+                id="search_user_input"
+              />
             </div>
 
-            <div class="contacts-section">
-
-            </div>
+            <div class="contacts-section"></div>
           </div>
 
           <div class="communication-panel">
             <div class="header-bar">
               <div class="media-card">
-                <img src="" class="img img-dp" />
+                <img src="" class="img img-dp" hidden />
                 <h5 class="chat-title"></h5>
               </div>
 
-              <button class="btn btn-info" onclick="toggle_chat_screen()">
+              <button
+                class="btn btn-info hidden btn-toggle-screen"
+                onclick="toggle_chat_screen()"
+              >
                 <i class="fa fa-info-circle"></i>
               </button>
             </div>
@@ -68,6 +69,9 @@
             <div class="communication-section"></div>
 
             <div class="chat-footer-section">
+             <div id="reply-to">
+              </div>
+            
               <div class="voice-memo-recorder-wrap pull-right">
                 <i class="btn-record fa fa-microphone ml-auto"></i>
 
@@ -127,96 +131,30 @@
             <div class="divider"></div>
 
             <div class="participants">
-              <p class="desc"><b>3</b> Participants</p>
+              <!-- <p class="desc"><b>3</b> Participants</p> -->
+              <p class="desc"></p>
 
-              <a class="btn btn-icon"><i class="fa fa-plus"></i> Add People</a>
+              <a class="btn btn-icon add-members" href="#" onclick="add_users_to_group()">
+                <i class="fa fa-plus"></i> Add People
+              </a>
 
-              <div class="media-card">
-                <img
-                  src="./src/assets/dist/images/group.jpg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Let's Try</h5>
-              </div>
-              <div class="media-card">
-                <img
-                  src="./src/assets/dist/images/group.jpg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Let's Try</h5>
-              </div>
-              <div class="media-card">
-                <img
-                  src="./src/assets/dist/images/group.jpg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Let's Try</h5>
-              </div>
-              <div class="media-card">
-                <img
-                  src="./src/assets/dist/images/group.jpg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Let's Try</h5>
-              </div>
-              <div class="media-card">
-                <img
-                  src="./src/assets/dist/images/group.jpg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Let's Try</h5>
-              </div>
-              <div class="media-card">
-                <img
-                  src="./src/assets/dist/images/group.jpg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Let's Try</h5>
-              </div>
-
-              <div class="media-card">
-                <img
-                  src="./src/assets/dist/images/group.jpg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Let's Try</h5>
-              </div>
-              <div class="media-card">
-                <img
-                  src="./src/assets/dist/images/group.jpg"
-                  alt="User Image"
-                  class="img img-dp"
-                />
-                <h5 class="chat-title">Let's Try</h5>
-              </div>
-
-              <span class="load-more">More...</span>
+              <div class="added-members"></div>
             </div>
 
             <div class="divider"></div>
 
-            <a class="btn btn-icon"><i class="fa fa-trash"></i> Delete</a>
+            <a class="btn btn-icon" onclick="delete_chat()"><i class="fa fa-trash"></i> Delete</a>
           </div>
 
           <div class="chat-overlay"></div>
+
           <div class="settings-panel">
             <div class="settings">
               <button class="btn btn-icon btn-close btn-close-settings">
                 <i class="fa fa-times"></i>
               </button>
 
-              <img
-                src=""
-                class="img img-dp"
-                id="settings_panel_image"
-              />
+              <img src="" class="img img-dp" id="settings_panel_image" />
 
               <div class="form-group">
                 <label for="username" class="form-label">Image</label>
@@ -237,7 +175,10 @@
                 />
               </div>
 
-              <button class="btn btn-primary btn-block btn-close-settings" onclick="updateAccount()">
+              <button
+                class="btn btn-primary btn-block btn-close-settings"
+                onclick="updateAccount()"
+              >
                 Save
               </button>
             </div>
@@ -251,7 +192,11 @@
             <div class="create-group">
               <div class="form-group mt-3">
                 <label for="username" class="form-label">Image</label>
-                <input type="file" class="form-control" />
+                <input
+                  type="file"
+                  class="form-control"
+                  id="create-group-image"
+                />
               </div>
 
               <div class="form-group">
@@ -260,48 +205,26 @@
                   type="text"
                   class="form-control"
                   placeholder="John"
-                  value="John"
+                  id="create-group-name"
                 />
               </div>
 
-              <div class="members">
-                <div class="divider"></div>
-                <span>Members</span>
-
-                <div class="media-card">
-                  <img
-                    src="./src/assets/dist/images/group.jpg"
-                    alt="User Image"
-                    class="img img-dp"
-                  />
-                  <h5 class="chat-title">Let's Try</h5>
-                </div>
-
-                <div class="media-card">
-                  <img
-                    src="./src/assets/dist/images/group.jpg"
-                    alt="User Image"
-                    class="img img-dp"
-                  />
-                  <h5 class="chat-title">Let's Try</h5>
-                </div>
-
-                <div class="media-card">
-                  <img
-                    src="./src/assets/dist/images/group.jpg"
-                    alt="User Image"
-                    class="img img-dp"
-                  />
-                  <h5 class="chat-title">Let's Try</h5>
-                </div>
-              </div>
               <div class="divider"></div>
 
-              <a class="btn btn-icon"><i class="fa fa-plus"></i> Add More</a>
-              <button class="btn btn-primary btn-block btn-close-group">
+              <button
+                class="btn btn-primary btn-block btn-close-group btn-create-group"
+              >
                 Save
               </button>
             </div>
+          </div>
+
+          <div class="add-user-to-group">
+            <button class="btn btn-icon btn-close btn-close-add-user">
+              <i class="fa fa-times"></i>
+            </button>
+
+            <div class="available-users"></div>
           </div>
         </div>
       </div>
@@ -309,7 +232,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/appwrite@6.0.1"></script>
 
-    <script src="./src/assets/dist/js/index.js"></script>
+    <script src="./assets/dist/js/index.js"></script>
     <script>
       // fetchAccount();
     </script>
