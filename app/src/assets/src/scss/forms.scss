@@ -1,8 +1,9 @@
 .form-login {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../images/bg-login.jpeg");
+  // background-image: url("../images/bg-login.jpeg");
   height: 100vh;
 
   .form-section {
