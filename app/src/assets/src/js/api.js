@@ -5,6 +5,7 @@ const Server = {
   profileCollectionId: "62423c047b6cc775bd24",
   roomCollectionId: "625386922d06f1c7786f",
   roomUsersCollectionId: "6258a657ba21a69301d8",
+  messageCollectionId: "625174ac6a2388c76fca",
 };
 
 let api = {
@@ -24,6 +25,14 @@ let api = {
     let user = await api.getAccount();
     api.user = user.$id;
     return user.$id;
+  },
+  
+  get_user_profile: async (id) => {
+
+    const profiles = await api.listDocuments(Server.profileCollectionId);
+    const profile = profiles.documents.filter(r => r.user_id == id)
+
+    return profile[0];
   },
 
   get_user_name: async () => {

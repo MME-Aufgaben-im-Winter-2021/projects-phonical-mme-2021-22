@@ -56,17 +56,17 @@ async function updateAccount() {
 
 $("#search_user_input").on("keypress", function (event) {
   if ($("#search_user_input").val() && event.keyCode == "13") {
-    $(".contacts-section").html("")
+    $(".contacts-section").html("");
     search_user();
   }
 });
 
 $("#search_user_input").on("input", function (event) {
   if ($("#search_user_input").val() == "") {
-    $(".contacts-section").html("")
-    list_contacts(window.contacts)
+    $(".contacts-section").html("");
+    list_contacts(window.contacts);
   }else{
-    $(".contacts-section").html("")
+    $(".contacts-section").html("");
     search_user();
   }
 });
@@ -80,47 +80,86 @@ async function search_user() {
 
   for (const row of profiles.documents) {
     if (row.user_email && search_txt && row.user_email.includes(search_txt)) {
-      flag = false
-      append_contact(row, true)
+      flag = false;
+      append_contact(row, true);
       break;
       
     }
   }
 
-  if(flag){
-    $(".contacts-section").html("<p class='contact-not-found'>User Not Found</p>")
+  if (flag) {
+    $(".contacts-section").html(
+      "<p class='contact-not-found'>User Not Found</p>"
+    );
   }
 }
 
-api.listDocuments("625386922d06f1c7786f").then((r) => {
-  list_contacts(r.documents);
-  window.contacts = r.documents;
-});
+async function get_rooms() {
+  let r = await api.listDocuments(Server.roomUsersCollectionId);
+  let contacts = [];
+  window.room_users = r.documents;
+
+  const cur_user = await api.fetch_user();
+  for (const row of r.documents) {
+    if (row.user_id == cur_user) {
+      contacts.push(row.room_id);
+    }
+  }
+
+  let rooms = await api.listDocuments(Server.roomCollectionId);
+  contacts = rooms.documents.filter((r) => contacts.includes(r.$id));
+
+  list_contacts(contacts);
+  window.contacts = contacts;
+}
+get_rooms();
 
 function list_contacts(params) {
   for (const row of params) {
-    append_contact(row)
+    append_contact(row);
   }
 }
 
-function append_contact(row, is_new_contact = false) {
-  let profile_image = "./assets/dist/images/dummy.jpeg"
+async function append_contact(row, is_new_contact = false) {
+  let profile_image = "./src/assets/dist/images/dummy.jpeg";
+  const cur_user = await api.fetch_user();
 
-  if(row.profile_image && is_new_contact) {
-    profile_image = api.provider().storage.getFileDownload(row.profile_image)
+  if (row.profile_image && is_new_contact) {
+    profile_image = api.provider().storage.getFileDownload(row.profile_image);
   }
 
-  if(row.room_image && !is_new_contact) {
-    profile_image = api.provider().storage.getFileDownload(row.room_image)
+  if (row.room_image && row.is_group && !is_new_contact) {
+    profile_image = api.provider().storage.getFileDownload(row.room_image);
+  }
+
+  let room_user_name = row.title
+
+  if (!row.is_group && !is_new_contact) {
+    let room_user = window.room_users.filter(
+      (r) => r.room_id == row.$id && r.user_id != cur_user
+    )[0];
+
+    if (room_user) {
+      room_user = await api.get_user_profile(room_user.user_id);
+      console.log(room_user);
+
+      profile_image = api
+        .provider()
+        .storage.getFileDownload(room_user.profile_image);
+
+    room_user_name = room_user.user_name
+    }
   }
   $(".contacts-section").append(
-    `<div class="media-card" data-contact_id="${row.$id}" data-new-contact="${is_new_contact}">
+    `<div class="media-card" data-contact_id="${
+      row.$id
+    }" data-new-contact="${is_new_contact}">
     <img
     src="${profile_image}"
     alt="Room Image"
     class="img img-dp"
     />
-    <h5 class="chat-title">${ is_new_contact? row.user_name: row.title }</h5>
+    <h5 class="chat-title">${is_new_contact ? row.user_name : room_user_name}</h5>
     </div>`
   );
 }
@@ -128,12 +167,8 @@ function append_contact(row, is_new_contact = false) {
 function fetch_messages(room_id) {
   $(".communication-section").html("");
 
-  api.listDocuments("625174ac6a2388c76fca").then((r) => {
+  api.listDocuments(Server.messageCollectionId).then((r) => {
     for (const row of r.documents) {
-      //   temp code to delete messages
-      //   api.deleteDocument("625174ac6a2388c76fca", row.$id)
-      //   api.provider().storage.deleteFile(row.audio_link)
-
       if (row.room_id == room_id) {
         append_message(row);
       }
@@ -164,8 +199,8 @@ $(document).on("click", ".media-card", (e) => {
   const new_room = $(e.target).data("new-contact");
 
   if(new_room){
-    create_new_room(contact_id)
-    return
+    create_new_room(contact_id);
+    return;
   }
 
   const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null;
@@ -184,15 +219,28 @@ $(document).on("click", ".media-card", (e) => {
 });
 
 async function create_new_room(user) {
-  const cur_user = await api.fetch_user()
+  const cur_user = await api.fetch_user();
   const profile = await api.getDocument(Server.profileCollectionId, user);
 
-  if(!profile) return;
+  if (!profile) return;
 
-  const room = await api.createDocument(Server.roomCollectionId, { title: profile.user_name}, ["role:all"])
+  const room = await api.createDocument(
+    Server.roomCollectionId,
+    { title: profile.user_name },
+    ["role:all"]
+  );
 
-  await api.createDocument(Server.roomUsersCollectionId, { room_id: room.$id, user_id: cur_user})
-  await api.createDocument(Server.roomUsersCollectionId, { room_id: room.$id, user_id: profile.user_id})
+  await api.createDocument(
+    Server.roomUsersCollectionId,
+    { room_id: room.$id, user_id: cur_user },
+    ["role:all"]
+  );
+
+  await api.createDocument(
+    Server.roomUsersCollectionId,
+    { room_id: room.$id, user_id: profile.user_id },
+    ["role:all"]
+  );
 }
 
 function toggle_chat_screen() {
@@ -212,6 +260,22 @@ function toggle_chat_screen() {
     }
   }
 }
+
+//
+//
+
+function delete_docs() {
+  let collectionId = Server.roomCollectionId;
+  api.listDocuments(collectionId).then((r) => {
+    for (const row of r.documents) {
+      api.deleteDocument(collectionId, row.$id);
+    }
+  });
+}
+
+// delete_docs();
+//
+//
 
 /******************************************************
  * send and receive message
