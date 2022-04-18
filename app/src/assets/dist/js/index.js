@@ -1,3 +1,4 @@
+
 /*!
  * jQuery JavaScript Library v3.6.0 -ajax,-ajax/jsonp,-ajax/load,-ajax/script,-ajax/var/location,-ajax/var/nonce,-ajax/var/rquery,-ajax/xhr,-manipulation/_evalUrl,-deprecated/ajax-event-alias,-effects,-effects/Tween,-effects/animatedSelector
  * https://jquery.com/
@@ -11,8 +12,6 @@
  *
  * Date: 2021-03-02T17:08Z
  */
-/* eslint-disable */
-
 ( function( global, factory ) {
 
 	"use strict";
@@ -1891,7 +1890,7 @@ Expr = Sizzle.selectors = {
 			return function( elem ) {
 				var result = Sizzle.attr( elem, name );
 
-				if ( result === null ) {
+				if ( result == null ) {
 					return operator === "!=";
 				}
 				if ( !operator ) {
@@ -2246,7 +2245,7 @@ Expr = Sizzle.selectors = {
 
 				// Support: IE<8
 				// New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
-				( ( attr = elem.getAttribute( "type" ) ) === null ||
+				( ( attr = elem.getAttribute( "type" ) ) == null ||
 					attr.toLowerCase() === "text" );
 		},
 
@@ -2491,7 +2490,7 @@ function condense( unmatched, map, filter, context, xml ) {
 		newUnmatched = [],
 		i = 0,
 		len = unmatched.length,
-		mapped = map !== null;
+		mapped = map != null;
 
 	for ( ; i < len; i++ ) {
 		if ( ( elem = unmatched[ i ] ) ) {
@@ -2685,7 +2684,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				elems = seed || byElement && Expr.find[ "TAG" ]( "*", outermost ),
 
 				// Use integer dirruns iff this is the outermost matcher
-				dirrunsUnique = ( dirruns += contextBackup === null ? 1 : Math.random() || 0.1 ),
+				dirrunsUnique = ( dirruns += contextBackup == null ? 1 : Math.random() || 0.1 ),
 				len = elems.length;
 
 			if ( outermost ) {
@@ -2700,7 +2699,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 			// Add elements passing elementMatchers directly to results
 			// Support: IE<9, Safari
 			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
-			for ( ; i !== len && ( elem = elems[ i ] ) !== null; i++ ) {
+			for ( ; i !== len && ( elem = elems[ i ] ) != null; i++ ) {
 				if ( byElement && elem ) {
 					j = 0;
 
@@ -2962,7 +2961,7 @@ if ( !support.attributes || !assert( function( el ) {
 // Support: IE<9
 // Use getAttributeNode to fetch booleans when getAttribute lies
 if ( !assert( function( el ) {
-	return el.getAttribute( "disabled" ) === null;
+	return el.getAttribute( "disabled" ) == null;
 } ) ) {
 	addHandle( booleans, function( elem, name, isXML ) {
 		var val;
@@ -3327,7 +3326,7 @@ jQuery.fn.extend( {
 	},
 
 	addBack: function( selector ) {
-		return this.add( selector === null ?
+		return this.add( selector == null ?
 			this.prevObject : this.prevObject.filter( selector )
 		);
 	}
@@ -3374,7 +3373,7 @@ jQuery.each( {
 		return siblings( elem.firstChild );
 	},
 	contents: function( elem ) {
-		if ( elem.contentDocument !== null &&
+		if ( elem.contentDocument != null &&
 
 			// Support: IE 11+
 			// <object> elements with no `data` attribute has an object
@@ -3917,7 +3916,7 @@ jQuery.extend( {
 				// Get a promise for this deferred
 				// If obj is provided, the promise aspect is added to the object
 				promise: function( obj ) {
-					return obj !== null ? jQuery.extend( obj, promise ) : promise;
+					return obj != null ? jQuery.extend( obj, promise ) : promise;
 				}
 			},
 			deferred = {};
@@ -4149,7 +4148,7 @@ if ( document.readyState === "complete" ||
 var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 	var i = 0,
 		len = elems.length,
-		bulk = key === null;
+		bulk = key == null;
 
 	// Sets many values
 	if ( toType( key ) === "object" ) {
@@ -4872,7 +4871,7 @@ function showHide( elements, show ) {
 
 	// Set the display of the elements in a second loop to avoid constant reflow
 	for ( index = 0; index < length; index++ ) {
-		if ( values[ index ] !== null ) {
+		if ( values[ index ] != null ) {
 			elements[ index ].style.display = values[ index ];
 		}
 	}
@@ -5118,7 +5117,6 @@ function expectSync( elem, type ) {
 // Support: IE <=9 only
 // Accessing document.activeElement can throw unexpectedly
 // https://bugs.jquery.com/ticket/13393
-
 function safeActiveElement() {
 	try {
 		return document.activeElement;
@@ -5144,12 +5142,12 @@ function on( elem, types, selector, data, fn, one ) {
 		return elem;
 	}
 
-	if ( data === null && fn === null ) {
+	if ( data == null && fn == null ) {
 
 		// ( types, fn )
 		fn = selector;
 		data = selector = undefined;
-	} else if ( fn === null ) {
+	} else if ( fn == null ) {
 		if ( typeof selector === "string" ) {
 
 			// ( types, selector, fn )
@@ -6130,7 +6128,7 @@ function remove( elem, selector, keepData ) {
 		nodes = selector ? jQuery.filter( selector, elem ) : elem,
 		i = 0;
 
-	for ( ; ( node = nodes[ i ] ) !== null; i++ ) {
+	for ( ; ( node = nodes[ i ] ) != null; i++ ) {
 		if ( !keepData && node.nodeType === 1 ) {
 			jQuery.cleanData( getAll( node ) );
 		}
@@ -6287,7 +6285,7 @@ jQuery.fn.extend( {
 		var elem,
 			i = 0;
 
-		for ( ; ( elem = this[ i ] ) !== null; i++ ) {
+		for ( ; ( elem = this[ i ] ) != null; i++ ) {
 			if ( elem.nodeType === 1 ) {
 
 				// Prevent memory leaks
@@ -6302,8 +6300,8 @@ jQuery.fn.extend( {
 	},
 
 	clone: function( dataAndEvents, deepDataAndEvents ) {
-		dataAndEvents = dataAndEvents === null ? false : dataAndEvents;
-		deepDataAndEvents = deepDataAndEvents === null ? dataAndEvents : deepDataAndEvents;
+		dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
+		deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
 
 		return this.map( function() {
 			return jQuery.clone( this, dataAndEvents, deepDataAndEvents );
@@ -6536,7 +6534,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		// in computed dimensions. (gh-4529)
 		reliableTrDimensions: function() {
 			var table, tr, trChild, trStyle;
-			if ( reliableTrDimensionsVal === null ) {
+			if ( reliableTrDimensionsVal == null ) {
 				table = document.createElement( "table" );
 				tr = document.createElement( "tr" );
 				trChild = document.createElement( "div" );
@@ -6933,7 +6931,7 @@ jQuery.extend( {
 			}
 
 			// Make sure that null and NaN values aren't set (#7116)
-			if ( value === null || value !== value ) {
+			if ( value == null || value !== value ) {
 				return;
 			}
 
@@ -7249,7 +7247,7 @@ jQuery.extend( {
 		ret = jQuery.find.attr( elem, name );
 
 		// Non-existent attributes return null, we normalize to undefined
-		return ret === null ? undefined : ret;
+		return ret == null ? undefined : ret;
 	},
 
 	attrHooks: {
@@ -7310,7 +7308,7 @@ jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( _i, name )
 			// Avoid an infinite loop by temporarily removing this function from the getter
 			handle = attrHandle[ lowercaseName ];
 			attrHandle[ lowercaseName ] = ret;
-			ret = getter( elem, name, isXML ) !== null ?
+			ret = getter( elem, name, isXML ) != null ?
 				lowercaseName :
 				null;
 			attrHandle[ lowercaseName ] = handle;
@@ -7670,7 +7668,7 @@ jQuery.fn.extend( {
 				}
 
 				// Handle cases where value is null/undef or number
-				return ret === null ? "" : ret;
+				return ret == null ? "" : ret;
 			}
 
 			return;
@@ -7692,7 +7690,7 @@ jQuery.fn.extend( {
 			}
 
 			// Treat null/undefined as ""; convert numbers to string
-			if ( val === null ) {
+			if ( val == null ) {
 				val = "";
 
 			} else if ( typeof val === "number" ) {
@@ -7700,7 +7698,7 @@ jQuery.fn.extend( {
 
 			} else if ( Array.isArray( val ) ) {
 				val = jQuery.map( val, function( value ) {
-					return value === null ? "" : value + "";
+					return value == null ? "" : value + "";
 				} );
 			}
 
@@ -7720,7 +7718,7 @@ jQuery.extend( {
 			get: function( elem ) {
 
 				var val = jQuery.find.attr( elem, "value" );
-				return val !== null ?
+				return val != null ?
 					val :
 
 					// Support: IE <=10 - 11 only
@@ -7884,7 +7882,7 @@ jQuery.extend( jQuery.event, {
 		}
 
 		// Clone any incoming data and prepend the event, creating the handler arg list
-		data = data === null ?
+		data = data == null ?
 			[ event ] :
 			jQuery.makeArray( data, [ event ] );
 
@@ -8110,7 +8108,7 @@ function buildParams( prefix, obj, traditional, add ) {
 
 				// Item is non-scalar (array or object), encode its numeric index.
 				buildParams(
-					prefix + "[" + ( typeof v === "object" && v !== null ? i : "" ) + "]",
+					prefix + "[" + ( typeof v === "object" && v != null ? i : "" ) + "]",
 					v,
 					traditional,
 					add
@@ -8145,10 +8143,10 @@ jQuery.param = function( a, traditional ) {
 				valueOrFunction;
 
 			s[ s.length ] = encodeURIComponent( key ) + "=" +
-				encodeURIComponent( value === null ? "" : value );
+				encodeURIComponent( value == null ? "" : value );
 		};
 
-	if ( a === null ) {
+	if ( a == null ) {
 		return "";
 	}
 
@@ -8193,7 +8191,7 @@ jQuery.fn.extend( {
 		} ).map( function( _i, elem ) {
 			var val = jQuery( this ).val();
 
-			if ( val === null ) {
+			if ( val == null ) {
 				return null;
 			}
 
@@ -8385,10 +8383,10 @@ jQuery.offset = {
 			options = options.call( elem, i, jQuery.extend( {}, curOffset ) );
 		}
 
-		if ( options.top !== null ) {
+		if ( options.top != null ) {
 			props.top = ( options.top - curOffset.top ) + curTop;
 		}
-		if ( options.left !== null ) {
+		if ( options.left != null ) {
 			props.left = ( options.left - curOffset.left ) + curLeft;
 		}
 
@@ -8722,7 +8720,7 @@ jQuery.isNumeric = function( obj ) {
 };
 
 jQuery.trim = function( text ) {
-	return text === null ?
+	return text == null ?
 		"" :
 		( text + "" ).replace( rtrim, "" );
 };
@@ -8785,154 +8783,160 @@ return jQuery;
 } );
 
 const Server = {
-  endpoint: "https://appwrite.software-engineering.education/v1",
-  project: "62066441987f0d2d4aa8",
-  profileCollectionId: "62423c047b6cc775bd24",
-  roomCollectionId: "625386922d06f1c7786f",
-  roomUsersCollectionId: "625a082e707f1c17927f",
-  messageCollectionId: "625174ac6a2388c76fca",
-};
+	endpoint: "https://appwrite.software-engineering.education/v1",
+	project: "62066441987f0d2d4aa8",
+	profileCollectionId: "62423c047b6cc775bd24",
+	roomCollectionId: "625386922d06f1c7786f",
+	roomUsersCollectionId: "625a082e707f1c17927f",
+	messageCollectionId: "625174ac6a2388c76fca",
+}
 
 let api = {
-  sdk: null,
-  user: null,
+	sdk: null,
+	user: null,
+	users: {},
 
-  provider: () => {
-    if (api.sdk) return api.sdk;
-    let appwrite = new Appwrite();
-    appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
-    api.sdk = appwrite;
-    return appwrite;
-  },
+	provider: () => {
+		if (api.sdk) return api.sdk
+		let appwrite = new Appwrite()
+		appwrite.setEndpoint(Server.endpoint).setProject(Server.project)
+		api.sdk = appwrite
+		return appwrite
+	},
 
-  fetch_user: async () => {
-    if (api.user) return api.user;
-    let user = await api.getAccount();
-    api.user = user.$id;
-    return user.$id;
-  },
+	fetch_user: async () => {
+		if (api.user) return api.user
+		let user = await api.getAccount()
+		api.user = user.$id
+		return user.$id
+	},
 
-  get_user_profile: async (id) => {
+	get_user_profile: async (id) => {
+		const profiles = await api.listDocuments(Server.profileCollectionId)
+		const profile = profiles.documents.filter((r) => r.user_id == id)
 
-    const profiles = await api.listDocuments(Server.profileCollectionId);
-    const profile = profiles.documents.filter(r => r.user_id == id)
+		let user = {}
+		user[id] = profile[0]
 
-    return profile[0];
-  },
+		$.extend(api.users, user)
 
-  get_user_name: async () => {
-    if (api.user) return api.user;
-    let user = await api.getAccount();
-    api.user = user.$id;
-    return user.$id;
-  },
+		return profile[0]
+	},
 
-  createAccount: (email, password, name) => {
-    return api.provider().account.create("unique()", email, password, name);
-  },
+	get_user_name: async () => {
+		if (api.user) return api.user
+		let user = await api.getAccount()
+		api.user = user.$id
+		return user.$id
+	},
 
-  getAccount: () => {
-    return api.provider().account.get();
-  },
+	createAccount: (email, password, name) => {
+		return api.provider().account.create("unique()", email, password, name)
+	},
 
-  createSession: (email, password) => {
-    return api.provider().account.createSession(email, password);
-  },
+	getAccount: () => {
+		return api.provider().account.get()
+	},
 
-  deleteCurrentSession: () => {
-    return api.provider().account.deleteSession("current");
-  },
+	createSession: (email, password) => {
+		return api.provider().account.createSession(email, password)
+	},
 
-  createDocument: (collectionId, data, read=[]) => {
-    return api
-      .provider()
-      .database.createDocument(collectionId, "unique()", data, read);
-  },
+	deleteCurrentSession: () => {
+		return api.provider().account.deleteSession("current")
+	},
 
-  listDocuments: (collectionId) => {
-    return api.provider().database.listDocuments(collectionId);
-  },
+	createDocument: (collectionId, data, read = []) => {
+		return api
+			.provider()
+			.database.createDocument(collectionId, "unique()", data, read)
+	},
 
-  getDocument: (collectionId, documentId) => {
-    return api.provider().database.getDocument(collectionId, documentId);
-  },
+	listDocuments: (collectionId) => {
+		return api.provider().database.listDocuments(collectionId)
+	},
 
-  updateDocument: (collectionId, documentId, data, read = [], write = []) => {
-    return api
-      .provider()
-      .database.updateDocument(collectionId, documentId, data, read, write);
-  },
+	getDocument: (collectionId, documentId) => {
+		return api.provider().database.getDocument(collectionId, documentId)
+	},
 
-  deleteDocument: (collectionId, documentId) => {
-    return api.provider().database.deleteDocument(collectionId, documentId);
-  },
-};
+	updateDocument: (collectionId, documentId, data, read = [], write = []) => {
+		return api
+			.provider()
+			.database.updateDocument(collectionId, documentId, data, read, write)
+	},
+
+	deleteDocument: (collectionId, documentId) => {
+		return api.provider().database.deleteDocument(collectionId, documentId)
+	},
+}
 
 const signup = async ({ email, password, name }) => {
-  try {
-    const account = await api.createAccount(email, password, name);
-    await api.createSession(email, password);
-    await api.createDocument(Server.profileCollectionId, {
-      user_id: account.$id,
-      user_name: name,
-    });
-    document.location.href = "chat.html";
-  } catch (e) {
-    alert(e);
-  }
-};
+	try {
+		const account = await api.createAccount(email, password, name)
+		await api.createSession(email, password)
+		await api.createDocument(Server.profileCollectionId, {
+			user_id: account.$id,
+			user_name: name,
+			user_email: account.email
+		})
+    
+		document.location.href = "chat.html"
+	} catch (e) {
+		alert(e)
+	}
+}
 
 const fetchAccount = async () => {
-  try {
-    const account = await api.getAccount();
-  } catch (e) {
-    console.log(e);
-    document.location.href = "login.html";
-  }
-};
+	try {
+		const account = await api.getAccount()
+	} catch (e) {
+		document.location.href = "login.html"
+	}
+}
 
 const login = async ({ email, password }) => {
-  try {
-    await api.createSession(email, password);
-    const account = await api.getAccount();
-    document.location.href = "chat.html";
-  } catch (e) {
-    alert(e);
-  }
-};
+	try {
+		await api.createSession(email, password)
+		const account = await api.getAccount()
+		document.location.href = "chat.html"
+	} catch (e) {
+		alert(e)
+	}
+}
 
 const logout = async () => {
-  try {
-    await api.deleteCurrentSession();
-    document.location.href = "login.html";
-  } catch (e) {
-    alert(e);
-  }
-};
+	try {
+		await api.deleteCurrentSession()
+		document.location.href = "login.html"
+	} catch (e) {
+		alert(e)
+	}
+}
 
 function login_with_appwrite() {
-  const email = document.getElementById("login_email").value;
-  const password = document.getElementById("login_password").value;
+	const email = document.getElementById("login_email").value
+	const password = document.getElementById("login_password").value
 
-  login({ email, password });
+	login({ email, password })
 }
 
 function signup_with_appwrite() {
-  const name = document.getElementById("signup_name").value;
-  const email = document.getElementById("signup_email").value;
-  const password = document.getElementById("signup_password").value;
+	const name = document.getElementById("signup_name").value
+	const email = document.getElementById("signup_email").value
+	const password = document.getElementById("signup_password").value
 
-  signup({ email, password, name });
+	signup({ email, password, name })
 }
 
 function redirect_to_login() {
-  $(".login-form").show();
-  $(".signup-form").hide();
+	$(".login-form").show()
+	$(".signup-form").hide()
 }
 
 function redirect_to_signup() {
-  $(".login-form").hide();
-  $(".signup-form").show();
+	$(".login-form").hide()
+	$(".signup-form").show()
 }
 
 /*******************************************************************************
@@ -8943,683 +8947,892 @@ function redirect_to_signup() {
 ## https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 *******************************************************************************/
 
-URL = window.URL || window.webkitURL;
+URL = window.URL || window.webkitURL
 
-let mediaRecorder;
+let mediaRecorder
 
-$(document).on("click", ".btn-record", startRecording);
-$(document).on("click", ".btn-stop", stopRecording);
+$(document).on("click", ".btn-record", startRecording)
+$(document).on("click", ".btn-stop", stopRecording)
 
 // start recording
 function startRecording() {
-  navigator.mediaDevices
-    .getUserMedia({ audio: true })
-    .then((stream) => {
-      mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.start();
+	navigator.mediaDevices
+		.getUserMedia({ audio: true })
+		.then((stream) => {
+			mediaRecorder = new MediaRecorder(stream)
+			mediaRecorder.start()
 
-      const audioChunks = [];
-      mediaRecorder.addEventListener("dataavailable", (event) => {
-        audioChunks.push(event.data);
-      });
+			const audioChunks = []
+			mediaRecorder.addEventListener("dataavailable", (event) => {
+				audioChunks.push(event.data)
+			})
 
-      mediaRecorder.addEventListener("stop", () => {
-        const audioBlob = new Blob(audioChunks);
-        createAudio(audioBlob);
-        clearInterval(window.rec_timer);
-        $(".voice-memo-recorder-wrap").removeClass("recording");
-        stream.getTracks()[0].stop();
-      });
+			mediaRecorder.addEventListener("stop", () => {
+				const audioBlob = new Blob(audioChunks)
+				createAudio(audioBlob)
+				clearInterval(window.rec_timer)
+				$(".voice-memo-recorder-wrap").removeClass("recording")
+				stream.getTracks()[0].stop()
+			})
 
-      $(".voice-memo-recorder-wrap").addClass("recording");
-      startTimer();
-    })
-    .catch(function (err) {
-      console.log("Microphone not found/not allowed.");
-    });
+			$(".voice-memo-recorder-wrap").addClass("recording")
+			startTimer()
+		})
+		.catch(function (err) {
+			alert("Microphone not found/not allowed.")
+		})
 }
 
 // stop recording
 function stopRecording() {
-  mediaRecorder.stop();
+	mediaRecorder.stop()
 }
 
 // make ui element from recorded audio
 function createAudio(blob) {
-  window.cur_blob = blob;
-  let url = URL.createObjectURL(blob);
+	window.cur_blob = blob
+	let url = URL.createObjectURL(blob)
 
-  const $duration = $(".voice-memo-recorder-wrap").find(".duration");
-  const $grand_wrap = $(".voice-memo-recorder-wrap").find(
-    ".comment-voice-memo"
-  );
-  const $audio_container = $(".voice-memo-recorder-wrap").find(
-    ".hidden-audio-container"
-  );
-  const audio = new Audio(url);
+	const $duration = $(".voice-memo-recorder-wrap").find(".duration")
+	const $grand_wrap = $(".voice-memo-recorder-wrap").find(
+		".comment-voice-memo"
+	)
+	const $audio_container = $(".voice-memo-recorder-wrap").find(
+		".hidden-audio-container"
+	)
+	const audio = new Audio(url)
 
-  $(audio).addClass("hidden-audio");
-  $audio_container.html(audio);
-  $(".voice-memo-recorder-wrap").addClass("recorded");
+	$(audio).addClass("hidden-audio")
+	$audio_container.html(audio)
+	$(".voice-memo-recorder-wrap").addClass("recorded")
 
-  // load audio completely before play
-  $grand_wrap.addClass("loading");
-  audio.addEventListener("durationchange", (e) => {
-    if (audio.duration !== Infinity) {
-      audio.currentTime = 0;
-      setTimeout(() => {
-        $duration.html(format_time(audio.duration));
-        $(".player-progress-bar").val(0);
-        $grand_wrap.removeClass("loading");
-      }, 500);
-      return;
-    }
-  });
+	// load audio completely before play
+	$grand_wrap.addClass("loading")
+	audio.addEventListener("durationchange", (e) => {
+		if (audio.duration != Infinity) {
+			audio.currentTime = 0
+			setTimeout(() => {
+				$duration.html(format_time(audio.duration))
+				$(".player-progress-bar").val(0)
+				$grand_wrap.removeClass("loading")
+			}, 500)
+			return
+		}
+	})
 
-  audio.load();
-  audio.currentTime = 24 * 60 * 60;
+	audio.load()
+	audio.currentTime = 24 * 60 * 60
 
-  const $audio = $(audio);
-  $audio.on("timeupdate", audio_timeupdate);
-  $audio.on("play", audio_play);
-  $audio.on("pause", audio_pause);
-  $audio.on("ended", audio_ended);
+	const $audio = $(audio)
+	$audio.on("timeupdate", audio_timeupdate)
+	$audio.on("play", audio_play)
+	$audio.on("pause", audio_pause)
+	$audio.on("ended", audio_ended)
 }
 
 // helping function to show how much time recorded for current audio
 function startTimer() {
-  let seconds = 0;
-  let minutes = 0;
-  let d_seconds,
-    d_minutes = null;
-  let time = null;
-  $(".recording-timer").html("00:00");
+	let seconds = 0
+	let minutes = 0
+	let d_seconds,
+		d_minutes = null
+	let time = null
+	$(".recording-timer").html("00:00")
 
-  window.rec_timer = setInterval(() => {
-    seconds++;
+	window.rec_timer = setInterval(() => {
+		seconds++
 
-    if (seconds > 60) {
-      minutes++;
-      seconds = 0;
-    }
+		if (seconds > 60) {
+			minutes++
+			seconds = 0
+		}
 
-    if (seconds < 10) {
-      d_seconds = "0" + seconds;
-    } else {
-      d_seconds = seconds;
-    }
+		if (seconds < 10) {
+			d_seconds = "0" + seconds
+		} else {
+			d_seconds = seconds
+		}
 
-    if (minutes < 10) {
-      d_minutes = "0" + minutes;
-    } else {
-      d_minutes = minutes;
-    }
+		if (minutes < 10) {
+			d_minutes = "0" + minutes
+		} else {
+			d_minutes = minutes
+		}
 
-    time = d_minutes + ":" + d_seconds;
-    $(".recording-timer").html(time);
-  }, 1000);
+		time = d_minutes + ":" + d_seconds
+		$(".recording-timer").html(time)
+	}, 1000)
 }
 
 // Audio Functions
+
+/* eslint-disable no-undef */
 async function update_settings_panel() {
-  const account = await api.getAccount();
-  const profiles = await api.listDocuments(Server.profileCollectionId);
-  let profile_image = null;
+	const account = await api.getAccount()
+	const profiles = await api.listDocuments(Server.profileCollectionId)
+	let profile_image = null
 
-  for (const row of profiles.documents) {
-    if (row.user_id == account.$id) {
-      profile_image = row.profile_image;
-    }
-  }
+	for (const row of profiles.documents) {
+		if (row.user_id == account.$id) {
+			profile_image = row.profile_image
+		}
+	}
 
-  $("#settings_panel_name").val(account.name);
+	$("#settings_panel_name").val(account.name)
 
-  if (profile_image) {
-    let url = api.provider().storage.getFileDownload(profile_image);
-    $("#settings_panel_image").attr("src", url);
-  }
+	if (profile_image) {
+		let url = api.provider().storage.getFileDownload(profile_image)
+		$("#settings_panel_image").attr("src", url)
+	}
 }
 
 async function updateAccount() {
-  const name = document.getElementById("settings_panel_name").value;
-  const profile_image = document.getElementById("settings_panel_image_upload")
-    .files[0];
+	const name = document.getElementById("settings_panel_name").value
+	const profile_image = document.getElementById("settings_panel_image_upload")
+		.files[0]
 
-  api.provider().account.updateName(name);
-  const user_id = await api.fetch_user();
+	api.provider().account.updateName(name)
+	const user_id = await api.fetch_user()
 
-  const profiles = await api.listDocuments(Server.profileCollectionId);
+	const profiles = await api.listDocuments(Server.profileCollectionId)
 
-  const profile =
-    profiles.documents.filter((profile) => profile.user_id === user_id)[0] ||
-    null;
+	const profile =
+    profiles.documents.filter((profile) => profile.user_id == user_id)[0] ||
+    null
 
-  if (profile) {
-    // deleting old image for storage friendly code
-    let old_profile_image = profile.profile_image;
+	if (profile) {
+		// deleting old image for storage friendly code
+		let old_profile_image = profile.profile_image
 
-    if (old_profile_image && profile_image) {
-      api.provider().storage.deleteFile(old_profile_image);
-    }
+		if (old_profile_image && profile_image) {
+			api.provider().storage.deleteFile(old_profile_image)
+		}
 
-    // updating new image
-    let file = await api
-      .provider()
-      .storage.createFile("unique()", profile_image, ["role:all"], []);
+		// updating new image
+		let file = await api
+			.provider()
+			.storage.createFile("unique()", profile_image, ["role:all"], [])
 
-    api.updateDocument(Server.profileCollectionId, profile.$id, {
-      user_name: name,
-      profile_image: file.$id,
-    });
-  }
-  update_settings_panel();
+		api.updateDocument(Server.profileCollectionId, profile.$id, {
+			user_name: name,
+			profile_image: file.$id,
+		})
+	}
+
+	update_settings_panel()
 }
 
 $("#search_user_input").on("keypress", function (event) {
-	if ($("#search_user_input").val() == "del" && event.keyCode == "13") {
-		delete_docs();
-		// document.location.reload();
-  }
-});
+	if ($("#search_user_input").val() && event.keyCode == "13") {
+		search_user()
+	}
+})
 
 $("#search_user_input").on("input", function (event) {
-  if ($("#search_user_input").val() == "") {
-    $(".contacts-section").html("");
-    list_contacts(window.contacts);
-  }else{
-    $(".contacts-section").html("");
-    search_user();
-  }
-});
+	if ($("#search_user_input").val() == "") {
+		$(".contacts-section").html("")
+		list_contacts(window.contacts)
+	}
+})
 
 async function search_user() {
-  $(".contacts-section").html("");
-  const search_txt = document.getElementById("search_user_input").value;
-  if (!search_txt) return;
+	$(".contacts-section").html("")
 
-  const profiles = await api.listDocuments(Server.profileCollectionId);
-  let flag = true;
+	const search_txt = document.getElementById("search_user_input").value
+	if (!search_txt) return
 
-  for (const row of profiles.documents) {
-    if (row.user_email && search_txt && row.user_email.includes(search_txt)) {
-      flag = false;
-      append_contact(row, true);
-      break;
-      
-    }
-  }
-  if (flag) {
-    $(".contacts-section").html(
-      "<p class='contact-not-found'>User Not Found</p>"
-    );
-  }
+	const profiles = await api.listDocuments(Server.profileCollectionId)
+	let flag = true
+
+	for (const row of profiles.documents) {
+		if (row.user_email && search_txt && row.user_email.includes(search_txt)) {
+			flag = false
+			append_contact(row, true)
+			break
+		}
+	}
+
+	if (flag) {
+		$(".contacts-section").html(
+			"<p class='contact-not-found'>User Not Found</p>"
+		)
+	}
 }
 
 async function get_rooms() {
-	let r = await api.listDocuments(Server.roomUsersCollectionId);
-	let contacts = [];
-	window.room_users = r.documents;
-  
-	const cur_user = await api.fetch_user();
+	let r = await api.listDocuments(Server.roomUsersCollectionId)
+	let contacts = []
+	window.room_users = r.documents
+
+	const cur_user = await api.fetch_user()
 	for (const row of r.documents) {
-	  if (row.user_id == cur_user) {
-		contacts.push(row.room_id);
-	  }
+		if (row.user_id == cur_user) {
+			contacts.push(row.room_id)
+		}
 	}
-  
-	let rooms = await api.listDocuments(Server.roomCollectionId);
+
+	let rooms = await api.listDocuments(Server.roomCollectionId)
+
 	contacts = rooms.documents.filter((r) => {
-		return contacts.includes(r.$id);
-	});
-  
-	list_contacts(contacts);
-	window.contacts = contacts;
-  }
-  get_rooms();
+		return contacts.includes(r.$id)
+	})
+
+	list_contacts(contacts)
+	window.contacts = contacts
+}
+get_rooms()
 
 function list_contacts(params) {
-  for (const row of params) {
-    append_contact(row);
-  }
+	for (const row of params) {
+		append_contact(row)
+	}
 }
 
 async function append_contact(row, is_new_contact = false) {
-  let profile_image = "./src/assets/dist/images/dummy.jpeg";
-  const cur_user = await api.fetch_user();
+	let profile_image = "./assets/dist/images/dummy.jpeg"
+	const cur_user = await api.fetch_user()
 
-  if(row.profile_image && is_new_contact) {
-    profile_image = api.provider().storage.getFileDownload(row.profile_image);
-  }
+	if (row.profile_image && is_new_contact) {
+		profile_image = api.provider().storage.getFileDownload(row.profile_image)
+	}
 
-  if (row.room_image && row.is_group && !is_new_contact) {
-    profile_image = api.provider().storage.getFileDownload(row.room_image);
-  }
+	if (row.room_image && row.is_group && !is_new_contact) {
+		profile_image = api.provider().storage.getFileDownload(row.room_image)
+	}
 
-  let room_user_name = row.title;
+	let room_user_name = row.title
 
-  if (!row.is_group && !is_new_contact) {
-    let room_user = window.room_users.filter(
-      (r) => r.room_id == row.$id && r.user_id != cur_user
-    )[0];
+	if (!row.is_group && !is_new_contact) {
+		let room_user = window.room_users.filter(
+			(r) => r.room_id == row.$id && r.user_id != cur_user
+		)[0]
 
-    if (room_user) {
-      room_user = await api.get_user_profile(room_user.user_id);
-      console.log(room_user);
+		if (room_user) {
+			room_user = await api.get_user_profile(room_user.user_id)
 
-      profile_image = api
-        .provider()
-        .storage.getFileDownload(room_user.profile_image);
+			profile_image = api
+				.provider()
+				.storage.getFileDownload(room_user.profile_image)
 
-    room_user_name = room_user.user_name;
-    }
-  }
+			room_user_name = room_user.user_name
+		}
+	}
 
-  $(".contacts-section").append(
-    `<div class="media-card" data-contact_id="${
-		row.$id
-	  }" data-new-contact="${is_new_contact}">
+	$(".contacts-section").append(
+		`<div class="media-card" data-contact_id="${
+			row.$id
+		}" data-new-contact="${is_new_contact}">
     <img
     src="${profile_image}"
     alt="Room Image"
     class="img img-dp"
     />
     <h5 class="chat-title">${
-		is_new_contact ? row.user_name : room_user_name
-	  }</h5>
+	is_new_contact ? row.user_name : room_user_name
+}</h5>
     </div>`
-  );
+	)
 }
 
 function fetch_messages(room_id) {
-  $(".communication-section").html("");
+	$(".communication-section").html("")
 
-  api.listDocuments(Server.messageCollectionId).then((r) => {
-    for (const row of r.documents) {
-      if (row.room_id === room_id) {
-        append_message(row);
-      }
-    }
-  });
+	api.listDocuments(Server.messageCollectionId).then((r) => {
+		for (const row of r.documents) {
+			if (row.room_id == room_id) {
+				append_message(row)
+			}
+		}
+	})
 }
 
 async function append_message(row) {
-  // getting uploaded audio link
-  let url = api.provider().storage.getFileDownload(row.audio_link);
-  let cls = row.user_id == await api.fetch_user() ? "audio me" : "audio" 
-  let msg_user = await api.get_user_profile(row.user_id)
-  console.log(msg_user);
+	// getting uploaded audio link
+	let url = api.provider().storage.getFileDownload(row.audio_link)
+	let cls = row.user_id == (await api.fetch_user()) ? "audio me" : "audio"
+	let msg_user = await api.get_user_profile(row.user_id)
 
-  $(".communication-section").append(
-    `<div class="${cls}" data-message_id="${ row.$id}">
-	  <h5 class="message_user">${msg_user.user_name}</h5>
+	let reply_to = ""
+	if (row.reply_to) {
+		let cur_audio_time = format_time(row.reply_time)
 
-	  <audio controls>
-		<source src="${url.href}" type="audio/mpeg">
-		Your browser does not support the audio tag.
-	  </audio>
+		const user = $("#" + row.reply_to)
+			.find(".message_user")
+			.html()
+
+		reply_to = `
+    replied to <a href="#${row.reply_to}">${user}</a> on time <span class="timetoreply">${cur_audio_time}</span>
+    `
+	}
+
+	$(".communication-section")
+		.append(
+			`<div class="${cls}" data-message_id="${row.$id}" id="${row.$id}" >
+	  <h5 class="message_user">${msg_user.user_name} ${reply_to} </h5>
+
+    <div class="flex">
+      <audio controls>
+      <source src="${url.href}" type="audio/mpeg">
+      Your browser does not support the audio tag.
+      </audio>
+      <a href="#" class="btn btn-icon add-reply" onclick="replytomessage('${row.$id}')"><i class="fa fa-reply"></i></a>
+    </div>
 </div>`
-  );
+		)
+		.scrollTop($(".communication-section")[0].scrollHeight)
+}
+
+function replytomessage(current_audio_id) {
+	$("#reply-to").html("")
+
+	let audio_time = $("#" + current_audio_id).find("audio")[0].currentTime
+	let cur_audio_time = format_time(audio_time)
+
+	const user = $("#" + current_audio_id)
+		.find(".message_user")
+		.html()
+
+	$(".chat-footer-section").addClass("replying-to")
+
+	$("#reply-to").append(
+		`<h5>replying to <a href="#${current_audio_id}">${user}</a> on time <span class="timetoreply">${cur_audio_time}</span></h5>`
+	)
+
+	window.current_audio_time = audio_time
+	window.current_audio_id = current_audio_id
+}
+
+function reply_to_completed() {
+	$(".chat-footer-section").removeClass("replying-to")
+	$("#reply-to").html("")
 }
 
 $(document).on("click", ".media-card", (e) => {
-  const contact_id = $(e.target).data("contact_id");
-  const new_room = $(e.target).data("new-contact");
+	const contact_id = $(e.target).data("contact_id")
+	const new_room = $(e.target).data("new-contact")
 
-  if(new_room){
-    create_new_room(contact_id);
-	$("#search_user_input").val("");
-    return;
-  }
+	$(e.target).find("img").removeClass("message_not_readed")
 
-  open_chat(contact_id);
-});
+	if (new_room) {
+		create_new_room(contact_id)
+		$("#search_user_input").val("")
+		return
+	}
+
+	open_chat(contact_id)
+})
 
 async function open_chat(contact_id) {
-  const room = window.contacts.filter((r) => r.$id === contact_id)[0] || null;
-  const cur_user = await api.fetch_user();
-  let profile_image = room.profile_image || "/app/src/assets/dist/images/dummy.jpeg";
-  let room_user_name = room.title;
+	const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null
+	const cur_user = await api.fetch_user()
+	let profile_image = "/app/assets/dist/images/dummy.jpeg"
+	let room_user_name = room.title
 
-  if (!room.is_group) {
-    let room_user = window.room_users.filter((r) => {
-      return r.room_id == room.$id && r.user_id != cur_user;
-    })[0];
+	if (room.is_group) {
+		profile_image = api.provider().storage.getFileDownload(room.room_image)
+	}
 
-    if (room_user) {
-      room_user = await api.get_user_profile(room_user.user_id);
+	if (!room.is_group) {
+		let room_user = window.room_users.filter((r) => {
+			return r.room_id == room.$id && r.user_id != cur_user
+		})[0]
 
-      profile_image = api
-        .provider()
-        .storage.getFileDownload(room_user.profile_image);
+		if (room_user) {
+			room_user = await api.get_user_profile(room_user.user_id)
 
-      room_user_name = room_user.user_name;
-    }
-  }
+			profile_image = await api
+				.provider()
+				.storage.getFileDownload(room_user.profile_image)
 
-  if (room) {
-    $(".header-bar").find("img").attr("src", profile_image);
+			room_user_name = room_user.user_name
+		}
+	}
 
-    $(".header-bar").find(".chat-title").html(room_user_name);
+	if (room) {
+		$(".header-bar").find("img").attr("src", profile_image).show()
 
-    $(".chat-info-panel").addClass("hide");
-    window.current_room = contact_id;
-    fetch_messages(contact_id);
-  }
+		$(".header-bar").find(".chat-title").html(room_user_name)
+
+		$(".chat-info-panel").addClass("hide")
+
+		$(".chat-footer-section").removeClass("hidden")
+
+		$(".btn-toggle-screen").removeClass("hidden")
+
+		window.current_room = contact_id
+		fetch_messages(contact_id)
+	}
 }
 
 async function create_new_room(user) {
-  const cur_user = await api.fetch_user();
-  const profile = await api.getDocument(Server.profileCollectionId, user);
+	const cur_user = await api.fetch_user()
+	const profile = await api.getDocument(Server.profileCollectionId, user)
 
-  if (!profile) return;
+	if (!profile) return
 
-  const room = await api.createDocument(
-    Server.roomCollectionId,
-    { title: profile.user_name },
-    ["role:all"]
-  );
+	const room = await api.createDocument(
+		Server.roomCollectionId,
+		{ title: profile.user_name },
+		["role:all"]
+	)
 
-  await api.createDocument(
-    Server.roomUsersCollectionId,
-    { room_id: room.$id, user_id: cur_user },
-    ["role:all"]
-  );
+	await api.createDocument(
+		Server.roomUsersCollectionId,
+		{ room_id: room.$id, user_id: cur_user },
+		["role:all"]
+	)
 
-  await api.createDocument(
-    Server.roomUsersCollectionId,
-    { room_id: room.$id, user_id: profile.user_id },
-    ["role:all"]
-  );
+	await api.createDocument(
+		Server.roomUsersCollectionId,
+		{ room_id: room.$id, user_id: profile.user_id },
+		["role:all"]
+	)
+
+	document.location.reload()
+
+	window.contacts.push(room)
 }
 
-document.location.reload();
+async function toggle_chat_screen() {
+	$(".chat-info-panel").toggleClass("hide")
 
-window.contacts.push(room);
+	const contact_id = window.current_room
 
-function toggle_chat_screen() {
-  $(".chat-info-panel").toggleClass("hide");
+	for (const row of window.contacts) {
+		if (contact_id == row.$id) {
+			$(".chat-info-panel > img").attr("src", $(".header-bar img").attr("src"))
 
-  const contact_id = window.current_room;
+			$(".chat-info-panel").find(".chat-title").html(row.title)
+			$(".chat-info-panel").find(".description").html(row.description)
 
-  for (const row of window.contacts) {
-    if (contact_id === row.$id) {
-      $(".chat-info-panel > img").attr(
-        "src",
-        "/app/src/assets/dist/images/dummy.jpeg"
-      );
+			row.is_group
+				? $(".add-members").removeClass("hidden")
+				: $(".add-members").addClass("hidden")
+			break
+		}
+	}
 
-      $(".chat-info-panel").find(".chat-title").html(row.title);
-      $(".chat-info-panel").find(".description").html(row.description);
-    }
-  }
+	await show_added_members(contact_id)
 }
 
-//
-//
+async function show_added_members(contact_id) {
+	$(".chat-info-panel").find(".added-members").html("")
 
-async function delete_docs() {
-  let collectionId = Server.roomCollectionId;
-  let r = await api.listDocuments(collectionId);
-  for (const row of r.documents) {
-    row.$id;
-    await api.deleteDocument(collectionId, row.$id);
-  }
+	const room_users = await api.listDocuments(Server.roomUsersCollectionId)
+	for (const room_user of room_users.documents) {
+		if (room_user.room_id == contact_id) {
+			const user_profile = await api.get_user_profile(room_user.user_id)
+			let user_image = "./assets/dist/images/dummy.jpeg"
+
+			if (user_profile.profile_image) {
+				user_image = api
+					.provider()
+					.storage.getFileDownload(user_profile.profile_image)
+			}
+
+			$(".chat-info-panel").find(".added-members").append(`
+            <div class="media-card">
+              <img
+                src="${user_image}"
+                alt=""
+                class="img img-dp"
+              />
+              <h5 class="chat-title">${user_profile.user_name}</h5>
+            </div>
+          `)
+		}
+	}
 }
 
-// delete_docs();
+async function create_group() {
+	const group_image = document.getElementById("create-group-image").files[0]
+	const group_name = document.getElementById("create-group-name").value
+	const cur_user = await api.fetch_user()
+
+	const file = await api
+		.provider()
+		.storage.createFile("unique()", group_image, ["role:all"], [])
+
+	const room = await api.createDocument(
+		Server.roomCollectionId,
+		{
+			title: group_name,
+			room_image: file.$id,
+			is_group: true,
+		},
+		["role:all"]
+	)
+
+	await api.createDocument(
+		Server.roomUsersCollectionId,
+		{
+			room_id: room.$id,
+			user_id: cur_user,
+		},
+		["role:all"]
+	)
+	document.location.reload()
+}
+
+$(".btn-create-group").on("click", (e) => {
+	create_group()
+})
+
+async function add_users_to_group() {
+	$(".main-screen").addClass("add-user-on-board")
+	const contact_id = window.current_room
+	const available_profiles = await api.listDocuments(
+		Server.profileCollectionId
+	)
+
+	let user_image = "./assets/dist/images/dummy.jpeg"
+
+	let room_users = await api.listDocuments(Server.roomUsersCollectionId)
+
+	added_users = []
+
+	for (const row of room_users.documents) {
+		if (row.room_id == contact_id) {
+			added_users.push(row.user_id)
+		}
+	}
+
+	$(".available-users").html("")
+
+	for (const profile of available_profiles.documents) {
+		if (profile.profile_image) {
+			user_image = api
+				.provider()
+				.storage.getFileDownload(profile.profile_image)
+		}
+
+		if (!added_users.includes(profile.user_id)) {
+			$(".available-users").append(
+				`<div class="users-to-add">
+        <div class="media-card">
+            <img
+              src="${user_image}"
+              alt=""
+              class="img img-dp"
+            />
+            <h5 class="chat-title">${profile.user_name}</h5>
+          </div>
+          <a class="btn btn-icon btn-add-user-to-group" onclick="add_member('${profile.user_id}')">
+            <i class="fa fa-plus"></i>
+          </a>
+          </div>
+          `
+			)
+		}
+	}
+}
+
+async function add_member(user_id, room_id = window.current_room) {
+	await api.createDocument(
+		Server.roomUsersCollectionId,
+		{ room_id: room_id, user_id: user_id },
+		["role:all"]
+	)
+
+	await add_users_to_group()
+	await show_added_members(room_id)
+}
+
+async function delete_chat() {
+	let user_id = await api.fetch_user()
+	let room_id = window.current_room
+
+	const room_users = await api.listDocuments(Server.roomUsersCollectionId)
+
+	for (const row of room_users.documents) {
+		if (row.user_id == user_id && row.room_id == room_id) {
+			await api.deleteDocument(Server.roomUsersCollectionId, row.$id)
+			break
+		}
+	}
+
+	window.location.reload()
+}
 //
 //
+
+async function delete_docs(collectionId) {
+	let r = await api.listDocuments(collectionId)
+	for (const row of r.documents) {
+		row.$id
+		await api.deleteDocument(collectionId, row.$id)
+	}
+}
+
+async function delete_files() {
+	let r = await api.provider().storage.listFiles()
+	for (const row of r.files) {
+		await api.provider().storage.deleteFile(row.$id)
+	}
+}
+
+function delete_db() {
+	delete_files()
+	delete_docs(Server.messageCollectionId)
+	delete_docs(Server.roomUsersCollectionId)
+	delete_docs(Server.roomCollectionId)
+	delete_docs(Server.profileCollectionId)
+}
+
+// this function will wipe database
+// delete_db()
 
 /******************************************************
  * send and receive message
  ******************************************************/
 
 $(document).on("click", ".btn-upload-memo", () => {
-  // getting audio blob for the conversion of file
-  var fileOfBlob = new File([window.cur_blob], Math.random() + ".mp3");
+	// getting audio blob for the conversion of file
+	var fileOfBlob = new File([window.cur_blob], Math.random() + ".mp3")
 
-  // uploading it to server
-  let promise = api
-    .provider()
-    .storage.createFile("unique()", fileOfBlob, ["role:all"], ["role:all"]);
+	// uploading it to server
+	let promise = api
+		.provider()
+		.storage.createFile("unique()", fileOfBlob, ["role:all"], ["role:all"])
 
-  promise.then(
-    async function (response) {
-      // getting current user
-      let user = await api.fetch_user();
+	promise.then(
+		async function (response) {
+			// getting current user
+			let user = await api.fetch_user()
 
-      // creating message
-      let promise = api.createDocument("625174ac6a2388c76fca", {
-        room_id: window.current_room,
-        user_id: user,
-        audio_link: response.$id,
-      }, ["role:all"]);
+			// creating message
+			let data = {
+				room_id: window.current_room,
+				user_id: user,
+				audio_link: response.$id,
+			}
 
-      promise.then(
-        function (response) {},
-        function (error) {
-          console.log(error);
-        }
-      );
-    },
-    function (error) {
-      console.log(error);
-    }
-  );
+			if (window.current_audio_id) {
+				data["reply_to"] = window.current_audio_id
+				data["reply_time"] = window.current_audio_time
+			}
 
-  // del blob
-  delete window.cur_blob;
-  $(".voice-memo-recorder-wrap").removeClass("recorded");
-});
+			let promise = api.createDocument(Server.messageCollectionId, data, [
+				"role:all",
+			])
+
+			promise.then(
+				function (response) {
+					window.current_audio_id ? delete window.current_audio_id : ""
+					window.current_audio_id ? delete window.current_audio_time : ""
+					reply_to_completed()
+				},
+				function (error) {
+					console.log(error)
+				}
+			)
+		},
+		function (error) {
+			console.log(error)
+		}
+	)
+
+	// del blob
+	delete window.cur_blob
+	$(".voice-memo-recorder-wrap").removeClass("recorded")
+})
 
 $(document).on("click", ".btn-delete-memo", function () {
-  let confirmation = confirm("delete this audio?");
-  if (!confirmation) return;
+	let confirmation = confirm("delete this audio?")
+	if (!confirmation) return
 
-  delete window.cur_blob;
-  $(".voice-memo-recorder-wrap").removeClass("recorded");
-});
+	delete window.cur_blob
+	$(".voice-memo-recorder-wrap").removeClass("recorded")
+
+	window.current_audio_id ? delete window.current_audio_id : ""
+	window.current_audio_id ? delete window.current_audio_time : ""
+	reply_to_completed()
+})
 
 /******************************************************
  * audio player
  ******************************************************/
 
 $(document).on("click", ".btn-play-audio", (e) => {
-  const el = e.target;
-  const $this = $(el);
-  const $grand_wrap = $this.parents(".comment-voice-memo");
-  const $main_wrap = $this.parents(".voice-memo-wrapper");
-  const $audio_id = $main_wrap.find(".hidden-audio-id").find("span").attr("id");
-  const $audio_container = $main_wrap.find(".hidden-audio-container");
-  const $audio_exists = $audio_container.find(".hidden-audio");
-  const $otherAudios = $(".hidden-audio");
+	const el = e.target
+	const $this = $(el)
+	const $grand_wrap = $this.parents(".comment-voice-memo")
+	const $main_wrap = $this.parents(".voice-memo-wrapper")
+	const $audio_id = $main_wrap.find(".hidden-audio-id").find("span").attr("id")
+	const $audio_container = $main_wrap.find(".hidden-audio-container")
+	const $audio_exists = $audio_container.find(".hidden-audio")
+	const $otherAudios = $(".hidden-audio")
 
-  $otherAudios.each((i) => {
-    $otherAudios[i].pause();
-  });
+	$otherAudios.each((i) => {
+		$otherAudios[i].pause()
+	})
 
-  // in case audio already fetched
-  if ($audio_exists.length) {
-    $audio_exists[0].play();
-    return;
-  }
+	// in case audio already fetched
+	if ($audio_exists.length) {
+		$audio_exists[0].play()
+		return
+	}
 
-  $grand_wrap.addClass("loading");
+	$grand_wrap.addClass("loading")
 
-  // in case audio not fetched till now
-  const file = "/private/files/" + $audio_id + ".mp3";
-  let audio = new Audio(file);
-  const $audio = $(audio);
-  $audio.addClass("hidden-audio");
-  $audio_container.append($audio);
+	// in case audio not fetched till now
+	const file = "/private/files/" + $audio_id + ".mp3"
+	let audio = new Audio(file)
+	const $audio = $(audio)
+	$audio.addClass("hidden-audio")
+	$audio_container.append($audio)
 
-  // event bindings to newly fetched audio
-  $audio.on("timeupdate", audio_timeupdate);
-  $audio.on("play", audio_play);
-  $audio.on("pause", audio_pause);
-  $audio.on("ended", audio_ended);
+	// event bindings to newly fetched audio
+	$audio.on("timeupdate", audio_timeupdate)
+	$audio.on("play", audio_play)
+	$audio.on("pause", audio_pause)
+	$audio.on("ended", audio_ended)
 
-  // load audio completely before play
-  audio.addEventListener("durationchange", (e) => {
-    if (audio.duration !== Infinity) {
-      audio.currentTime = 0;
-      setTimeout(() => {
-        audio.play();
-        $grand_wrap.removeClass("loading");
-      }, 500);
-      return;
-    }
-  });
+	// load audio completely before play
+	audio.addEventListener("durationchange", (e) => {
+		if (audio.duration != Infinity) {
+			audio.currentTime = 0
+			setTimeout(() => {
+				audio.play()
+				$grand_wrap.removeClass("loading")
+			}, 500)
+			return
+		}
+	})
 
-  audio.load();
-  audio.currentTime = 24 * 60 * 60;
-});
+	audio.load()
+	audio.currentTime = 24 * 60 * 60
+})
 
 $(document).on("click", ".btn-pause-audio", (e) => {
-  const el = e.target;
-  const $this = $(el);
-  const $main_wrap = $this.parents(".voice-memo-wrapper");
-  const $audio = $main_wrap.find(".hidden-audio");
+	const el = e.target
+	const $this = $(el)
+	const $main_wrap = $this.parents(".voice-memo-wrapper")
+	const $audio = $main_wrap.find(".hidden-audio")
 
-  $audio[0].pause();
-});
-
-$(document).on("change", ".player-progress-bar", (e) => {
-  e.preventDefault();
-  console.log("in progress");
-  return;
-  const el = e.target;
-  const $this = $(el);
-  const val = $this.val();
-  const $main_wrap = $this.parents(".voice-memo-wrapper");
-  const $audio = $main_wrap.find(".hidden-audio");
-  let audio = $audio[0];
-
-  const unit_per = audio.duration / 100;
-  const new_cur_time = parseInt(val * unit_per);
-  audio.currentTime = new_cur_time;
-});
-
+	$audio[0].pause()
+})
 /******************************************************
  * helping function
  ******************************************************/
 
-var getDuration = function (url, next) {
-  let _player = new Audio(url);
-  _player.addEventListener(
-    "durationchange",
-    function (e) {
-      if (this.duration !== Infinity) {
-        const duration = format_time(this.duration);
-        _player.remove();
-        next(duration);
-      }
-    },
-    false
-  );
-  _player.load();
-  _player.currentTime = 24 * 60 * 60; //fake big time
-  _player.volume = 0;
-};
-
 function format_time(duration) {
-  let time = parseInt(duration);
-  // hours = 3600s, skipping for now
+	let time = parseInt(duration)
+	// hours = 3600s, skipping for now
 
-  // minutes calculation
-  let minutes = parseInt(time / 60);
+	// minutes calculation
+	let minutes = parseInt(time / 60)
 
-  if (minutes > 0) {
-    let minutes_time = minutes * 3600;
-    time -= minutes_time;
+	if (minutes > 0) {
+		let minutes_time = minutes * 3600
+		time -= minutes_time
 
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
+		if (minutes < 10) {
+			minutes = "0" + minutes
+		}
 
-    minutes = minutes + ":";
-  } else {
-    minutes = "00:";
-  }
+		minutes = minutes + ":"
+	} else {
+		minutes = "00:"
+	}
 
-  // seconds calculation
-  let seconds = parseInt(time);
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
+	// seconds calculation
+	let seconds = parseInt(time)
+	if (seconds < 10) {
+		seconds = "0" + seconds
+	}
 
-  let formatted_time = minutes + seconds;
+	let formatted_time = minutes + seconds
 
-  return formatted_time;
+	return formatted_time
 }
 
 // Audio Functions
 function audio_play(e) {
-  const audio = e.target;
-  const $this = $(audio);
-  const $main_wrap = $this.parents(".voice-memo-wrapper");
-  const $player_controls = $main_wrap.find(".player-controls");
-  $player_controls.addClass("playing");
+	const audio = e.target
+	const $this = $(audio)
+	const $main_wrap = $this.parents(".voice-memo-wrapper")
+	const $player_controls = $main_wrap.find(".player-controls")
+	$player_controls.addClass("playing")
 }
 
 function audio_timeupdate(e) {
-  const audio = e.target;
-  const $this = $(audio);
-  const $main_wrap = $this.parents(".voice-memo-wrapper");
-  const $cur_time = $main_wrap.find(".cur-time");
-  const current_time = audio.currentTime;
-  const duration = audio.duration;
-  const unit_per = duration / 100;
-  const $slide_progress = $main_wrap.find(".player-progress-bar");
+	const audio = e.target
+	const $this = $(audio)
+	const $main_wrap = $this.parents(".voice-memo-wrapper")
+	const $cur_time = $main_wrap.find(".cur-time")
+	const current_time = audio.currentTime
+	const duration = audio.duration
+	const unit_per = duration / 100
+	const $slide_progress = $main_wrap.find(".player-progress-bar")
 
-  $cur_time.html(format_time(current_time));
+	$cur_time.html(format_time(current_time))
 
-  let current_val = current_time / unit_per;
+	let current_val = current_time / unit_per
 
-  current_val = parseInt(current_val);
+	current_val = parseInt(current_val)
 
-  $slide_progress.val(current_val);
-  let $bg =
+	$slide_progress.val(current_val)
+	let $bg =
     "linear-gradient(to right, #1a5594 0%, #1a5594 " +
     current_val +
     "%, #d3d3d3 " +
     current_val +
-    "%, #d3d3d3 100%)";
+    "%, #d3d3d3 100%)"
 
-  $slide_progress.css("background", $bg);
+	$slide_progress.css("background", $bg)
 }
 
 function audio_pause(e) {
-  const audio = e.target;
-  const $this = $(audio);
-  const $main_wrap = $this.parents(".voice-memo-wrapper");
-  const $player_controls = $main_wrap.find(".player-controls");
-  $player_controls.removeClass("playing");
+	const audio = e.target
+	const $this = $(audio)
+	const $main_wrap = $this.parents(".voice-memo-wrapper")
+	const $player_controls = $main_wrap.find(".player-controls")
+	$player_controls.removeClass("playing")
 }
 
 function audio_ended(e) {
-  const audio = e.target;
-  audio.currentTime = 0;
-  const $this = $(audio);
-  const $main_wrap = $this.parents(".voice-memo-wrapper");
-  const $player_controls = $main_wrap.find(".player-controls");
-  $player_controls.removeClass("playing");
+	const audio = e.target
+	audio.currentTime = 0
+	const $this = $(audio)
+	const $main_wrap = $this.parents(".voice-memo-wrapper")
+	const $player_controls = $main_wrap.find(".player-controls")
+	$player_controls.removeClass("playing")
 }
 
 // DRIVER
 $(".btn-close-settings").on("click", () => {
-  $(".main-screen").removeClass("settings-on-board");
-});
+	$(".main-screen").removeClass("settings-on-board")
+})
 
 $(".open-settings").on("click", () => {
-  update_settings_panel();
-  $(".main-screen").addClass("settings-on-board");
-});
+	update_settings_panel()
+	$(".main-screen").addClass("settings-on-board")
+})
 
 $(".btn-close-group").on("click", () => {
-  $(".main-screen").removeClass("create-group-on-board");
-});
+	$(".main-screen").removeClass("create-group-on-board")
+})
+
+$(".btn-close-add-user").on("click", () => {
+	$(".main-screen").removeClass("add-user-on-board")
+})
 
 $(".btn-open-group").on("click", () => {
-  $(".main-screen").addClass("create-group-on-board");
-});
+	$(".main-screen").addClass("create-group-on-board")
+})
+
+api
+	.provider()
+	.subscribe(`collections.${Server.messageCollectionId}.documents`, (r) => {
+		if (r.event == "database.documents.create") {
+			const data = r.payload
+			if (data.room_id == window.current_room) {
+				append_message(data)
+			} else {
+				$(`[data-contact_id=${data.room_id}]`)
+					.find("img")
+					.addClass("message_not_readed")
+			}
+		}
+	})
