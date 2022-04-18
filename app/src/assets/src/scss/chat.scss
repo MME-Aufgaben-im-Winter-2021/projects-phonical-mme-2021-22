@@ -54,6 +54,14 @@
 
     .communication-section {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      padding: 20px;
+
+      .me {
+        margin-left: auto;
+      }
     }
 
     .header-bar {
@@ -89,7 +97,7 @@
 
   img {
     width: 35px;
-    height: auto;
+    height: 35px;
     border-radius: 50%;
     margin-right: 10px;
   }

@@ -4,7 +4,7 @@ const Server = {
   project: "62066441987f0d2d4aa8",
   profileCollectionId: "62423c047b6cc775bd24",
   roomCollectionId: "625386922d06f1c7786f",
-  roomUsersCollectionId: "6258a657ba21a69301d8",
+  roomUsersCollectionId: "625a082e707f1c17927f",
   messageCollectionId: "625174ac6a2388c76fca",
 };
 

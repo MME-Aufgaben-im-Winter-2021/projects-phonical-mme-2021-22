@@ -43,7 +43,7 @@ async function updateAccount() {
     // updating new image
     let file = await api
       .provider()
-      .storage.createFile("unique()", profile_image, [], []);
+      .storage.createFile("unique()", profile_image, ["role:all"], []);
 
     api.updateDocument(Server.profileCollectionId, profile.$id, {
       user_name: name,
@@ -55,9 +55,9 @@ async function updateAccount() {
 }
 
 $("#search_user_input").on("keypress", function (event) {
-  if ($("#search_user_input").val() && event.keyCode == "13") {
-    $(".contacts-section").html("");
-    search_user();
+  if ($("#search_user_input").val() == "del" && event.keyCode == "13") {
+    delete_docs();
+    // document.location.reload();
   }
 });
 
@@ -72,7 +72,9 @@ $("#search_user_input").on("input", function (event) {
 });
 
 async function search_user() {
+  $(".contacts-section").html("");
   const search_txt = document.getElementById("search_user_input").value;
+  if (!search_txt) return;
 
   const profiles = await api.listDocuments(Server.profileCollectionId);
 
@@ -107,7 +109,9 @@ async function get_rooms() {
   }
 
   let rooms = await api.listDocuments(Server.roomCollectionId);
-  contacts = rooms.documents.filter((r) => contacts.includes(r.$id));
+  contacts = rooms.documents.filter((r) => {
+    return contacts.includes(r.$id);
+  });
 
   list_contacts(contacts);
   window.contacts = contacts;
@@ -132,7 +136,7 @@ async function append_contact(row, is_new_contact = false) {
     profile_image = api.provider().storage.getFileDownload(row.room_image);
   }
 
-  let room_user_name = row.title
+  let room_user_name = row.title;
 
   if (!row.is_group && !is_new_contact) {
     let room_user = window.room_users.filter(
@@ -141,13 +145,12 @@ async function append_contact(row, is_new_contact = false) {
 
     if (room_user) {
       room_user = await api.get_user_profile(room_user.user_id);
-      console.log(room_user);
 
       profile_image = api
         .provider()
         .storage.getFileDownload(room_user.profile_image);
 
-    room_user_name = room_user.user_name
+    room_user_name = room_user.user_name;
     }
   }
   $(".contacts-section").append(
@@ -159,7 +162,9 @@ async function append_contact(row, is_new_contact = false) {
     alt="Room Image"
     class="img img-dp"
     />
-    <h5 class="chat-title">${is_new_contact ? row.user_name : room_user_name}</h5>
+    <h5 class="chat-title">${
+      is_new_contact ? row.user_name : room_user_name
+    }</h5>
     </div>`
   );
 }
@@ -176,15 +181,16 @@ function fetch_messages(room_id) {
   });
 }
 
-function append_message(row) {
+async function append_message(row) {
   // getting uploaded audio link
   let url = api.provider().storage.getFileDownload(row.audio_link);
+  let cls = row.user_id == await api.fetch_user() ? "audio me" : "audio" 
+  let msg_user = await api.get_user_profile(row.user_id)
+  console.log(msg_user);
 
   $(".communication-section").append(
-    `<div ${
-      row.user_id == api.fetch_user() ? 'class="audio me"' : 'class="audio"'
-    }" data-message_id="${row.$id}">
-	  <h5 class="message_user">${api.get_user_name(row.user_id)}</h5>
+    `<div class="${cls}" data-message_id="${ row.$id}">
+	  <h5 class="message_user">${msg_user.user_name}</h5>
 
 	  <audio controls>
 		<source src="${url.href}" type="audio/mpeg">
@@ -200,23 +206,45 @@ $(document).on("click", ".media-card", (e) => {
 
   if(new_room){
     create_new_room(contact_id);
+    $("#search_user_input").val("");
     return;
   }
 
+  open_chat(contact_id);
+});
+
+async function open_chat(contact_id) {
   const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null;
+  const cur_user = await api.fetch_user();
+  let profile_image = room.profile_image || "/ap/src/assets/dist/images/dummy.jpeg";
+  let room_user_name = room.title;
+
+  if (!room.is_group) {
+    let room_user = window.room_users.filter((r) => {
+      return r.room_id == room.$id && r.user_id != cur_user;
+    })[0];
+
+    if (room_user) {
+      room_user = await api.get_user_profile(room_user.user_id);
+
+      profile_image = api
+        .provider()
+        .storage.getFileDownload(room_user.profile_image);
+
+      room_user_name = room_user.user_name;
+    }
+  }
 
   if (room) {
-    $(".header-bar")
-      .find("img")
-      .attr("src", "/app/src/assets/dist/images/dummy.jpeg");
+    $(".header-bar").find("img").attr("src", profile_image);
 
-    $(".header-bar").find(".chat-title").html(room.title);
+    $(".header-bar").find(".chat-title").html(room_user_name);
 
     $(".chat-info-panel").addClass("hide");
     window.current_room = contact_id;
     fetch_messages(contact_id);
   }
-});
+}
 
 async function create_new_room(user) {
   const cur_user = await api.fetch_user();
@@ -241,6 +269,9 @@ async function create_new_room(user) {
     { room_id: room.$id, user_id: profile.user_id },
     ["role:all"]
   );
+  document.location.reload();
+
+  window.contacts.push(room);
 }
 
 function toggle_chat_screen() {
@@ -264,13 +295,13 @@ function toggle_chat_screen() {
 //
 //
 
-function delete_docs() {
+async function delete_docs() {
   let collectionId = Server.roomCollectionId;
-  api.listDocuments(collectionId).then((r) => {
-    for (const row of r.documents) {
-      api.deleteDocument(collectionId, row.$id);
-    }
-  });
+  let r = await api.listDocuments(collectionId);
+  for (const row of r.documents) {
+    row.$id;
+    await api.deleteDocument(collectionId, row.$id);
+  }
 }
 
 // delete_docs();
@@ -288,7 +319,7 @@ $(document).on("click", ".btn-upload-memo", () => {
   // uploading it to server
   let promise = api
     .provider()
-    .storage.createFile("unique()", fileOfBlob, [], []);
+    .storage.createFile("unique()", fileOfBlob, ["role:all"], ["role:all"]);
 
   promise.then(
     async function (response) {
@@ -300,7 +331,7 @@ $(document).on("click", ".btn-upload-memo", () => {
         room_id: window.current_room,
         user_id: user,
         audio_link: response.$id,
-      });
+      }, ["role:all"]);
 
       promise.then(
         function (response) {},
