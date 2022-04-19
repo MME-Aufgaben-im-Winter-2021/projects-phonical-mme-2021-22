@@ -9403,7 +9403,7 @@ function list_contacts(params) {
 }
 
 async function append_contact(row, is_new_contact = false) {
-  let profile_image = "./assets/dist/images/dummy.jpeg"
+  let profile_image = "./src/assets/dist/images/dummy.jpeg"
   const cur_user = await api.fetch_user()
 
   if (row.profile_image && is_new_contact) {
@@ -9539,7 +9539,7 @@ $(document).on("click", ".media-card", (e) => {
 async function open_chat(contact_id) {
   const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null
   const cur_user = await api.fetch_user()
-  let profile_image = "/app/assets/dist/images/dummy.jpeg"
+  let profile_image = "/app/src/assets/dist/images/dummy.jpeg"
   let room_user_name = room.title
 
   if (room.is_group) {
@@ -9635,7 +9635,7 @@ async function show_added_members(contact_id) {
   for (const room_user of room_users.documents) {
     if (room_user.room_id == contact_id) {
       const user_profile = await api.get_user_profile(room_user.user_id)
-      let user_image = "./assets/dist/images/dummy.jpeg"
+      let user_image = "./src/assets/dist/images/dummy.jpeg"
 
       if (user_profile.profile_image) {
         user_image = api
@@ -9696,7 +9696,7 @@ async function add_users_to_group() {
     Server.profileCollectionId
   )
 
-  let user_image = "./assets/dist/images/dummy.jpeg"
+  let user_image = "./src/assets/dist/images/dummy.jpeg"
 
   let room_users = await api.listDocuments(Server.roomUsersCollectionId)
 
