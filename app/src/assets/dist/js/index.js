@@ -911,7 +911,7 @@
 
         // All others
         return select(selector.replace(rtrim, "$1"), context, results,
-          seed);
+        seed);
       }
 
       /**
@@ -2050,7 +2050,7 @@
                       // ...in a gzip-friendly way
                       node = elem;
                       outerCache = node[expando] || (node[
-                        expando] = {});
+                      expando] = {});
 
                       // Support: IE <9 only
                       // Defend against cloned attroperties (jQuery gh-1709)
@@ -2126,7 +2126,7 @@
             if (fn.length > 1) {
               args = [pseudo, pseudo, "", argument];
               return Expr.setFilters.hasOwnProperty(pseudo
-                  .toLowerCase()) ?
+                .toLowerCase()) ?
                 markFunction(function(seed, matches) {
                   var idx,
                     matched = fn(seed, argument),
@@ -2370,13 +2370,8 @@
       Expr.pseudos["nth"] = Expr.pseudos["eq"];
 
       // Add button/input type pseudos
-      for (i in {
-          radio: true,
-          checkbox: true,
-          file: true,
-          password: true,
-          image: true
-        }) {
+      for (i in { radio: true, checkbox: true, file: true, password: true,
+          image: true }) {
         Expr.pseudos[i] = createInputPseudo(i);
       }
       for (i in { submit: true, reset: true }) {
@@ -2610,7 +2605,7 @@
 
             // If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
             postFinder || (seed ? preFilter : preexisting ||
-              postFilter) ?
+            postFilter) ?
 
             // ...intermediate processing is necessary
             [] :
@@ -2634,7 +2629,7 @@
             while (i--) {
               if ((elem = temp[i])) {
                 matcherOut[postMap[i]] = !(matcherIn[postMap[i]] =
-                  elem);
+                elem);
               }
             }
           }
@@ -2661,7 +2656,7 @@
               while (i--) {
                 if ((elem = matcherOut[i]) &&
                   (temp = postFinder ? indexOf(seed, elem) : preMap[
-                    i]) > -1) {
+                  i]) > -1) {
 
                   seed[temp] = !(results[temp] = elem);
                 }
@@ -2734,9 +2729,8 @@
                   // If the preceding token was a descendant combinator, insert an implicit any-element `*`
                   tokens
                   .slice(0, i - 1)
-                  .concat({
-                    value: tokens[i - 2].type === " " ? "*" : ""
-                  })
+                  .concat({ value: tokens[i - 2].type === " " ? "*" :
+                      "" })
                 ).replace(rtrim, "$1"),
                 matcher,
                 i < j && matcherFromTokens(tokens.slice(i, j)),
@@ -2777,7 +2771,7 @@
               // two documents; shallow comparisons work.
               // eslint-disable-next-line eqeqeq
               outermostContext = context == document || context ||
-                outermost;
+              outermost;
             }
 
             // Add elements passing elementMatchers directly to results
@@ -2955,7 +2949,7 @@
 
           // Fetch a seed set for right-to-left matching
           i = matchExpr["needsContext"].test(selector) ? 0 : tokens
-            .length;
+          .length;
           while (i--) {
             token = tokens[i];
 
@@ -3123,7 +3117,7 @@
   function nodeName(elem, name) {
 
     return elem.nodeName && elem.nodeName.toLowerCase() === name
-      .toLowerCase();
+  .toLowerCase();
 
   }
   var rsingleTag = (
@@ -4031,7 +4025,7 @@
           // If obj is provided, the promise aspect is added to the object
           promise: function(obj) {
             return obj != null ? jQuery.extend(obj, promise) :
-              promise;
+            promise;
           }
         },
         deferred = {};
@@ -4247,7 +4241,7 @@
   // Older IE sometimes signals "interactive" too soon
   if (document.readyState === "complete" ||
     (document.readyState !== "loading" && !document.documentElement.doScroll)
-  ) {
+    ) {
 
     // Handle it asynchronously to allow scripts the opportunity to delay ready
     window.setTimeout(jQuery.ready);
@@ -4608,7 +4602,7 @@
           data = dataUser.get(elem);
 
           if (elem.nodeType === 1 && !dataPriv.get(elem,
-              "hasDataAttrs")) {
+            "hasDataAttrs")) {
             i = attrs.length;
             while (i--) {
 
@@ -5640,11 +5634,8 @@
       // Add the remaining (directly-bound) handlers
       cur = this;
       if (delegateCount < handlers.length) {
-        handlerQueue.push({
-          elem: cur,
-          handlers: handlers.slice(
-            delegateCount)
-        });
+        handlerQueue.push({ elem: cur, handlers: handlers.slice(
+            delegateCount) });
       }
 
       return handlerQueue;
@@ -6108,7 +6099,7 @@
   function manipulationTarget(elem, content) {
     if (nodeName(elem, "table") &&
       nodeName(content.nodeType !== 11 ? content : content.firstChild, "tr")
-    ) {
+      ) {
 
       return jQuery(elem).children("tbody")[0] || elem;
     }
@@ -6261,7 +6252,7 @@
                 }
               } else {
                 DOMEval(node.textContent.replace(rcleanScript, ""), node,
-                  doc);
+                doc);
               }
             }
           }
@@ -6477,7 +6468,7 @@
 
         // See if we can take a shortcut and just use innerHTML
         if (typeof value === "string" && !rnoInnerhtml.test(
-            value) &&
+          value) &&
           !wrapMap[(rtagName.exec(value) || ["", ""])[1]
             .toLowerCase()]) {
 
@@ -6617,7 +6608,7 @@
 
       // Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
       reliableMarginLeftVal = roundPixelMeasures(divStyle.marginLeft) ===
-        12;
+      12;
 
       // Support: Android 4.0 - 4.3 only, Safari <=9.1 - 10.1, iOS <=7.0 - 9.3
       // Some styles come back with percentage values, even though they shouldn't
@@ -6852,11 +6843,8 @@
     // See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
     rdisplayswap = /^(none|table(?!-c[ea]).+)/,
     rcustomProp = /^--/,
-    cssShow = {
-      position: "absolute",
-      visibility: "hidden",
-      display: "block"
-    },
+    cssShow = { position: "absolute", visibility: "hidden",
+    display: "block" },
     cssNormalTransform = {
       letterSpacing: "0",
       fontWeight: "400"
@@ -7100,7 +7088,7 @@
 
         // Convert "+=" or "-=" to relative numbers (#7345)
         if (type === "string" && (ret = rcssNum.exec(value)) && ret[
-            1]) {
+          1]) {
           value = adjustCSS(elem, name, ret);
 
           // Fixes bug #9237
@@ -7484,7 +7472,7 @@
   };
 
   jQuery.each(jQuery.expr.match.bool.source.match(/\w+/g), function(_i,
-    name) {
+  name) {
     var getter = attrHandle[name] || jQuery.find.attr;
 
     attrHandle[name] = function(elem, name, isXML) {
@@ -7676,7 +7664,7 @@
       if (isFunction(value)) {
         return this.each(function(j) {
           jQuery(this).addClass(value.call(this, j, getClass(
-            this)));
+          this)));
         });
       }
 
@@ -7761,7 +7749,7 @@
 
       if (typeof stateVal === "boolean" && isValidValue) {
         return stateVal ? this.addClass(value) : this.removeClass(
-          value);
+        value);
       }
 
       if (isFunction(value)) {
@@ -7984,7 +7972,7 @@
 
             if (option.selected =
               jQuery.inArray(jQuery.valHooks.option.get(option),
-                values) > -1
+              values) > -1
             ) {
               optionSet = true;
             }
@@ -8314,7 +8302,7 @@
           // Item is non-scalar (array or object), encode its numeric index.
           buildParams(
             prefix + "[" + (typeof v === "object" && v != null ? i :
-              "") + "]",
+            "") + "]",
             v,
             traditional,
             add
@@ -8404,19 +8392,13 @@
 
         if (Array.isArray(val)) {
           return jQuery.map(val, function(val) {
-            return {
-              name: elem.name,
-              value: val.replace(rCRLF,
-                "\r\n")
-            };
+            return { name: elem.name, value: val.replace(rCRLF,
+                "\r\n") };
           });
         }
 
-        return {
-          name: elem.name,
-          value: val.replace(rCRLF,
-            "\r\n")
-        };
+        return { name: elem.name, value: val.replace(rCRLF,
+          "\r\n") };
       }).get();
     }
   });
@@ -8723,7 +8705,7 @@
         var offsetParent = this.offsetParent;
 
         while (offsetParent && jQuery.css(offsetParent,
-            "position") === "static") {
+          "position") === "static") {
           offsetParent = offsetParent.offsetParent;
         }
 
@@ -8821,9 +8803,9 @@
             // whichever is greatest
             return Math.max(
               elem.body["scroll" + name], doc["scroll" +
-                name],
+              name],
               elem.body["offset" + name], doc["offset" +
-                name],
+              name],
               doc["client" + name]
             );
           }
@@ -8911,7 +8893,7 @@
     args = slice.call(arguments, 2);
     proxy = function() {
       return fn.apply(context || this, args.concat(slice.call(
-        arguments)));
+      arguments)));
     };
 
     // Set the guid of unique handler to the same of original handler, so it can be removed
@@ -9528,7 +9510,7 @@ function replytomessage(current_audio_id) {
 
   $("#reply-to").append(
     `<h5>replying to <a href="#${current_audio_id}">${user}</a> on time <span class="timetoreply">${cur_audio_time}</span></h5>`
-  );
+  )
 
   window.current_audio_time = audio_time
   window.current_audio_id = current_audio_id
@@ -9613,11 +9595,8 @@ async function create_new_room(user) {
   )
 
   await api.createDocument(
-    Server.roomUsersCollectionId, {
-      room_id: room.$id,
-      user_id: profile
-        .user_id
-    },
+    Server.roomUsersCollectionId, { room_id: room.$id, user_id: profile
+        .user_id },
     ["role:all"]
   )
 
