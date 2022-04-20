@@ -1,7 +1,13 @@
+/* eslint-disable no-unused-vars */
+
 /* eslint-disable no-undef */
 async function update_settings_panel() {
+  console.log("fetching profiles")
   const account = await api.getAccount()
-  const profiles = await api.listDocuments(Server.profileCollectionId)
+  const profiles = await api.listDocuments(Server.profileCollectionId, [
+    Query.equal("user_id", account.$id),
+  ])
+
   let profile_image = null
 
   for (const row of profiles.documents) {
@@ -19,6 +25,8 @@ async function update_settings_panel() {
 }
 
 async function updateAccount() {
+  console.log("updating account")
+
   const name = document.getElementById("settings_panel_name").value
   const profile_image = document.getElementById("settings_panel_image_upload")
     .files[0]
@@ -26,7 +34,9 @@ async function updateAccount() {
   api.provider().account.updateName(name)
   const user_id = await api.fetch_user()
 
-  const profiles = await api.listDocuments(Server.profileCollectionId)
+  const profiles = await api.listDocuments(Server.profileCollectionId, [
+    Query.equal("user_id", user_id),
+  ])
 
   const profile =
     profiles.documents.filter((profile) => profile.user_id == user_id)[0] ||
@@ -67,7 +77,10 @@ $("#search_user_input").on("input", function(event) {
   }
 })
 
+// need enhancement
 async function search_user() {
+  console.log("searching user")
+  const cur_user = await api.fetch_user()
   $(".contacts-section").html("")
 
   const search_txt = document.getElementById("search_user_input").value
@@ -76,27 +89,56 @@ async function search_user() {
   const profiles = await api.listDocuments(Server.profileCollectionId)
   let flag = true
 
+  let already_available_rooms = window.contacts.map((r) => r.$id)
+
+  let available_users = await api.listDocuments(Server.roomUsersCollectionId,
+    [
+      Query.equal("room_id", already_available_rooms),
+    ])
+
+  available_users = available_users.documents.map((r) => r.user_id)
+
   for (const row of profiles.documents) {
-    if (row.user_email && search_txt && row.user_email.includes(search_txt)) {
-      flag = false
-      append_contact(row, true)
+    if (row.user_email && search_txt && row.user_email.includes(search_txt) &&
+      row.user_id != cur_user) {
+      if (available_users.includes(row.user_id)) {
+
+        const room_users = await api.listDocuments(Server
+          .roomUsersCollectionId, [
+            Query.equal("user_id", [row.user_id]),
+          ])
+
+        for (const room of room_users.documents) {
+          const rooms_matched_with_search = window.contacts.filter((r) => r
+            .$id == room.room_id)
+          for (const iterator of rooms_matched_with_search) {
+            append_contact(iterator)
+          }
+        }
+      } else {
+        flag = false
+        append_contact(row, true)
+      }
       break
     }
   }
 
   if (flag) {
-    $(".contacts-section").html(
+    $(".contacts-section").prepend(
       "<p class='contact-not-found'>User Not Found</p>"
     )
   }
 }
 
 async function get_rooms() {
+  console.log("getting rooms")
+
+  const cur_user = await api.fetch_user()
   let r = await api.listDocuments(Server.roomUsersCollectionId)
+
   let contacts = []
   window.room_users = r.documents
 
-  const cur_user = await api.fetch_user()
   for (const row of r.documents) {
     if (row.user_id == cur_user) {
       contacts.push(row.room_id)
@@ -121,7 +163,7 @@ function list_contacts(params) {
 }
 
 async function append_contact(row, is_new_contact = false) {
-  let profile_image = "./src/assets/dist/images/dummy.jpeg"
+  let profile_image = "./assets/dist/images/dummy.jpeg"
   const cur_user = await api.fetch_user()
 
   if (row.profile_image && is_new_contact) {
@@ -166,16 +208,21 @@ async function append_contact(row, is_new_contact = false) {
   )
 }
 
-function fetch_messages(room_id) {
+async function fetch_messages(room_id) {
+  console.log("fetching messages")
+
   $(".communication-section").html("")
 
-  api.listDocuments(Server.messageCollectionId).then((r) => {
-    for (const row of r.documents) {
-      if (row.room_id == room_id) {
-        append_message(row)
-      }
-    }
-  })
+  let r = await api
+    .listDocuments(Server.messageCollectionId, [
+      Query.equal("room_id", room_id),
+    ])
+
+  $(".communication-section").html("")
+
+  for (const row of r.documents) {
+    await append_message(row)
+  }
 }
 
 async function append_message(row) {
@@ -188,10 +235,11 @@ async function append_message(row) {
   if (row.reply_to) {
     let cur_audio_time = format_time(row.reply_time)
 
-    const user = $("#" + row.reply_to)
-      .find(".message_user")
-      .html()
+    let user = $("#" + row.reply_to).find(".message_user").html()
 
+    if (user && user.includes("replied to")) {
+      user = user.split("replied to")[0]
+    }
     reply_to = `
     replied to <a href="#${row.reply_to}">${user}</a> on time <span class="timetoreply">${cur_audio_time}</span>
     `
@@ -220,9 +268,13 @@ function replytomessage(current_audio_id) {
   let audio_time = $("#" + current_audio_id).find("audio")[0].currentTime
   let cur_audio_time = format_time(audio_time)
 
-  const user = $("#" + current_audio_id)
+  let user = $("#" + current_audio_id)
     .find(".message_user")
     .html()
+
+  if (user.includes("replied to")) {
+    user = user.split("replied to")[0]
+  }
 
   $(".chat-footer-section").addClass("replying-to")
 
@@ -255,9 +307,13 @@ $(document).on("click", ".media-card", (e) => {
 })
 
 async function open_chat(contact_id) {
+  if (window.cur_blob) {
+    $(".btn-delete-memo").trigger("click")
+  }
+
   const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null
   const cur_user = await api.fetch_user()
-  let profile_image = "/app/src/assets/dist/images/dummy.jpeg"
+  let profile_image = "/app/assets/dist/images/dummy.jpeg"
   let room_user_name = room.title
 
   if (room.is_group) {
@@ -347,13 +403,18 @@ async function toggle_chat_screen() {
 }
 
 async function show_added_members(contact_id) {
+  console.log("showing added members")
+
   $(".chat-info-panel").find(".added-members").html("")
 
-  const room_users = await api.listDocuments(Server.roomUsersCollectionId)
+  const room_users = await api.listDocuments(Server.roomUsersCollectionId, [
+    Query.equal("room_id", contact_id),
+  ])
+
   for (const room_user of room_users.documents) {
     if (room_user.room_id == contact_id) {
       const user_profile = await api.get_user_profile(room_user.user_id)
-      let user_image = "./src/assets/dist/images/dummy.jpeg"
+      let user_image = "./assets/dist/images/dummy.jpeg"
 
       if (user_profile.profile_image) {
         user_image = api
@@ -408,15 +469,19 @@ $(".btn-create-group").on("click", (e) => {
 })
 
 async function add_users_to_group() {
+  console.log("getting users that can be added into this group")
+
   $(".main-screen").addClass("add-user-on-board")
   const contact_id = window.current_room
   const available_profiles = await api.listDocuments(
     Server.profileCollectionId
   )
 
-  let user_image = "./src/assets/dist/images/dummy.jpeg"
+  let user_image = "./assets/dist/images/dummy.jpeg"
 
-  let room_users = await api.listDocuments(Server.roomUsersCollectionId)
+  let room_users = await api.listDocuments(Server.roomUsersCollectionId, [
+    Query.equal("room_id", contact_id),
+  ])
 
   added_users = []
 
@@ -467,19 +532,47 @@ async function add_member(user_id, room_id = window.current_room) {
 }
 
 async function delete_chat() {
-  let user_id = await api.fetch_user()
-  let room_id = window.current_room
+  console.log("deleting chat")
+  try {
+    let user_id = await api.fetch_user()
+    let room_id = window.current_room
 
-  const room_users = await api.listDocuments(Server.roomUsersCollectionId)
+    const room_users = await api.listDocuments(Server.roomUsersCollectionId, [
+      Query.equal("room_id", room_id),
+    ])
 
-  for (const row of room_users.documents) {
-    if (row.user_id == user_id && row.room_id == room_id) {
-      await api.deleteDocument(Server.roomUsersCollectionId, row.$id)
-      break
+    for (const row of room_users.documents) {
+      if (row.user_id == user_id && row.room_id == room_id) {
+        await api.deleteDocument(Server.roomUsersCollectionId, row.$id)
+        break
+      }
     }
-  }
 
-  window.location.reload()
+    // deleting room if we all users leave this
+    const all_room_users = await api.listDocuments(
+      Server.roomUsersCollectionId,
+      [Query.equal("room_id", room_id)]
+    )
+
+    if (all_room_users.documents.length == 0) {
+      await api.deleteDocument(Server.roomCollectionId, room_id)
+
+      // deleting all room messages
+      const room_messages = await api.listDocuments(
+        Server.messageCollectionId,
+        [Query.equal("room_id", room_id)]
+      )
+
+      for (const row of room_messages.documents) {
+        await api.provider().storage.deleteFile(row.audio_link)
+        await api.deleteDocument(Server.roomUsersCollectionId, row.$id)
+      }
+    }
+
+    window.location.reload()
+  } catch (error) {
+    window.location.reload()
+  }
 }
 //
 //

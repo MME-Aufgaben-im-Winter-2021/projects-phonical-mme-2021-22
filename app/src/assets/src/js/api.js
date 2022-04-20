@@ -28,7 +28,10 @@ let api = {
   },
 
   get_user_profile: async (id) => {
-    const profiles = await api.listDocuments(Server.profileCollectionId)
+    const profiles = await api.listDocuments(Server.profileCollectionId, [
+      Query.equal("user_id", id)
+    ])
+
     const profile = profiles.documents.filter((r) => r.user_id == id)
 
     let user = {}
@@ -68,8 +71,9 @@ let api = {
       .database.createDocument(collectionId, "unique()", data, read)
   },
 
-  listDocuments: (collectionId) => {
-    return api.provider().database.listDocuments(collectionId)
+  listDocuments: (collectionId, quries = [], limit = 100) => {
+    return api.provider().database.listDocuments(collectionId, quries,
+      limit)
   },
 
   getDocument: (collectionId, documentId) => {
