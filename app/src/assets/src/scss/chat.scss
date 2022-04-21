@@ -340,6 +340,19 @@
     }
 }
 
+.change-password-panel {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    max-width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary);
+    padding: 20px;
+}
+
 .create-group-panel {
     display: none;
     position: absolute;
@@ -393,6 +406,16 @@
     }
 
     .settings-panel {
+        display: block;
+    }
+}
+
+.change-password-on-board {
+    .chat-overlay {
+        display: block;
+    }
+
+    .change-password-panel {
         display: block;
     }
 }

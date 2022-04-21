@@ -64,6 +64,20 @@ async function updateAccount() {
   update_settings_panel()
 }
 
+async function changePassword() {
+  console.log("updating password")
+
+  const old_pass = document.getElementById("old_password").value
+  const new_pass = document.getElementById("new_password").value
+
+  try {
+    await api.provider().account.updatePassword(new_pass, old_pass)
+    $(".main-screen").removeClass("change-password-on-board")
+  } catch (error) {
+    alert("password not changed")
+  }
+}
+
 $("#search_user_input").on("keypress", function(event) {
   if ($("#search_user_input").val() && event.keyCode == "13") {
     search_user()
@@ -411,6 +425,9 @@ async function show_added_members(contact_id) {
     Query.equal("room_id", contact_id),
   ])
 
+  const cur_user = await api.fetch_user()
+  const room = window.contacts.filter(r => r.$id == contact_id)[0]
+
   for (const room_user of room_users.documents) {
     if (room_user.room_id == contact_id) {
       const user_profile = await api.get_user_profile(room_user.user_id)
@@ -422,6 +439,13 @@ async function show_added_members(contact_id) {
           .storage.getFileDownload(user_profile.profile_image)
       }
 
+      let delete_action = ""
+
+      if (room.room_owner_id == cur_user && room_user.user_id != cur_user) {
+        delete_action =
+          `<a class="btn btn-icon" onclick="delete_chat('${room_user.user_id}')"><i class="fa fa-trash"></i></a>`
+      }
+
       $(".chat-info-panel").find(".added-members").append(`
             <div class="media-card">
               <img
@@ -430,6 +454,7 @@ async function show_added_members(contact_id) {
                 class="img img-dp"
               />
               <h5 class="chat-title">${user_profile.user_name}</h5>
+			  ${delete_action}
             </div>
           `)
     }
@@ -450,6 +475,7 @@ async function create_group() {
       title: group_name,
       room_image: file.$id,
       is_group: true,
+      room_owner_id: cur_user
     },
     ["role:all"]
   )
@@ -531,10 +557,13 @@ async function add_member(user_id, room_id = window.current_room) {
   await show_added_members(room_id)
 }
 
-async function delete_chat() {
+async function delete_chat(user_id = null) {
   console.log("deleting chat")
   try {
-    let user_id = await api.fetch_user()
+    if (!user_id) {
+      user_id = await api.fetch_user()
+    }
+
     let room_id = window.current_room
 
     const room_users = await api.listDocuments(Server.roomUsersCollectionId, [
@@ -833,6 +862,14 @@ $(".btn-close-settings").on("click", () => {
 $(".open-settings").on("click", () => {
   update_settings_panel()
   $(".main-screen").addClass("settings-on-board")
+})
+
+$(".open-change-psssword").on("click", () => {
+  $(".main-screen").addClass("change-password-on-board")
+})
+
+$(".btn-close-change-password").on("click", () => {
+  $(".main-screen").removeClass("change-password-on-board")
 })
 
 $(".btn-close-group").on("click", () => {
