@@ -3430,7 +3430,7 @@ i {
 }
 
 .contacts-section .media-card img.message_not_readed {
-    border: 2px solid blue;
+    border: 2px solid red;
     padding: 2px;
 }
 

@@ -46,19 +46,23 @@ async function updateAccount() {
     // deleting old image for storage friendly code
     let old_profile_image = profile.profile_image
 
-    if (old_profile_image && profile_image) {
-      api.provider().storage.deleteFile(old_profile_image)
+
+    let data = {
+      user_name: name,
     }
 
-    // updating new image
-    let file = await api
-      .provider()
-      .storage.createFile("unique()", profile_image, ["role:all"], [])
+    if (old_profile_image && profile_image) {
+      api.provider().storage.deleteFile(old_profile_image)
 
-    api.updateDocument(Server.profileCollectionId, profile.$id, {
-      user_name: name,
-      profile_image: file.$id,
-    })
+      // updating new image
+      let file = await api
+        .provider()
+        .storage.createFile("unique()", profile_image, ["role:all"], [])
+
+      data["profile_image"] = file ? file.$id : null
+    }
+
+    api.updateDocument(Server.profileCollectionId, profile.$id, data)
   }
 
   update_settings_panel()
@@ -145,6 +149,7 @@ async function search_user() {
 }
 
 async function get_rooms() {
+  $(".contacts-section").html("")
   console.log("getting rooms")
 
   const cur_user = await api.fetch_user()
@@ -383,8 +388,11 @@ async function create_new_room(user) {
   )
 
   await api.createDocument(
-    Server.roomUsersCollectionId, { room_id: room.$id, user_id: profile
-        .user_id },
+    Server.roomUsersCollectionId, {
+      room_id: room.$id,
+      user_id: profile
+        .user_id
+    },
     ["role:all"]
   )
 
@@ -466,17 +474,23 @@ async function create_group() {
   const group_name = document.getElementById("create-group-name").value
   const cur_user = await api.fetch_user()
 
-  const file = await api
-    .provider()
-    .storage.createFile("unique()", group_image, ["role:all"], [])
+  let data = {
+    title: group_name,
+    is_group: true,
+    room_owner_id: cur_user
+  }
+
+  if (group_image) {
+    const file = await api
+      .provider()
+      .storage.createFile("unique()", group_image, ["role:all"], [])
+
+    data["room_image"] = file.$id
+  }
 
   const room = await api.createDocument(
-    Server.roomCollectionId, {
-      title: group_name,
-      room_image: file.$id,
-      is_group: true,
-      room_owner_id: cur_user
-    },
+    Server.roomCollectionId,
+    data,
     ["role:all"]
   )
 
@@ -895,6 +909,22 @@ api
         $(`[data-contact_id=${data.room_id}]`)
           .find("img")
           .addClass("message_not_readed")
+      }
+    }
+  })
+
+
+api
+  .provider()
+  .subscribe(`collections.${Server.roomUsersCollectionId}.documents`, async (
+    r) => {
+    const cur_user = await api.fetch_user()
+    const data = r.payload
+    if (data.user_id == cur_user) {
+      get_rooms(data)
+
+      if (window.current_room == data.room_id) {
+        document.location.reload()
       }
     }
   })
