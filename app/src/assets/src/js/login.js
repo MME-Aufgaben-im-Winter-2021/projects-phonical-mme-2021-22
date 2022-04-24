@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 const signup = async ({ email, password, name }) => {
   try {
     const account = await api.createAccount(email, password, name);
@@ -6,7 +7,9 @@ const signup = async ({ email, password, name }) => {
     await api.createDocument(Server.profileCollectionId, {
       user_id: account.$id,
       user_name: name,
+      user_email: account.email,
     });
+
     document.location.href = "chat.html";
   } catch (e) {
     alert(e);
@@ -17,7 +20,6 @@ const fetchAccount = async () => {
   try {
     const account = await api.getAccount();
   } catch (e) {
-    console.log(e);
     document.location.href = "login.html";
   }
 };

@@ -38,8 +38,8 @@ function startRecording() {
       $(".voice-memo-recorder-wrap").addClass("recording");
       startTimer();
     })
-    .catch(function (err) {
-      console.log("Microphone not found/not allowed.");
+    .catch(function(err) {
+      alert("Microphone not found/not allowed.");
     });
 }
 
@@ -53,14 +53,11 @@ function createAudio(blob) {
   window.cur_blob = blob;
   let url = URL.createObjectURL(blob);
 
-  const $duration = $(".voice-memo-recorder-wrap").find(".duration");
-  const $grand_wrap = $(".voice-memo-recorder-wrap").find(
-    ".comment-voice-memo"
-  );
-  const $audio_container = $(".voice-memo-recorder-wrap").find(
-    ".hidden-audio-container"
-  );
-  const audio = new Audio(url);
+  const $duration = $(".voice-memo-recorder-wrap").find(".duration"),
+    $grand_wrap = $(".voice-memo-recorder-wrap").find(".comment-voice-memo"),
+    $audio_container = $(".voice-memo-recorder-wrap").find(
+      ".hidden-audio-container"),
+    audio = new Audio(url);
 
   $(audio).addClass("hidden-audio");
   $audio_container.html(audio);
@@ -92,11 +89,11 @@ function createAudio(blob) {
 
 // helping function to show how much time recorded for current audio
 function startTimer() {
-  let seconds = 0;
-  let minutes = 0;
-  let d_seconds,
-    d_minutes = null;
-  let time = null;
+  let seconds = 0,
+    minutes = 0,
+    d_seconds,
+    d_minutes = null,
+    time = null;
   $(".recording-timer").html("00:00");
 
   window.rec_timer = setInterval(() => {
