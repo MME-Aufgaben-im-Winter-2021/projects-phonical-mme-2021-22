@@ -11,6 +11,7 @@
  *
  * Date: 2021-03-02T17:08Z
  */
+/* eslint-disable */
 (function(global, factory) {
 
   "use strict";
@@ -1933,7 +1934,7 @@
             return function(elem) {
               var result = Sizzle.attr(elem, name);
 
-              if (result == null) {
+              if (result === null) {
                 return operator === "!=";
               }
               if (!operator) {
@@ -2309,7 +2310,7 @@
 
               // Support: IE<8
               // New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
-              ((attr = elem.getAttribute("type")) == null ||
+              ((attr = elem.getAttribute("type")) === null ||
                 attr.toLowerCase() === "text");
           },
 
@@ -2559,7 +2560,7 @@
           newUnmatched = [],
           i = 0,
           len = unmatched.length,
-          mapped = map != null;
+          mapped = map !== null;
 
         for (; i < len; i++) {
           if ((elem = unmatched[i])) {
@@ -2760,7 +2761,7 @@
               elems = seed || byElement && Expr.find["TAG"]("*", outermost),
 
               // Use integer dirruns iff this is the outermost matcher
-              dirrunsUnique = (dirruns += contextBackup == null ? 1 : Math
+              dirrunsUnique = (dirruns += contextBackup === null ? 1 : Math
                 .random() || 0.1),
               len = elems.length;
 
@@ -2777,7 +2778,7 @@
             // Add elements passing elementMatchers directly to results
             // Support: IE<9, Safari
             // Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
-            for (; i !== len && (elem = elems[i]) != null; i++) {
+            for (; i !== len && (elem = elems[i]) !== null; i++) {
               if (byElement && elem) {
                 j = 0;
 
@@ -3048,7 +3049,7 @@
       // Support: IE<9
       // Use getAttributeNode to fetch booleans when getAttribute lies
       if (!assert(function(el) {
-          return el.getAttribute("disabled") == null;
+          return el.getAttribute("disabled") === null;
         })) {
         addHandle(booleans, function(elem, name, isXML) {
           var val;
@@ -3419,7 +3420,7 @@
     },
 
     addBack: function(selector) {
-      return this.add(selector == null ?
+      return this.add(selector === null ?
         this.prevObject : this.prevObject.filter(selector)
       );
     }
@@ -3466,7 +3467,7 @@
       return siblings(elem.firstChild);
     },
     contents: function(elem) {
-      if (elem.contentDocument != null &&
+      if (elem.contentDocument !== null &&
 
         // Support: IE 11+
         // <object> elements with no `data` attribute has an object
@@ -4024,7 +4025,7 @@
           // Get a promise for this deferred
           // If obj is provided, the promise aspect is added to the object
           promise: function(obj) {
-            return obj != null ? jQuery.extend(obj, promise) :
+            return obj !== null ? jQuery.extend(obj, promise) :
             promise;
           }
         },
@@ -4263,7 +4264,7 @@
   var access = function(elems, fn, key, value, chainable, emptyGet, raw) {
     var i = 0,
       len = elems.length,
-      bulk = key == null;
+      bulk = key === null;
 
     // Sets many values
     if (toType(key) === "object") {
@@ -4989,7 +4990,7 @@
 
     // Set the display of the elements in a second loop to avoid constant reflow
     for (index = 0; index < length; index++) {
-      if (values[index] != null) {
+      if (values[index] !== null) {
         elements[index].style.display = values[index];
       }
     }
@@ -5264,12 +5265,12 @@
       return elem;
     }
 
-    if (data == null && fn == null) {
+    if (data === null && fn === null) {
 
       // ( types, fn )
       fn = selector;
       data = selector = undefined;
-    } else if (fn == null) {
+    } else if (fn === null) {
       if (typeof selector === "string") {
 
         // ( types, selector, fn )
@@ -6269,7 +6270,7 @@
       i = 0;
 
     for (;
-      (node = nodes[i]) != null; i++) {
+      (node = nodes[i]) !== null; i++) {
       if (!keepData && node.nodeType === 1) {
         jQuery.cleanData(getAll(node));
       }
@@ -6432,7 +6433,7 @@
         i = 0;
 
       for (;
-        (elem = this[i]) != null; i++) {
+        (elem = this[i]) !== null; i++) {
         if (elem.nodeType === 1) {
 
           // Prevent memory leaks
@@ -6447,8 +6448,8 @@
     },
 
     clone: function(dataAndEvents, deepDataAndEvents) {
-      dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
-      deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents :
+      dataAndEvents = dataAndEvents === null ? false : dataAndEvents;
+      deepDataAndEvents = deepDataAndEvents === null ? dataAndEvents :
         deepDataAndEvents;
 
       return this.map(function() {
@@ -6687,7 +6688,7 @@
       // in computed dimensions. (gh-4529)
       reliableTrDimensions: function() {
         var table, tr, trChild, trStyle;
-        if (reliableTrDimensionsVal == null) {
+        if (reliableTrDimensionsVal === null) {
           table = document.createElement("table");
           tr = document.createElement("tr");
           trChild = document.createElement("div");
@@ -7096,7 +7097,7 @@
         }
 
         // Make sure that null and NaN values aren't set (#7116)
-        if (value == null || value !== value) {
+        if (value === null || value !== value) {
           return;
         }
 
@@ -7422,7 +7423,7 @@
       ret = jQuery.find.attr(elem, name);
 
       // Non-existent attributes return null, we normalize to undefined
-      return ret == null ? undefined : ret;
+      return ret === null ? undefined : ret;
     },
 
     attrHooks: {
@@ -7484,7 +7485,7 @@
         // Avoid an infinite loop by temporarily removing this function from the getter
         handle = attrHandle[lowercaseName];
         attrHandle[lowercaseName] = ret;
-        ret = getter(elem, name, isXML) != null ?
+        ret = getter(elem, name, isXML) !== null ?
           lowercaseName :
           null;
         attrHandle[lowercaseName] = handle;
@@ -7852,7 +7853,7 @@
           }
 
           // Handle cases where value is null/undef or number
-          return ret == null ? "" : ret;
+          return ret === null ? "" : ret;
         }
 
         return;
@@ -7874,7 +7875,7 @@
         }
 
         // Treat null/undefined as ""; convert numbers to string
-        if (val == null) {
+        if (val === null) {
           val = "";
 
         } else if (typeof val === "number") {
@@ -7882,7 +7883,7 @@
 
         } else if (Array.isArray(val)) {
           val = jQuery.map(val, function(value) {
-            return value == null ? "" : value + "";
+            return value === null ? "" : value + "";
           });
         }
 
@@ -7904,7 +7905,7 @@
         get: function(elem) {
 
           var val = jQuery.find.attr(elem, "value");
-          return val != null ?
+          return val !== null ?
             val :
 
             // Support: IE <=10 - 11 only
@@ -8072,7 +8073,7 @@
       }
 
       // Clone any incoming data and prepend the event, creating the handler arg list
-      data = data == null ? [event] :
+      data = data === null ? [event] :
         jQuery.makeArray(data, [event]);
 
       // Allow special events to draw outside the lines
@@ -8301,7 +8302,7 @@
 
           // Item is non-scalar (array or object), encode its numeric index.
           buildParams(
-            prefix + "[" + (typeof v === "object" && v != null ? i :
+            prefix + "[" + (typeof v === "object" && v !== null ? i :
             "") + "]",
             v,
             traditional,
@@ -8337,10 +8338,10 @@
           valueOrFunction;
 
         s[s.length] = encodeURIComponent(key) + "=" +
-          encodeURIComponent(value == null ? "" : value);
+          encodeURIComponent(value === null ? "" : value);
       };
 
-    if (a == null) {
+    if (a === null) {
       return "";
     }
 
@@ -8386,7 +8387,7 @@
       }).map(function(_i, elem) {
         var val = jQuery(this).val();
 
-        if (val == null) {
+        if (val === null) {
           return null;
         }
 
@@ -8584,10 +8585,10 @@
         options = options.call(elem, i, jQuery.extend({}, curOffset));
       }
 
-      if (options.top != null) {
+      if (options.top !== null) {
         props.top = (options.top - curOffset.top) + curTop;
       }
-      if (options.left != null) {
+      if (options.left !== null) {
         props.left = (options.left - curOffset.left) + curLeft;
       }
 
@@ -8934,7 +8935,7 @@
   };
 
   jQuery.trim = function(text) {
-    return text == null ?
+    return text === null ?
       "" :
       (text + "").replace(rtrim, "");
   };
@@ -9030,7 +9031,7 @@ let api = {
       Query.equal("user_id", id)
     ])
 
-    const profile = profiles.documents.filter((r) => r.user_id == id)
+    const profile = profiles.documents.filter((r) => r.user_id === id)
 
     let user = {}
     user[id] = profile[0]
@@ -9227,7 +9228,7 @@ function createAudio(blob) {
   // load audio completely before play
   $grand_wrap.addClass("loading")
   audio.addEventListener("durationchange", (e) => {
-    if (audio.duration != Infinity) {
+    if (audio.duration !== Infinity) {
       audio.currentTime = 0
       setTimeout(() => {
         $duration.html(format_time(audio.duration))
@@ -9297,7 +9298,7 @@ async function update_settings_panel() {
   let profile_image = null
 
   for (const row of profiles.documents) {
-    if (row.user_id == account.$id) {
+    if (row.user_id === account.$id) {
       profile_image = row.profile_image
     }
   }
@@ -9325,7 +9326,7 @@ async function updateAccount() {
   ])
 
   const profile =
-    profiles.documents.filter((profile) => profile.user_id == user_id)[0] ||
+    profiles.documents.filter((profile) => profile.user_id === user_id)[0] ||
     null
 
   if (profile) {
@@ -9369,13 +9370,13 @@ async function changePassword() {
 }
 
 $("#search_user_input").on("keypress", function(event) {
-  if ($("#search_user_input").val() && event.keyCode == "13") {
+  if ($("#search_user_input").val() && event.keyCode === "13") {
     search_user()
   }
 })
 
 $("#search_user_input").on("input", function(event) {
-  if ($("#search_user_input").val() == "") {
+  if ($("#search_user_input").val() === "") {
     $(".contacts-section").html("")
     list_contacts(window.contacts)
   }
@@ -9404,7 +9405,7 @@ async function search_user() {
 
   for (const row of profiles.documents) {
     if (row.user_email && search_txt && row.user_email.includes(search_txt) &&
-      row.user_id != cur_user) {
+      row.user_id !== cur_user) {
       if (available_users.includes(row.user_id)) {
 
         const room_users = await api.listDocuments(Server
@@ -9414,7 +9415,7 @@ async function search_user() {
 
         for (const room of room_users.documents) {
           const rooms_matched_with_search = window.contacts.filter((r) => r
-            .$id == room.room_id)
+            .$id === room.room_id)
           for (const iterator of rooms_matched_with_search) {
             append_contact(iterator)
           }
@@ -9445,7 +9446,7 @@ async function get_rooms() {
   window.room_users = r.documents
 
   for (const row of r.documents) {
-    if (row.user_id == cur_user) {
+    if (row.user_id === cur_user) {
       contacts.push(row.room_id)
     }
   }
@@ -9483,7 +9484,7 @@ async function append_contact(row, is_new_contact = false) {
 
   if (!row.is_group && !is_new_contact) {
     let room_user = window.room_users.filter(
-      (r) => r.room_id == row.$id && r.user_id != cur_user
+      (r) => r.room_id === row.$id && r.user_id !== cur_user
     )[0]
 
     if (room_user) {
@@ -9533,7 +9534,7 @@ async function fetch_messages(room_id) {
 async function append_message(row) {
   // getting uploaded audio link
   let url = api.provider().storage.getFileDownload(row.audio_link)
-  let cls = row.user_id == (await api.fetch_user()) ? "audio me" : "audio"
+  let cls = row.user_id === (await api.fetch_user()) ? "audio me" : "audio"
   let msg_user = await api.get_user_profile(row.user_id)
 
   let reply_to = ""
@@ -9616,7 +9617,7 @@ async function open_chat(contact_id) {
     $(".btn-delete-memo").trigger("click")
   }
 
-  const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null
+  const room = window.contacts.filter((r) => r.$id === contact_id)[0] || null
   const cur_user = await api.fetch_user()
   let profile_image = "/app/src/assets/dist/images/dummy.jpeg"
   let room_user_name = room.title
@@ -9627,7 +9628,7 @@ async function open_chat(contact_id) {
 
   if (!room.is_group) {
     let room_user = window.room_users.filter((r) => {
-      return r.room_id == room.$id && r.user_id != cur_user
+      return r.room_id === room.$id && r.user_id !== cur_user
     })[0]
 
     if (room_user) {
@@ -9690,7 +9691,7 @@ async function toggle_chat_screen() {
   const contact_id = window.current_room
 
   for (const row of window.contacts) {
-    if (contact_id == row.$id) {
+    if (contact_id === row.$id) {
       $(".chat-info-panel > img").attr("src", $(".header-bar img").attr(
         "src"))
 
@@ -9717,10 +9718,10 @@ async function show_added_members(contact_id) {
   ])
 
   const cur_user = await api.fetch_user()
-  const room = window.contacts.filter(r => r.$id == contact_id)[0]
+  const room = window.contacts.filter(r => r.$id === contact_id)[0]
 
   for (const room_user of room_users.documents) {
-    if (room_user.room_id == contact_id) {
+    if (room_user.room_id === contact_id) {
       const user_profile = await api.get_user_profile(room_user.user_id)
       let user_image = "./src/assets/dist/images/dummy.jpeg"
 
@@ -9732,7 +9733,7 @@ async function show_added_members(contact_id) {
 
       let delete_action = ""
 
-      if (room.room_owner_id == cur_user && room_user.user_id != cur_user) {
+      if (room.room_owner_id === cur_user && room_user.user_id !== cur_user) {
         delete_action =
           `<a class="btn btn-icon" onclick="delete_chat('${room_user.user_id}')"><i class="fa fa-trash"></i></a>`
       }
@@ -9809,7 +9810,7 @@ async function add_users_to_group() {
   added_users = []
 
   for (const row of room_users.documents) {
-    if (row.room_id == contact_id) {
+    if (row.room_id === contact_id) {
       added_users.push(row.user_id)
     }
   }
@@ -9868,7 +9869,7 @@ async function delete_chat(user_id = null) {
     ])
 
     for (const row of room_users.documents) {
-      if (row.user_id == user_id && row.room_id == room_id) {
+      if (row.user_id === user_id && row.room_id === room_id) {
         await api.deleteDocument(Server.roomUsersCollectionId, row.$id)
         break
       }
@@ -9880,7 +9881,7 @@ async function delete_chat(user_id = null) {
       [Query.equal("room_id", room_id)]
     )
 
-    if (all_room_users.documents.length == 0) {
+    if (all_room_users.documents.length === 0) {
       await api.deleteDocument(Server.roomCollectionId, room_id)
 
       // deleting all room messages
@@ -10041,7 +10042,7 @@ $(document).on("click", ".btn-play-audio", (e) => {
 
   // load audio completely before play
   audio.addEventListener("durationchange", (e) => {
-    if (audio.duration != Infinity) {
+    if (audio.duration !== Infinity) {
       audio.currentTime = 0
       setTimeout(() => {
         audio.play()
@@ -10184,9 +10185,9 @@ $(".btn-open-group").on("click", () => {
 api
   .provider()
   .subscribe(`collections.${Server.messageCollectionId}.documents`, (r) => {
-    if (r.event == "database.documents.create") {
+    if (r.event === "database.documents.create") {
       const data = r.payload
-      if (data.room_id == window.current_room) {
+      if (data.room_id === window.current_room) {
         append_message(data)
       } else {
         $(`[data-contact_id=${data.room_id}]`)
@@ -10203,10 +10204,10 @@ api
     r) => {
       const cur_user = await api.fetch_user()
       const data = r.payload
-      if (data.user_id == cur_user) {
+      if (data.user_id === cur_user) {
         get_rooms(data)
 
-        if (window.current_room == data.room_id) {
+        if (window.current_room === data.room_id) {
           document.location.reload()
         }
       }
