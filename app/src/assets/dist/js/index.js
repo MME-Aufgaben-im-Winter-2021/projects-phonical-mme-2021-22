@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /*!
  * jQuery JavaScript Library v3.6.0 -ajax,-ajax/jsonp,-ajax/load,-ajax/script,-ajax/var/location,-ajax/var/nonce,-ajax/var/rquery,-ajax/xhr,-manipulation/_evalUrl,-deprecated/ajax-event-alias,-effects,-effects/Tween,-effects/animatedSelector
  * https://jquery.com/
@@ -12,6 +13,8 @@
  * Date: 2021-03-02T17:08Z
  */
 /* eslint-disable */
+/*eslint eqeqeq: "off"*/
+
 
 (function(global, factory) {
 
@@ -2777,7 +2780,6 @@
               // Support: IE 11+, Edge 17 - 18+
               // IE/Edge sometimes throw a "Permission denied" error when strict-comparing
               // two documents; shallow comparisons work.
-              // eslint-disable-next-line eqeqeq
               outermostContext = context == document || context ||
                 outermost;
             }
