@@ -11,6 +11,8 @@
  *
  * Date: 2021-03-02T17:08Z
  */
+/* eslint-disable */
+
 (function(global, factory) {
 
   "use strict";
@@ -101,7 +103,7 @@
     type: true,
     src: true,
     nonce: true,
-    noModule: true
+    noModule: true,
   };
 
   function DOMEval(code, node, doc) {
@@ -252,7 +254,7 @@
     // Behaves like an Array's method, not like a jQuery method.
     push: push,
     sort: arr.sort,
-    splice: arr.splice
+    splice: arr.splice,
   };
 
   jQuery.extend = jQuery.fn.extend = function() {
@@ -406,7 +408,7 @@
       if (arr != null) {
         if (isArrayLike(Object(arr))) {
           jQuery.merge(ret,
-            typeof arr === "string" ? [arr] : arr
+            typeof arr === "string" ? [arr] : arr,
           );
         } else {
           push.call(ret, arr);
@@ -492,7 +494,7 @@
 
     // jQuery.support is not used in Core but other projects attach their
     // properties to it so it needs to exist.
-    support: support
+    support: support,
   });
 
   if (typeof Symbol === "function") {
@@ -666,7 +668,7 @@
           "needsContext": new RegExp("^" + whitespace +
             "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" +
             whitespace +
-            "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i")
+            "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i"),
         },
 
         rhtml = /HTML$/i,
@@ -733,14 +735,14 @@
           function(elem) {
             return elem.disabled === true && elem.nodeName.toLowerCase() ===
               "fieldset";
-          }, { dir: "parentNode", next: "legend" }
+          }, { dir: "parentNode", next: "legend" },
         );
 
       // Optimize for push.apply( _, NodeList )
       try {
         push.apply(
           (arr = slice.call(preferredDoc.childNodes)),
-          preferredDoc.childNodes
+          preferredDoc.childNodes,
         );
 
         // Support: Android<4.0
@@ -765,7 +767,7 @@
               // Can't trust NodeList.length
               while ((target[j++] = els[i++])) {}
               target.length = j - 1;
-            }
+            },
         };
       }
 
@@ -895,7 +897,7 @@
 
               try {
                 push.apply(results,
-                  newContext.querySelectorAll(newSelector)
+                  newContext.querySelectorAll(newSelector),
                 );
                 return results;
               } catch (qsaError) {
@@ -911,7 +913,7 @@
 
         // All others
         return select(selector.replace(rtrim, "$1"), context, results,
-        seed);
+          seed);
       }
 
       /**
@@ -1809,7 +1811,7 @@
           ">": { dir: "parentNode", first: true },
           " ": { dir: "parentNode" },
           "+": { dir: "previousSibling", first: true },
-          "~": { dir: "previousSibling" }
+          "~": { dir: "previousSibling" },
         },
 
         preFilter: {
@@ -1892,7 +1894,7 @@
 
             // Return only captures needed by the pseudo filter method (type and argument)
             return match.slice(0, 3);
-          }
+          },
         },
 
         filter: {
@@ -1924,7 +1926,7 @@
                     .className ||
                     typeof elem.getAttribute !== "undefined" &&
                     elem.getAttribute("class") ||
-                    ""
+                    "",
                   );
                 });
           },
@@ -2007,7 +2009,7 @@
                   }
 
                   start = [forward ? parent.firstChild : parent
-                    .lastChild
+                    .lastChild,
                   ];
 
                   // non-xml :nth-child(...) stores cache data on `parent`
@@ -2050,7 +2052,7 @@
                       // ...in a gzip-friendly way
                       node = elem;
                       outerCache = node[expando] || (node[
-                      expando] = {});
+                        expando] = {});
 
                       // Support: IE <9 only
                       // Defend against cloned attroperties (jQuery gh-1709)
@@ -2126,7 +2128,7 @@
             if (fn.length > 1) {
               args = [pseudo, pseudo, "", argument];
               return Expr.setFilters.hasOwnProperty(pseudo
-                .toLowerCase()) ?
+                  .toLowerCase()) ?
                 markFunction(function(seed, matches) {
                   var idx,
                     matched = fn(seed, argument),
@@ -2142,7 +2144,7 @@
             }
 
             return fn;
-          }
+          },
         },
 
         pseudos: {
@@ -2363,15 +2365,20 @@
               matchIndexes.push(i);
             }
             return matchIndexes;
-          })
-        }
+          }),
+        },
       };
 
       Expr.pseudos["nth"] = Expr.pseudos["eq"];
 
       // Add button/input type pseudos
-      for (i in { radio: true, checkbox: true, file: true, password: true,
-          image: true }) {
+      for (i in {
+          radio: true,
+          checkbox: true,
+          file: true,
+          password: true,
+          image: true,
+        }) {
         Expr.pseudos[i] = createInputPseudo(i);
       }
       for (i in { submit: true, reset: true }) {
@@ -2417,7 +2424,7 @@
               value: matched,
 
               // Cast descendant combinators to space
-              type: match[0].replace(rtrim, " ")
+              type: match[0].replace(rtrim, " "),
             });
             soFar = soFar.slice(matched.length);
           }
@@ -2431,7 +2438,7 @@
               tokens.push({
                 value: matched,
                 type: type,
-                matches: match
+                matches: match,
               });
               soFar = soFar.slice(matched.length);
             }
@@ -2593,7 +2600,7 @@
             elems = seed || multipleContexts(
               selector || "*",
               context.nodeType ? [context] : context,
-              []
+              [],
             ),
 
             // Prefilter to get matcher input, preserving a map for seed-results synchronization
@@ -2605,7 +2612,7 @@
 
             // If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
             postFinder || (seed ? preFilter : preexisting ||
-            postFilter) ?
+              postFilter) ?
 
             // ...intermediate processing is necessary
             [] :
@@ -2629,7 +2636,7 @@
             while (i--) {
               if ((elem = temp[i])) {
                 matcherOut[postMap[i]] = !(matcherIn[postMap[i]] =
-                elem);
+                  elem);
               }
             }
           }
@@ -2656,7 +2663,7 @@
               while (i--) {
                 if ((elem = matcherOut[i]) &&
                   (temp = postFinder ? indexOf(seed, elem) : preMap[
-                  i]) > -1) {
+                    i]) > -1) {
 
                   seed[temp] = !(results[temp] = elem);
                 }
@@ -2668,7 +2675,7 @@
             matcherOut = condense(
               matcherOut === results ?
               matcherOut.splice(preexisting, matcherOut.length) :
-              matcherOut
+              matcherOut,
             );
             if (postFinder) {
               postFinder(null, results, matcherOut, xml);
@@ -2729,13 +2736,14 @@
                   // If the preceding token was a descendant combinator, insert an implicit any-element `*`
                   tokens
                   .slice(0, i - 1)
-                  .concat({ value: tokens[i - 2].type === " " ? "*" :
-                      "" })
+                  .concat({
+                    value: tokens[i - 2].type === " " ? "*" : "",
+                  }),
                 ).replace(rtrim, "$1"),
                 matcher,
                 i < j && matcherFromTokens(tokens.slice(i, j)),
                 j < len && matcherFromTokens((tokens = tokens.slice(j))),
-                j < len && toSelector(tokens)
+                j < len && toSelector(tokens),
               );
             }
             matchers.push(matcher);
@@ -2771,7 +2779,7 @@
               // two documents; shallow comparisons work.
               // eslint-disable-next-line eqeqeq
               outermostContext = context == document || context ||
-              outermost;
+                outermost;
             }
 
             // Add elements passing elementMatchers directly to results
@@ -2898,7 +2906,7 @@
           // Cache the compiled function
           cached = compilerCache(
             selector,
-            matcherFromGroupMatchers(elementMatchers, setMatchers)
+            matcherFromGroupMatchers(elementMatchers, setMatchers),
           );
 
           // Save selector and tokenization
@@ -2949,7 +2957,7 @@
 
           // Fetch a seed set for right-to-left matching
           i = matchExpr["needsContext"].test(selector) ? 0 : tokens
-          .length;
+            .length;
           while (i--) {
             token = tokens[i];
 
@@ -2964,7 +2972,7 @@
                   token.matches[0].replace(runescape, funescape),
                   rsibling.test(tokens[0].type) && testContext(context
                     .parentNode) ||
-                  context
+                  context,
                 ))) {
 
                 // If seed is empty or no tokens remain, we can return early
@@ -2989,7 +2997,7 @@
           !documentIsHTML,
           results,
           !context || rsibling.test(selector) && testContext(context
-            .parentNode) || context
+            .parentNode) || context,
         );
         return results;
       };
@@ -3117,7 +3125,7 @@
   function nodeName(elem, name) {
 
     return elem.nodeName && elem.nodeName.toLowerCase() === name
-  .toLowerCase();
+      .toLowerCase();
 
   }
   var rsingleTag = (
@@ -3206,9 +3214,9 @@
         typeof selector === "string" && rneedsContext.test(selector) ?
         jQuery(selector) :
         selector || [],
-        false
+        false,
       ).length;
-    }
+    },
   });
 
 
@@ -3262,7 +3270,7 @@
               match[1],
               context && context.nodeType ? context.ownerDocument ||
               context : document,
-              true
+              true,
             ));
 
             // HANDLE: $(html, props)
@@ -3338,7 +3346,7 @@
       children: true,
       contents: true,
       next: true,
-      prev: true
+      prev: true,
     };
 
   jQuery.fn.extend({
@@ -3406,23 +3414,23 @@
       return indexOf.call(this,
 
         // If it receives a jQuery object, the first element is used
-        elem.jquery ? elem[0] : elem
+        elem.jquery ? elem[0] : elem,
       );
     },
 
     add: function(selector, context) {
       return this.pushStack(
         jQuery.uniqueSort(
-          jQuery.merge(this.get(), jQuery(selector, context))
-        )
+          jQuery.merge(this.get(), jQuery(selector, context)),
+        ),
       );
     },
 
     addBack: function(selector) {
       return this.add(selector == null ?
-        this.prevObject : this.prevObject.filter(selector)
+        this.prevObject : this.prevObject.filter(selector),
       );
-    }
+    },
   });
 
   function sibling(cur, dir) {
@@ -3484,7 +3492,7 @@
       }
 
       return jQuery.merge([], elem.childNodes);
-    }
+    },
   }, function(name, fn) {
     jQuery.fn[name] = function(until, selector) {
       var matched = jQuery.map(this, fn, until);
@@ -3737,7 +3745,7 @@
         // To know if the callbacks have already been called at least once
         fired: function() {
           return !!fired;
-        }
+        },
       };
 
     return self;
@@ -3793,14 +3801,14 @@
           // action, add listener, callbacks,
           // ... .then handlers, argument index, [final state]
           ["notify", "progress", jQuery.Callbacks("memory"),
-            jQuery.Callbacks("memory"), 2
+            jQuery.Callbacks("memory"), 2,
           ],
           ["resolve", "done", jQuery.Callbacks("once memory"),
-            jQuery.Callbacks("once memory"), 0, "resolved"
+            jQuery.Callbacks("once memory"), 0, "resolved",
           ],
           ["reject", "fail", jQuery.Callbacks("once memory"),
-            jQuery.Callbacks("once memory"), 1, "rejected"
-          ]
+            jQuery.Callbacks("once memory"), 1, "rejected",
+          ],
         ],
         state = "pending",
         promise = {
@@ -3841,7 +3849,7 @@
                   } else {
                     newDefer[tuple[0] + "With"](
                       this,
-                      fn ? [returned] : arguments
+                      fn ? [returned] : arguments,
                     );
                   }
                 });
@@ -3898,7 +3906,7 @@
                           resolve(maxDepth, deferred, Identity,
                             special),
                           resolve(maxDepth, deferred, Thrower,
-                            special)
+                            special),
                         );
 
                         // Normal processors (resolve) also hook into progress
@@ -3914,7 +3922,7 @@
                           resolve(maxDepth, deferred, Thrower,
                             special),
                           resolve(maxDepth, deferred, Identity,
-                            deferred.notifyWith)
+                            deferred.notifyWith),
                         );
                       }
 
@@ -3993,8 +4001,8 @@
                   isFunction(onProgress) ?
                   onProgress :
                   Identity,
-                  newDefer.notifyWith
-                )
+                  newDefer.notifyWith,
+                ),
               );
 
               // fulfilled_handlers.add( ... )
@@ -4004,8 +4012,8 @@
                   newDefer,
                   isFunction(onFulfilled) ?
                   onFulfilled :
-                  Identity
-                )
+                  Identity,
+                ),
               );
 
               // rejected_handlers.add( ... )
@@ -4015,8 +4023,8 @@
                   newDefer,
                   isFunction(onRejected) ?
                   onRejected :
-                  Thrower
-                )
+                  Thrower,
+                ),
               );
             }).promise();
           },
@@ -4025,8 +4033,8 @@
           // If obj is provided, the promise aspect is added to the object
           promise: function(obj) {
             return obj != null ? jQuery.extend(obj, promise) :
-            promise;
-          }
+              promise;
+          },
         },
         deferred = {};
 
@@ -4062,7 +4070,7 @@
             tuples[0][2].lock,
 
             // progress_handlers.lock
-            tuples[0][3].lock
+            tuples[0][3].lock,
           );
         }
 
@@ -4147,7 +4155,7 @@
       }
 
       return primary.promise();
-    }
+    },
   });
 
 
@@ -4223,7 +4231,7 @@
 
       // If there are functions bound, to execute
       readyList.resolveWith(document, [jQuery]);
-    }
+    },
   });
 
   jQuery.ready.then = readyList.then;
@@ -4241,7 +4249,7 @@
   // Older IE sometimes signals "interactive" too soon
   if (document.readyState === "complete" ||
     (document.readyState !== "loading" && !document.documentElement.doScroll)
-    ) {
+  ) {
 
     // Handle it asynchronously to allow scripts the opportunity to delay ready
     window.setTimeout(jQuery.ready);
@@ -4301,7 +4309,7 @@
           fn(
             elems[i], key, raw ?
             value :
-            value.call(elems[i], i, fn(elems[i], key))
+            value.call(elems[i], i, fn(elems[i], key)),
           );
         }
       }
@@ -4383,7 +4391,7 @@
           } else {
             Object.defineProperty(owner, this.expando, {
               value: value,
-              configurable: true
+              configurable: true,
             });
           }
         }
@@ -4497,7 +4505,7 @@
     hasData: function(owner) {
       var cache = owner[this.expando];
       return cache !== undefined && !jQuery.isEmptyObject(cache);
-    }
+    },
   };
   var dataPriv = new Data();
 
@@ -4587,7 +4595,7 @@
 
     _removeData: function(elem, name) {
       dataPriv.remove(elem, name);
-    }
+    },
   });
 
   jQuery.fn.extend({
@@ -4602,7 +4610,7 @@
           data = dataUser.get(elem);
 
           if (elem.nodeType === 1 && !dataPriv.get(elem,
-            "hasDataAttrs")) {
+              "hasDataAttrs")) {
             i = attrs.length;
             while (i--) {
 
@@ -4671,7 +4679,7 @@
       return this.each(function() {
         dataUser.remove(this, key);
       });
-    }
+    },
   });
 
 
@@ -4736,9 +4744,9 @@
       return dataPriv.get(elem, key) || dataPriv.access(elem, key, {
         empty: jQuery.Callbacks("once memory").add(function() {
           dataPriv.remove(elem, [type + "queue", key]);
-        })
+        }),
       });
-    }
+    },
   });
 
   jQuery.fn.extend({
@@ -4806,7 +4814,7 @@
       }
       resolve();
       return defer.promise(obj);
-    }
+    },
   });
   var pnum = (/[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/).source;
 
@@ -5016,7 +5024,7 @@
           jQuery(this).hide();
         }
       });
-    }
+    },
   });
   var rcheckableType = (/^(?:checkbox|radio)$/i);
 
@@ -5070,7 +5078,7 @@
     tr: [2, "<table><tbody>", "</tbody></table>"],
     td: [3, "<table><tbody><tr>", "</tr></tbody></table>"],
 
-    _default: [0, "", ""]
+    _default: [0, "", ""],
   };
 
   wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap
@@ -5080,7 +5088,7 @@
   // Support: IE <=9 only
   if (!support.option) {
     wrapMap.optgroup = wrapMap.option = [1, "<select multiple='multiple'>",
-      "</select>"
+      "</select>",
     ];
   }
 
@@ -5118,7 +5126,7 @@
       dataPriv.set(
         elems[i],
         "globalEval",
-        !refElements || dataPriv.get(refElements[i], "globalEval")
+        !refElements || dataPriv.get(refElements[i], "globalEval"),
       );
     }
   }
@@ -5392,7 +5400,7 @@
           selector: selector,
           needsContext: selector && jQuery.expr.match.needsContext
             .test(selector),
-          namespace: namespaces.join(".")
+          namespace: namespaces.join("."),
         }, handleObjIn);
 
         // Init the event handler queue if we're the first
@@ -5634,8 +5642,11 @@
       // Add the remaining (directly-bound) handlers
       cur = this;
       if (delegateCount < handlers.length) {
-        handlerQueue.push({ elem: cur, handlers: handlers.slice(
-            delegateCount) });
+        handlerQueue.push({
+          elem: cur,
+          handlers: handlers.slice(
+            delegateCount),
+        });
       }
 
       return handlerQueue;
@@ -5662,9 +5673,9 @@
             enumerable: true,
             configurable: true,
             writable: true,
-            value: value
+            value: value,
           });
-        }
+        },
       });
     },
 
@@ -5678,7 +5689,7 @@
       load: {
 
         // Prevent triggered image.load events from bubbling to window.load
-        noBubble: true
+        noBubble: true,
       },
       click: {
 
@@ -5725,7 +5736,7 @@
             target.click && nodeName(target, "input") &&
             dataPriv.get(target, "click") ||
             nodeName(target, "a");
-        }
+        },
       },
 
       beforeunload: {
@@ -5736,9 +5747,9 @@
           if (event.result !== undefined && event.originalEvent) {
             event.originalEvent.returnValue = event.result;
           }
-        }
-      }
-    }
+        },
+      },
+    },
   };
 
   // Ensure the presence of an event listener that handles manually-triggered
@@ -5823,14 +5834,14 @@
               // Extend with the prototype to reset the above stopImmediatePropagation()
               jQuery.extend(saved[0], jQuery.Event.prototype),
               saved.slice(1),
-              this
-            )
+              this,
+            ),
           });
 
           // Abort handling of the native event
           event.stopImmediatePropagation();
         }
-      }
+      },
     });
   }
 
@@ -5928,7 +5939,7 @@
       }
 
       this.stopPropagation();
-    }
+    },
   };
 
   // Includes all common event props including KeyEvent and MouseEvent specific props
@@ -5963,7 +5974,7 @@
     targetTouches: true,
     toElement: true,
     touches: true,
-    which: true
+    which: true,
   }, jQuery.event.addProp);
 
   jQuery.each({ focus: "focusin", blur: "focusout" }, function(type,
@@ -5996,7 +6007,7 @@
         return true;
       },
 
-      delegateType: delegateType
+      delegateType: delegateType,
     };
   });
 
@@ -6012,7 +6023,7 @@
     mouseenter: "mouseover",
     mouseleave: "mouseout",
     pointerenter: "pointerover",
-    pointerleave: "pointerout"
+    pointerleave: "pointerout",
   }, function(orig, fix) {
     jQuery.event.special[orig] = {
       delegateType: fix,
@@ -6033,7 +6044,7 @@
           event.type = fix;
         }
         return ret;
-      }
+      },
     };
   });
 
@@ -6056,7 +6067,7 @@
           handleObj.origType + "." + handleObj.namespace :
           handleObj.origType,
           handleObj.selector,
-          handleObj.handler
+          handleObj.handler,
         );
         return this;
       }
@@ -6080,7 +6091,7 @@
       return this.each(function() {
         jQuery.event.remove(this, types, fn, selector);
       });
-    }
+    },
   });
 
 
@@ -6099,7 +6110,7 @@
   function manipulationTarget(elem, content) {
     if (nodeName(elem, "table") &&
       nodeName(content.nodeType !== 11 ? content : content.firstChild, "tr")
-      ) {
+    ) {
 
       return jQuery(elem).children("tbody")[0] || elem;
     }
@@ -6247,12 +6258,12 @@
                 // Optional AJAX dependency, but won't run scripts if not present
                 if (jQuery._evalUrl && !node.noModule) {
                   jQuery._evalUrl(node.src, {
-                    nonce: node.nonce || node.getAttribute("nonce")
+                    nonce: node.nonce || node.getAttribute("nonce"),
                   }, doc);
                 }
               } else {
                 DOMEval(node.textContent.replace(rcleanScript, ""), node,
-                doc);
+                  doc);
               }
             }
           }
@@ -6366,7 +6377,7 @@
           }
         }
       }
-    }
+    },
   });
 
   jQuery.fn.extend({
@@ -6468,7 +6479,7 @@
 
         // See if we can take a shortcut and just use innerHTML
         if (typeof value === "string" && !rnoInnerhtml.test(
-          value) &&
+            value) &&
           !wrapMap[(rtagName.exec(value) || ["", ""])[1]
             .toLowerCase()]) {
 
@@ -6513,7 +6524,7 @@
 
         // Force callback invocation
       }, ignored);
-    }
+    },
   });
 
   jQuery.each({
@@ -6521,7 +6532,7 @@
     prependTo: "prepend",
     insertBefore: "before",
     insertAfter: "after",
-    replaceAll: "replaceWith"
+    replaceAll: "replaceWith",
   }, function(name, original) {
     jQuery.fn[name] = function(selector) {
       var elems,
@@ -6608,7 +6619,7 @@
 
       // Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
       reliableMarginLeftVal = roundPixelMeasures(divStyle.marginLeft) ===
-      12;
+        12;
 
       // Support: Android 4.0 - 4.3 only, Safari <=9.1 - 10.1, iOS <=7.0 - 9.3
       // Some styles come back with percentage values, even though they shouldn't
@@ -6724,7 +6735,7 @@
           documentElement.removeChild(table);
         }
         return reliableTrDimensionsVal;
-      }
+      },
     });
   })();
 
@@ -6798,7 +6809,7 @@
 
         // Hook needed; redefine it so that the support test is not executed again.
         return (this.get = hookFn).apply(this, arguments);
-      }
+      },
     };
   }
 
@@ -6843,11 +6854,14 @@
     // See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
     rdisplayswap = /^(none|table(?!-c[ea]).+)/,
     rcustomProp = /^--/,
-    cssShow = { position: "absolute", visibility: "hidden",
-    display: "block" },
+    cssShow = {
+      position: "absolute",
+      visibility: "hidden",
+      display: "block",
+    },
     cssNormalTransform = {
       letterSpacing: "0",
-      fontWeight: "400"
+      fontWeight: "400",
     };
 
   function setPositiveNumber(_elem, value, subtract) {
@@ -6924,7 +6938,7 @@
         computedVal -
         delta -
         extra -
-        0.5
+        0.5,
 
         // If offsetWidth/offsetHeight is unknown, then we can't determine content-box scroll gutter
         // Use an explicit zero to avoid NaN (gh-3964)
@@ -7007,7 +7021,7 @@
         styles,
 
         // Provide the current computed size to request scroll gutter calculation (gh-3589)
-        val
+        val,
       )
     ) + "px";
   }
@@ -7025,8 +7039,8 @@
             var ret = curCSS(elem, "opacity");
             return ret === "" ? "1" : ret;
           }
-        }
-      }
+        },
+      },
     },
 
     // Don't automatically add "px" to these possibly-unitless properties
@@ -7050,7 +7064,7 @@
       "orphans": true,
       "widows": true,
       "zIndex": true,
-      "zoom": true
+      "zoom": true,
     },
 
     // Add in properties whose names you wish to fix before
@@ -7088,7 +7102,7 @@
 
         // Convert "+=" or "-=" to relative numbers (#7345)
         if (type === "string" && (ret = rcssNum.exec(value)) && ret[
-          1]) {
+            1]) {
           value = adjustCSS(elem, name, ret);
 
           // Fixes bug #9237
@@ -7176,7 +7190,7 @@
       }
 
       return val;
-    }
+    },
   });
 
   jQuery.each(["height", "width"], function(_i, dimension) {
@@ -7223,7 +7237,7 @@
             dimension,
             extra,
             isBorderBox,
-            styles
+            styles,
           ) :
           0;
 
@@ -7236,8 +7250,7 @@
             parseFloat(styles[dimension]) -
             boxModelAdjustment(elem, dimension, "border", false,
               styles) -
-            0.5
-          );
+            0.5);
         }
 
         // Convert to pixels if value adjustment is needed
@@ -7249,7 +7262,7 @@
         }
 
         return setPositiveNumber(elem, value, subtract);
-      }
+      },
     };
   });
 
@@ -7263,14 +7276,14 @@
           })
         ) + "px";
       }
-    }
+    },
   );
 
   // These hooks are used by animate to expand properties
   jQuery.each({
     margin: "",
     padding: "",
-    border: "Width"
+    border: "Width",
   }, function(prefix, suffix) {
     jQuery.cssHooks[prefix + suffix] = {
       expand: function(value) {
@@ -7279,7 +7292,7 @@
 
           // Assumes a single number if not a string
           parts = typeof value === "string" ? value.split(" ") : [
-            value
+            value,
           ];
 
         for (; i < 4; i++) {
@@ -7288,7 +7301,7 @@
         }
 
         return expanded;
-      }
+      },
     };
 
     if (prefix !== "margin") {
@@ -7318,7 +7331,7 @@
           jQuery.style(elem, name, value) :
           jQuery.css(elem, name);
       }, name, value, arguments.length > 1);
-    }
+    },
   });
 
 
@@ -7374,7 +7387,7 @@
       return this.each(function() {
         jQuery.removeAttr(this, name);
       });
-    }
+    },
   });
 
   jQuery.extend({
@@ -7437,8 +7450,8 @@
             }
             return value;
           }
-        }
-      }
+        },
+      },
     },
 
     removeAttr: function(elem, value) {
@@ -7454,7 +7467,7 @@
           elem.removeAttribute(name);
         }
       }
-    }
+    },
   });
 
   // Hooks for boolean attributes
@@ -7468,11 +7481,11 @@
         elem.setAttribute(name, name);
       }
       return name;
-    }
+    },
   };
 
   jQuery.each(jQuery.expr.match.bool.source.match(/\w+/g), function(_i,
-  name) {
+    name) {
     var getter = attrHandle[name] || jQuery.find.attr;
 
     attrHandle[name] = function(elem, name, isXML) {
@@ -7509,7 +7522,7 @@
       return this.each(function() {
         delete this[jQuery.propFix[name] || name];
       });
-    }
+    },
   });
 
   jQuery.extend({
@@ -7570,14 +7583,14 @@
           }
 
           return -1;
-        }
-      }
+        },
+      },
     },
 
     propFix: {
       "for": "htmlFor",
-      "class": "className"
-    }
+      "class": "className",
+    },
   });
 
   // Support: IE <=11 only
@@ -7612,7 +7625,7 @@
             parent.parentNode.selectedIndex;
           }
         }
-      }
+      },
     };
   }
 
@@ -7626,7 +7639,7 @@
     "colSpan",
     "useMap",
     "frameBorder",
-    "contentEditable"
+    "contentEditable",
   ], function() {
     jQuery.propFix[this.toLowerCase()] = this;
   });
@@ -7664,7 +7677,7 @@
       if (isFunction(value)) {
         return this.each(function(j) {
           jQuery(this).addClass(value.call(this, j, getClass(
-          this)));
+            this)));
         });
       }
 
@@ -7749,14 +7762,14 @@
 
       if (typeof stateVal === "boolean" && isValidValue) {
         return stateVal ? this.addClass(value) : this.removeClass(
-        value);
+          value);
       }
 
       if (isFunction(value)) {
         return this.each(function(i) {
           jQuery(this).toggleClass(
             value.call(this, i, getClass(this), stateVal),
-            stateVal
+            stateVal,
           );
         });
       }
@@ -7798,7 +7811,7 @@
             this.setAttribute("class",
               className || value === false ?
               "" :
-              dataPriv.get(this, "__className__") || ""
+              dataPriv.get(this, "__className__") || "",
             );
           }
         }
@@ -7819,7 +7832,7 @@
       }
 
       return false;
-    }
+    },
   });
 
 
@@ -7895,7 +7908,7 @@
           this.value = val;
         }
       });
-    }
+    },
   });
 
   jQuery.extend({
@@ -7912,7 +7925,7 @@
             // Strip and collapse whitespace
             // https://html.spec.whatwg.org/#strip-and-collapse-whitespace
             stripAndCollapse(jQuery.text(elem));
-        }
+        },
       },
       select: {
         get: function(elem) {
@@ -7972,7 +7985,7 @@
 
             if (option.selected =
               jQuery.inArray(jQuery.valHooks.option.get(option),
-              values) > -1
+                values) > -1
             ) {
               optionSet = true;
             }
@@ -7985,9 +7998,9 @@
             elem.selectedIndex = -1;
           }
           return values;
-        }
-      }
-    }
+        },
+      },
+    },
   });
 
   // Radios and checkboxes getter/setter
@@ -7998,7 +8011,7 @@
           return (elem.checked = jQuery.inArray(jQuery(elem).val(),
             value) > -1);
         }
-      }
+      },
     };
     if (!support.checkOn) {
       jQuery.valHooks[this].get = function(elem) {
@@ -8180,12 +8193,12 @@
         new jQuery.Event(),
         event, {
           type: type,
-          isSimulated: true
-        }
+          isSimulated: true,
+        },
       );
 
       jQuery.event.trigger(e, null, elem);
-    }
+    },
 
   });
 
@@ -8201,7 +8214,7 @@
       if (elem) {
         return jQuery.event.trigger(type, data, elem, true);
       }
-    }
+    },
   });
 
 
@@ -8246,7 +8259,7 @@
           } else {
             dataPriv.access(doc, fix, attaches);
           }
-        }
+        },
       };
     });
   }
@@ -8302,10 +8315,10 @@
           // Item is non-scalar (array or object), encode its numeric index.
           buildParams(
             prefix + "[" + (typeof v === "object" && v != null ? i :
-            "") + "]",
+              "") + "]",
             v,
             traditional,
-            add
+            add,
           );
         }
       });
@@ -8392,15 +8405,21 @@
 
         if (Array.isArray(val)) {
           return jQuery.map(val, function(val) {
-            return { name: elem.name, value: val.replace(rCRLF,
-                "\r\n") };
+            return {
+              name: elem.name,
+              value: val.replace(rCRLF,
+                "\r\n"),
+            };
           });
         }
 
-        return { name: elem.name, value: val.replace(rCRLF,
-          "\r\n") };
+        return {
+          name: elem.name,
+          value: val.replace(rCRLF,
+            "\r\n"),
+        };
       }).get();
-    }
+    },
   });
 
 
@@ -8468,7 +8487,7 @@
         jQuery(this).replaceWith(this.childNodes);
       });
       return this;
-    }
+    },
   });
 
 
@@ -8597,7 +8616,7 @@
       } else {
         curElem.css(props);
       }
-    }
+    },
   };
 
   jQuery.fn.extend({
@@ -8634,7 +8653,7 @@
       win = elem.ownerDocument.defaultView;
       return {
         top: rect.top + win.pageYOffset,
-        left: rect.left + win.pageXOffset
+        left: rect.left + win.pageXOffset,
       };
     },
 
@@ -8686,7 +8705,7 @@
         top: offset.top - parentOffset.top - jQuery.css(elem,
           "marginTop", true),
         left: offset.left - parentOffset.left - jQuery.css(elem,
-          "marginLeft", true)
+          "marginLeft", true),
       };
     },
 
@@ -8705,13 +8724,13 @@
         var offsetParent = this.offsetParent;
 
         while (offsetParent && jQuery.css(offsetParent,
-          "position") === "static") {
+            "position") === "static") {
           offsetParent = offsetParent.offsetParent;
         }
 
         return offsetParent || documentElement;
       });
-    }
+    },
   });
 
   // Create scrollLeft and scrollTop methods
@@ -8737,7 +8756,7 @@
           if (win) {
             win.scrollTo(
               !top ? val : win.pageXOffset,
-              top ? val : win.pageYOffset
+              top ? val : win.pageYOffset,
             );
 
           } else {
@@ -8764,7 +8783,7 @@
             jQuery(elem).position()[prop] + "px" :
             computed;
         }
-      }
+      },
     );
   });
 
@@ -8774,7 +8793,7 @@
     jQuery.each({
       padding: "inner" + name,
       content: type,
-      "": "outer" + name
+      "": "outer" + name,
     }, function(defaultExtra, funcName) {
 
       // Margin is only for outerHeight, outerWidth
@@ -8803,10 +8822,10 @@
             // whichever is greatest
             return Math.max(
               elem.body["scroll" + name], doc["scroll" +
-              name],
+                name],
               elem.body["offset" + name], doc["offset" +
-              name],
-              doc["client" + name]
+                name],
+              doc["client" + name],
             );
           }
 
@@ -8845,7 +8864,7 @@
 
     hover: function(fnOver, fnOut) {
       return this.mouseenter(fnOver).mouseleave(fnOut || fnOver);
-    }
+    },
   });
 
   jQuery.each(
@@ -8860,7 +8879,7 @@
           this.on(name, null, data, fn) :
           this.trigger(name);
       };
-    }
+    },
   );
 
 
@@ -8893,7 +8912,7 @@
     args = slice.call(arguments, 2);
     proxy = function() {
       return fn.apply(context || this, args.concat(slice.call(
-      arguments)));
+        arguments)));
     };
 
     // Set the guid of unique handler to the same of original handler, so it can be removed
@@ -9003,7 +9022,7 @@ const Server = {
   roomCollectionId: "625386922d06f1c7786f",
   roomUsersCollectionId: "625a082e707f1c17927f",
   messageCollectionId: "625174ac6a2388c76fca",
-}
+};
 
 let api = {
   sdk: null,
@@ -9011,150 +9030,150 @@ let api = {
   users: {},
 
   provider: () => {
-    if (api.sdk) return api.sdk
-    let appwrite = new Appwrite()
-    appwrite.setEndpoint(Server.endpoint).setProject(Server.project)
-    api.sdk = appwrite
-    return appwrite
+    if (api.sdk) return api.sdk;
+    let appwrite = new Appwrite();
+    appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
+    api.sdk = appwrite;
+    return appwrite;
   },
 
   fetch_user: async () => {
-    if (api.user) return api.user
-    let user = await api.getAccount()
-    api.user = user.$id
-    return user.$id
+    if (api.user) return api.user;
+    let user = await api.getAccount();
+    api.user = user.$id;
+    return user.$id;
   },
 
   get_user_profile: async (id) => {
     const profiles = await api.listDocuments(Server.profileCollectionId, [
-      Query.equal("user_id", id)
-    ])
+      Query.equal("user_id", id),
+    ]);
 
-    const profile = profiles.documents.filter((r) => r.user_id == id)
+    const profile = profiles.documents.filter((r) => r.user_id == id);
 
-    let user = {}
-    user[id] = profile[0]
+    let user = {};
+    user[id] = profile[0];
 
-    $.extend(api.users, user)
+    $.extend(api.users, user);
 
-    return profile[0]
+    return profile[0];
   },
 
   get_user_name: async () => {
-    if (api.user) return api.user
-    let user = await api.getAccount()
-    api.user = user.$id
-    return user.$id
+    if (api.user) return api.user;
+    let user = await api.getAccount();
+    api.user = user.$id;
+    return user.$id;
   },
 
   createAccount: (email, password, name) => {
-    return api.provider().account.create("unique()", email, password, name)
+    return api.provider().account.create("unique()", email, password, name);
   },
 
   getAccount: () => {
-    return api.provider().account.get()
+    return api.provider().account.get();
   },
 
   createSession: (email, password) => {
-    return api.provider().account.createSession(email, password)
+    return api.provider().account.createSession(email, password);
   },
 
   deleteCurrentSession: () => {
-    return api.provider().account.deleteSession("current")
+    return api.provider().account.deleteSession("current");
   },
 
   createDocument: (collectionId, data, read = []) => {
     return api
       .provider()
-      .database.createDocument(collectionId, "unique()", data, read)
+      .database.createDocument(collectionId, "unique()", data, read);
   },
 
   listDocuments: (collectionId, quries = [], limit = 100) => {
     return api.provider().database.listDocuments(collectionId, quries,
-      limit)
+      limit);
   },
 
   getDocument: (collectionId, documentId) => {
-    return api.provider().database.getDocument(collectionId, documentId)
+    return api.provider().database.getDocument(collectionId, documentId);
   },
 
   updateDocument: (collectionId, documentId, data, read = [], write = []) => {
     return api
       .provider()
-      .database.updateDocument(collectionId, documentId, data, read, write)
+      .database.updateDocument(collectionId, documentId, data, read, write);
   },
 
   deleteDocument: (collectionId, documentId) => {
-    return api.provider().database.deleteDocument(collectionId, documentId)
+    return api.provider().database.deleteDocument(collectionId, documentId);
   },
-}
+};
 
 const signup = async ({ email, password, name }) => {
   try {
-    const account = await api.createAccount(email, password, name)
-    await api.createSession(email, password)
+    const account = await api.createAccount(email, password, name);
+    await api.createSession(email, password);
     await api.createDocument(Server.profileCollectionId, {
       user_id: account.$id,
       user_name: name,
-      user_email: account.email
-    })
+      user_email: account.email,
+    });
 
-    document.location.href = "chat.html"
+    document.location.href = "chat.html";
   } catch (e) {
-    alert(e)
+    alert(e);
   }
-}
+};
 
 const fetchAccount = async () => {
   try {
-    const account = await api.getAccount()
+    const account = await api.getAccount();
   } catch (e) {
-    document.location.href = "login.html"
+    document.location.href = "login.html";
   }
-}
+};
 
 const login = async ({ email, password }) => {
   try {
-    await api.createSession(email, password)
-    const account = await api.getAccount()
-    document.location.href = "chat.html"
+    await api.createSession(email, password);
+    const account = await api.getAccount();
+    document.location.href = "chat.html";
   } catch (e) {
-    alert(e)
+    alert(e);
   }
-}
+};
 
 const logout = async () => {
   try {
-    await api.deleteCurrentSession()
-    document.location.href = "login.html"
+    await api.deleteCurrentSession();
+    document.location.href = "login.html";
   } catch (e) {
-    alert(e)
+    alert(e);
   }
-}
+};
 
 function login_with_appwrite() {
-  const email = document.getElementById("login_email").value
-  const password = document.getElementById("login_password").value
+  const email = document.getElementById("login_email").value;
+  const password = document.getElementById("login_password").value;
 
-  login({ email, password })
+  login({ email, password });
 }
 
 function signup_with_appwrite() {
-  const name = document.getElementById("signup_name").value
-  const email = document.getElementById("signup_email").value
-  const password = document.getElementById("signup_password").value
+  const name = document.getElementById("signup_name").value;
+  const email = document.getElementById("signup_email").value;
+  const password = document.getElementById("signup_password").value;
 
-  signup({ email, password, name })
+  signup({ email, password, name });
 }
 
 function redirect_to_login() {
-  $(".login-form").show()
-  $(".signup-form").hide()
+  $(".login-form").show();
+  $(".signup-form").hide();
 }
 
 function redirect_to_signup() {
-  $(".login-form").hide()
-  $(".signup-form").show()
+  $(".login-form").hide();
+  $(".signup-form").show();
 }
 
 /*******************************************************************************
@@ -9165,121 +9184,121 @@ function redirect_to_signup() {
 ## https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 *******************************************************************************/
 
-URL = window.URL || window.webkitURL
+URL = window.URL || window.webkitURL;
 
-let mediaRecorder
+let mediaRecorder;
 
-$(document).on("click", ".btn-record", startRecording)
-$(document).on("click", ".btn-stop", stopRecording)
+$(document).on("click", ".btn-record", startRecording);
+$(document).on("click", ".btn-stop", stopRecording);
 
 // start recording
 function startRecording() {
   navigator.mediaDevices
     .getUserMedia({ audio: true })
     .then((stream) => {
-      mediaRecorder = new MediaRecorder(stream)
-      mediaRecorder.start()
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.start();
 
-      const audioChunks = []
+      const audioChunks = [];
       mediaRecorder.addEventListener("dataavailable", (event) => {
-        audioChunks.push(event.data)
-      })
+        audioChunks.push(event.data);
+      });
 
       mediaRecorder.addEventListener("stop", () => {
-        const audioBlob = new Blob(audioChunks)
-        createAudio(audioBlob)
-        clearInterval(window.rec_timer)
-        $(".voice-memo-recorder-wrap").removeClass("recording")
-        stream.getTracks()[0].stop()
-      })
+        const audioBlob = new Blob(audioChunks);
+        createAudio(audioBlob);
+        clearInterval(window.rec_timer);
+        $(".voice-memo-recorder-wrap").removeClass("recording");
+        stream.getTracks()[0].stop();
+      });
 
-      $(".voice-memo-recorder-wrap").addClass("recording")
-      startTimer()
+      $(".voice-memo-recorder-wrap").addClass("recording");
+      startTimer();
     })
     .catch(function(err) {
-      alert("Microphone not found/not allowed.")
-    })
+      alert("Microphone not found/not allowed.");
+    });
 }
 
 // stop recording
 function stopRecording() {
-  mediaRecorder.stop()
+  mediaRecorder.stop();
 }
 
 // make ui element from recorded audio
 function createAudio(blob) {
-  window.cur_blob = blob
-  let url = URL.createObjectURL(blob)
+  window.cur_blob = blob;
+  let url = URL.createObjectURL(blob);
 
-  const $duration = $(".voice-memo-recorder-wrap").find(".duration")
+  const $duration = $(".voice-memo-recorder-wrap").find(".duration");
   const $grand_wrap = $(".voice-memo-recorder-wrap").find(
-    ".comment-voice-memo"
-  )
+    ".comment-voice-memo",
+  );
   const $audio_container = $(".voice-memo-recorder-wrap").find(
-    ".hidden-audio-container"
-  )
-  const audio = new Audio(url)
+    ".hidden-audio-container",
+  );
+  const audio = new Audio(url);
 
-  $(audio).addClass("hidden-audio")
-  $audio_container.html(audio)
-  $(".voice-memo-recorder-wrap").addClass("recorded")
+  $(audio).addClass("hidden-audio");
+  $audio_container.html(audio);
+  $(".voice-memo-recorder-wrap").addClass("recorded");
 
   // load audio completely before play
-  $grand_wrap.addClass("loading")
+  $grand_wrap.addClass("loading");
   audio.addEventListener("durationchange", (e) => {
     if (audio.duration != Infinity) {
-      audio.currentTime = 0
+      audio.currentTime = 0;
       setTimeout(() => {
-        $duration.html(format_time(audio.duration))
-        $(".player-progress-bar").val(0)
-        $grand_wrap.removeClass("loading")
-      }, 500)
-      return
+        $duration.html(format_time(audio.duration));
+        $(".player-progress-bar").val(0);
+        $grand_wrap.removeClass("loading");
+      }, 500);
+      return;
     }
-  })
+  });
 
-  audio.load()
-  audio.currentTime = 24 * 60 * 60
+  audio.load();
+  audio.currentTime = 24 * 60 * 60;
 
-  const $audio = $(audio)
-  $audio.on("timeupdate", audio_timeupdate)
-  $audio.on("play", audio_play)
-  $audio.on("pause", audio_pause)
-  $audio.on("ended", audio_ended)
+  const $audio = $(audio);
+  $audio.on("timeupdate", audio_timeupdate);
+  $audio.on("play", audio_play);
+  $audio.on("pause", audio_pause);
+  $audio.on("ended", audio_ended);
 }
 
 // helping function to show how much time recorded for current audio
 function startTimer() {
-  let seconds = 0
-  let minutes = 0
+  let seconds = 0;
+  let minutes = 0;
   let d_seconds,
-    d_minutes = null
-  let time = null
-  $(".recording-timer").html("00:00")
+    d_minutes = null;
+  let time = null;
+  $(".recording-timer").html("00:00");
 
   window.rec_timer = setInterval(() => {
-    seconds++
+    seconds++;
 
     if (seconds > 60) {
-      minutes++
-      seconds = 0
+      minutes++;
+      seconds = 0;
     }
 
     if (seconds < 10) {
-      d_seconds = "0" + seconds
+      d_seconds = "0" + seconds;
     } else {
-      d_seconds = seconds
+      d_seconds = seconds;
     }
 
     if (minutes < 10) {
-      d_minutes = "0" + minutes
+      d_minutes = "0" + minutes;
     } else {
-      d_minutes = minutes
+      d_minutes = minutes;
     }
 
-    time = d_minutes + ":" + d_seconds
-    $(".recording-timer").html(time)
-  }, 1000)
+    time = d_minutes + ":" + d_seconds;
+    $(".recording-timer").html(time);
+  }, 1000);
 }
 
 // Audio Functions
@@ -9288,119 +9307,119 @@ function startTimer() {
 
 /* eslint-disable no-undef */
 async function update_settings_panel() {
-  console.log("fetching profiles")
-  const account = await api.getAccount()
+  console.log("fetching profiles");
+  const account = await api.getAccount();
   const profiles = await api.listDocuments(Server.profileCollectionId, [
     Query.equal("user_id", account.$id),
-  ])
+  ]);
 
-  let profile_image = null
+  let profile_image = null;
 
   for (const row of profiles.documents) {
     if (row.user_id == account.$id) {
-      profile_image = row.profile_image
+      profile_image = row.profile_image;
     }
   }
 
-  $("#settings_panel_name").val(account.name)
+  $("#settings_panel_name").val(account.name);
 
   if (profile_image) {
-    let url = api.provider().storage.getFileDownload(profile_image)
-    $("#settings_panel_image").attr("src", url)
+    let url = api.provider().storage.getFileDownload(profile_image);
+    $("#settings_panel_image").attr("src", url);
   }
 }
 
 async function updateAccount() {
-  console.log("updating account")
+  console.log("updating account");
 
-  const name = document.getElementById("settings_panel_name").value
+  const name = document.getElementById("settings_panel_name").value;
   const profile_image = document.getElementById("settings_panel_image_upload")
-    .files[0]
+    .files[0];
 
-  api.provider().account.updateName(name)
-  const user_id = await api.fetch_user()
+  api.provider().account.updateName(name);
+  const user_id = await api.fetch_user();
 
   const profiles = await api.listDocuments(Server.profileCollectionId, [
     Query.equal("user_id", user_id),
-  ])
+  ]);
 
   const profile =
     profiles.documents.filter((profile) => profile.user_id == user_id)[0] ||
-    null
+    null;
 
   if (profile) {
     // deleting old image for storage friendly code
-    let old_profile_image = profile.profile_image
+    let old_profile_image = profile.profile_image;
 
 
     let data = {
       user_name: name,
-    }
+    };
 
     if (old_profile_image && profile_image) {
-      api.provider().storage.deleteFile(old_profile_image)
+      api.provider().storage.deleteFile(old_profile_image);
 
       // updating new image
       let file = await api
         .provider()
-        .storage.createFile("unique()", profile_image, ["role:all"], [])
+        .storage.createFile("unique()", profile_image, ["role:all"], []);
 
-      data["profile_image"] = file ? file.$id : null
+      data["profile_image"] = file ? file.$id : null;
     }
 
-    api.updateDocument(Server.profileCollectionId, profile.$id, data)
+    api.updateDocument(Server.profileCollectionId, profile.$id, data);
   }
 
-  update_settings_panel()
+  update_settings_panel();
 }
 
 async function changePassword() {
-  console.log("updating password")
+  console.log("updating password");
 
-  const old_pass = document.getElementById("old_password").value
-  const new_pass = document.getElementById("new_password").value
+  const old_pass = document.getElementById("old_password").value;
+  const new_pass = document.getElementById("new_password").value;
 
   try {
-    await api.provider().account.updatePassword(new_pass, old_pass)
-    $(".main-screen").removeClass("change-password-on-board")
+    await api.provider().account.updatePassword(new_pass, old_pass);
+    $(".main-screen").removeClass("change-password-on-board");
   } catch (error) {
-    alert("password not changed")
+    alert("password not changed");
   }
 }
 
 $("#search_user_input").on("keypress", function(event) {
   if ($("#search_user_input").val() && event.keyCode == "13") {
-    search_user()
+    search_user();
   }
-})
+});
 
 $("#search_user_input").on("input", function(event) {
   if ($("#search_user_input").val() == "") {
-    $(".contacts-section").html("")
-    list_contacts(window.contacts)
+    $(".contacts-section").html("");
+    list_contacts(window.contacts);
   }
-})
+});
 
 // need enhancement
 async function search_user() {
-  console.log("searching user")
-  const cur_user = await api.fetch_user()
-  $(".contacts-section").html("")
+  console.log("searching user");
+  const cur_user = await api.fetch_user();
+  $(".contacts-section").html("");
 
-  const search_txt = document.getElementById("search_user_input").value
-  if (!search_txt) return
+  const search_txt = document.getElementById("search_user_input").value;
+  if (!search_txt) return;
 
-  const profiles = await api.listDocuments(Server.profileCollectionId)
-  let flag = true
+  const profiles = await api.listDocuments(Server.profileCollectionId);
+  let flag = true;
 
-  let already_available_rooms = window.contacts.map((r) => r.$id)
+  let already_available_rooms = window.contacts.map((r) => r.$id);
 
   let available_users = await api.listDocuments(Server.roomUsersCollectionId,
     [
       Query.equal("room_id", already_available_rooms),
-    ])
+    ]);
 
-  available_users = available_users.documents.map((r) => r.user_id)
+  available_users = available_users.documents.map((r) => r.user_id);
 
   for (const row of profiles.documents) {
     if (row.user_email && search_txt && row.user_email.includes(search_txt) &&
@@ -9410,90 +9429,90 @@ async function search_user() {
         const room_users = await api.listDocuments(Server
           .roomUsersCollectionId, [
             Query.equal("user_id", [row.user_id]),
-          ])
+          ]);
 
         for (const room of room_users.documents) {
           const rooms_matched_with_search = window.contacts.filter((r) => r
-            .$id == room.room_id)
+            .$id == room.room_id);
           for (const iterator of rooms_matched_with_search) {
-            append_contact(iterator)
+            append_contact(iterator);
           }
         }
       } else {
-        flag = false
-        append_contact(row, true)
+        flag = false;
+        append_contact(row, true);
       }
-      break
+      break;
     }
   }
 
   if (flag) {
     $(".contacts-section").prepend(
-      "<p class='contact-not-found'>User Not Found</p>"
-    )
+      "<p class='contact-not-found'>User Not Found</p>",
+    );
   }
 }
 
 async function get_rooms() {
-  $(".contacts-section").html("")
-  console.log("getting rooms")
+  $(".contacts-section").html("");
+  console.log("getting rooms");
 
-  const cur_user = await api.fetch_user()
-  let r = await api.listDocuments(Server.roomUsersCollectionId)
+  const cur_user = await api.fetch_user();
+  let r = await api.listDocuments(Server.roomUsersCollectionId);
 
-  let contacts = []
-  window.room_users = r.documents
+  let contacts = [];
+  window.room_users = r.documents;
 
   for (const row of r.documents) {
     if (row.user_id == cur_user) {
-      contacts.push(row.room_id)
+      contacts.push(row.room_id);
     }
   }
 
-  let rooms = await api.listDocuments(Server.roomCollectionId)
+  let rooms = await api.listDocuments(Server.roomCollectionId);
 
   contacts = rooms.documents.filter((r) => {
-    return contacts.includes(r.$id)
-  })
+    return contacts.includes(r.$id);
+  });
 
-  list_contacts(contacts)
-  window.contacts = contacts
+  list_contacts(contacts);
+  window.contacts = contacts;
 }
-get_rooms()
+get_rooms();
 
 function list_contacts(params) {
   for (const row of params) {
-    append_contact(row)
+    append_contact(row);
   }
 }
 
 async function append_contact(row, is_new_contact = false) {
-  let profile_image = "./src/assets/dist/images/dummy.jpeg"
-  const cur_user = await api.fetch_user()
+  let profile_image = "./src/assets/dist/images/dummy.jpeg";
+  const cur_user = await api.fetch_user();
 
   if (row.profile_image && is_new_contact) {
-    profile_image = api.provider().storage.getFileDownload(row.profile_image)
+    profile_image = api.provider().storage.getFileDownload(row.profile_image);
   }
 
   if (row.room_image && row.is_group && !is_new_contact) {
-    profile_image = api.provider().storage.getFileDownload(row.room_image)
+    profile_image = api.provider().storage.getFileDownload(row.room_image);
   }
 
-  let room_user_name = row.title
+  let room_user_name = row.title;
 
   if (!row.is_group && !is_new_contact) {
     let room_user = window.room_users.filter(
-      (r) => r.room_id == row.$id && r.user_id != cur_user
-    )[0]
+      (r) => r.room_id == row.$id && r.user_id != cur_user,
+    )[0];
 
     if (room_user) {
-      room_user = await api.get_user_profile(room_user.user_id)
+      room_user = await api.get_user_profile(room_user.user_id);
 
       profile_image = api
         .provider()
-        .storage.getFileDownload(room_user.profile_image)
+        .storage.getFileDownload(room_user.profile_image);
 
-      room_user_name = room_user.user_name
+      room_user_name = room_user.user_name;
     }
   }
 
@@ -9509,45 +9528,45 @@ async function append_contact(row, is_new_contact = false) {
     <h5 class="chat-title">${
 	is_new_contact ? row.user_name : room_user_name
 }</h5>
-    </div>`
-  )
+    </div>`,
+  );
 }
 
 async function fetch_messages(room_id) {
-  console.log("fetching messages")
+  console.log("fetching messages");
 
-  $(".communication-section").html("")
+  $(".communication-section").html("");
 
   let r = await api
     .listDocuments(Server.messageCollectionId, [
       Query.equal("room_id", room_id),
-    ])
+    ]);
 
-  $(".communication-section").html("")
+  $(".communication-section").html("");
 
   for (const row of r.documents) {
-    await append_message(row)
+    await append_message(row);
   }
 }
 
 async function append_message(row) {
   // getting uploaded audio link
-  let url = api.provider().storage.getFileDownload(row.audio_link)
-  let cls = row.user_id == (await api.fetch_user()) ? "audio me" : "audio"
-  let msg_user = await api.get_user_profile(row.user_id)
+  let url = api.provider().storage.getFileDownload(row.audio_link);
+  let cls = row.user_id == (await api.fetch_user()) ? "audio me" : "audio";
+  let msg_user = await api.get_user_profile(row.user_id);
 
-  let reply_to = ""
+  let reply_to = "";
   if (row.reply_to) {
-    let cur_audio_time = format_time(row.reply_time)
+    let cur_audio_time = format_time(row.reply_time);
 
-    let user = $("#" + row.reply_to).find(".message_user").html()
+    let user = $("#" + row.reply_to).find(".message_user").html();
 
     if (user && user.includes("replied to")) {
-      user = user.split("replied to")[0]
+      user = user.split("replied to")[0];
     }
     reply_to = `
     replied to <a href="#${row.reply_to}">${user}</a> on time <span class="timetoreply">${cur_audio_time}</span>
-    `
+    `;
   }
 
   $(".communication-section")
@@ -9562,179 +9581,182 @@ async function append_message(row) {
       </audio>
       <a href="#" class="btn btn-icon add-reply" onclick="replytomessage('${row.$id}')"><i class="fa fa-reply"></i></a>
     </div>
-</div>`
+</div>`,
     )
-    .scrollTop($(".communication-section")[0].scrollHeight)
+    .scrollTop($(".communication-section")[0].scrollHeight);
 }
 
 function replytomessage(current_audio_id) {
-  $("#reply-to").html("")
+  $("#reply-to").html("");
 
-  let audio_time = $("#" + current_audio_id).find("audio")[0].currentTime
-  let cur_audio_time = format_time(audio_time)
+  let audio_time = $("#" + current_audio_id).find("audio")[0].currentTime;
+  let cur_audio_time = format_time(audio_time);
 
   let user = $("#" + current_audio_id)
     .find(".message_user")
-    .html()
+    .html();
 
   if (user.includes("replied to")) {
-    user = user.split("replied to")[0]
+    user = user.split("replied to")[0];
   }
 
-  $(".chat-footer-section").addClass("replying-to")
+  $(".chat-footer-section").addClass("replying-to");
 
   $("#reply-to").append(
-    `<h5>replying to <a href="#${current_audio_id}">${user}</a> on time <span class="timetoreply">${cur_audio_time}</span></h5>`
-  )
+    `<h5>replying to <a href="#${current_audio_id}">${user}</a> on time <span class="timetoreply">${cur_audio_time}</span></h5>`,
+  );
 
-  window.current_audio_time = audio_time
-  window.current_audio_id = current_audio_id
+  window.current_audio_time = audio_time;
+  window.current_audio_id = current_audio_id;
 }
 
 function reply_to_completed() {
-  $(".chat-footer-section").removeClass("replying-to")
-  $("#reply-to").html("")
+  $(".chat-footer-section").removeClass("replying-to");
+  $("#reply-to").html("");
 }
 
 $(document).on("click", ".media-card", (e) => {
-  const contact_id = $(e.target).data("contact_id")
-  const new_room = $(e.target).data("new-contact")
+  const contact_id = $(e.target).data("contact_id");
+  const new_room = $(e.target).data("new-contact");
 
-  $(e.target).find("img").removeClass("message_not_readed")
+  $(e.target).find("img").removeClass("message_not_readed");
 
   if (new_room) {
-    create_new_room(contact_id)
-    $("#search_user_input").val("")
-    return
+    create_new_room(contact_id);
+    $("#search_user_input").val("");
+    return;
   }
 
-  open_chat(contact_id)
-})
+  open_chat(contact_id);
+});
 
 async function open_chat(contact_id) {
   if (window.cur_blob) {
-    $(".btn-delete-memo").trigger("click")
+    $(".btn-delete-memo").trigger("click");
   }
 
-  const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null
-  const cur_user = await api.fetch_user()
-  let profile_image = "/app/src/assets/dist/images/dummy.jpeg"
-  let room_user_name = room.title
+  const room = window.contacts.filter((r) => r.$id == contact_id)[0] || null;
+  const cur_user = await api.fetch_user();
+  let profile_image = "/app/src/assets/dist/images/dummy.jpeg";
+  let room_user_name = room.title;
 
   if (room.is_group) {
-    profile_image = api.provider().storage.getFileDownload(room.room_image)
+    profile_image = api.provider().storage.getFileDownload(room.room_image);
   }
 
   if (!room.is_group) {
     let room_user = window.room_users.filter((r) => {
-      return r.room_id == room.$id && r.user_id != cur_user
-    })[0]
+      return r.room_id == room.$id && r.user_id != cur_user;
+    })[0];
 
     if (room_user) {
-      room_user = await api.get_user_profile(room_user.user_id)
+      room_user = await api.get_user_profile(room_user.user_id);
 
       profile_image = await api
         .provider()
-        .storage.getFileDownload(room_user.profile_image)
+        .storage.getFileDownload(room_user.profile_image);
 
-      room_user_name = room_user.user_name
+      room_user_name = room_user.user_name;
     }
   }
 
   if (room) {
-    $(".header-bar").find("img").attr("src", profile_image).show()
+    $(".header-bar").find("img").attr("src", profile_image).show();
 
-    $(".header-bar").find(".chat-title").html(room_user_name)
+    $(".header-bar").find(".chat-title").html(room_user_name);
 
-    $(".chat-info-panel").addClass("hide")
+    $(".chat-info-panel").addClass("hide");
 
-    $(".chat-footer-section").removeClass("hidden")
+    $(".chat-footer-section").removeClass("hidden");
 
-    $(".btn-toggle-screen").removeClass("hidden")
+    $(".btn-toggle-screen").removeClass("hidden");
 
-    window.current_room = contact_id
-    fetch_messages(contact_id)
+    window.current_room = contact_id;
+    fetch_messages(contact_id);
   }
 }
 
 async function create_new_room(user) {
-  const cur_user = await api.fetch_user()
-  const profile = await api.getDocument(Server.profileCollectionId, user)
+  const cur_user = await api.fetch_user();
+  const profile = await api.getDocument(Server.profileCollectionId, user);
 
-  if (!profile) return
+  if (!profile) return;
 
   const room = await api.createDocument(
     Server.roomCollectionId, { title: profile.user_name },
-    ["role:all"]
-  )
+    ["role:all"],
+  );
 
   await api.createDocument(
     Server.roomUsersCollectionId, { room_id: room.$id, user_id: cur_user },
-    ["role:all"]
-  )
+    ["role:all"],
+  );
 
   await api.createDocument(
-    Server.roomUsersCollectionId, { room_id: room.$id, user_id: profile
-        .user_id },
-    ["role:all"]
-  )
+    Server.roomUsersCollectionId, {
+      room_id: room.$id,
+      user_id: profile
+        .user_id,
+    },
+    ["role:all"],
+  );
 
-  document.location.reload()
+  document.location.reload();
 
-  window.contacts.push(room)
+  window.contacts.push(room);
 }
 
 async function toggle_chat_screen() {
-  $(".chat-info-panel").toggleClass("hide")
+  $(".chat-info-panel").toggleClass("hide");
 
-  const contact_id = window.current_room
+  const contact_id = window.current_room;
 
   for (const row of window.contacts) {
     if (contact_id == row.$id) {
       $(".chat-info-panel > img").attr("src", $(".header-bar img").attr(
-        "src"))
+        "src"));
 
-      $(".chat-info-panel").find(".chat-title").html(row.title)
-      $(".chat-info-panel").find(".description").html(row.description)
+      $(".chat-info-panel").find(".chat-title").html(row.title);
+      $(".chat-info-panel").find(".description").html(row.description);
 
       row.is_group ?
         $(".add-members").removeClass("hidden") :
-        $(".add-members").addClass("hidden")
-      break
+        $(".add-members").addClass("hidden");
+      break;
     }
   }
 
-  await show_added_members(contact_id)
+  await show_added_members(contact_id);
 }
 
 async function show_added_members(contact_id) {
-  console.log("showing added members")
+  console.log("showing added members");
 
-  $(".chat-info-panel").find(".added-members").html("")
+  $(".chat-info-panel").find(".added-members").html("");
 
   const room_users = await api.listDocuments(Server.roomUsersCollectionId, [
     Query.equal("room_id", contact_id),
-  ])
+  ]);
 
-  const cur_user = await api.fetch_user()
-  const room = window.contacts.filter(r => r.$id == contact_id)[0]
+  const cur_user = await api.fetch_user();
+  const room = window.contacts.filter(r => r.$id == contact_id)[0];
 
   for (const room_user of room_users.documents) {
     if (room_user.room_id == contact_id) {
-      const user_profile = await api.get_user_profile(room_user.user_id)
-      let user_image = "./src/assets/dist/images/dummy.jpeg"
+      const user_profile = await api.get_user_profile(room_user.user_id);
+      let user_image = "./src/assets/dist/images/dummy.jpeg";
 
       if (user_profile.profile_image) {
         user_image = api
           .provider()
-          .storage.getFileDownload(user_profile.profile_image)
+          .storage.getFileDownload(user_profile.profile_image);
       }
 
-      let delete_action = ""
+      let delete_action = "";
 
       if (room.room_owner_id == cur_user && room_user.user_id != cur_user) {
         delete_action =
-          `<a class="btn btn-icon" onclick="delete_chat('${room_user.user_id}')"><i class="fa fa-trash"></i></a>`
+          `<a class="btn btn-icon" onclick="delete_chat('${room_user.user_id}')"><i class="fa fa-trash"></i></a>`;
       }
 
       $(".chat-info-panel").find(".added-members").append(`
@@ -9747,80 +9769,80 @@ async function show_added_members(contact_id) {
               <h5 class="chat-title">${user_profile.user_name}</h5>
 			  ${delete_action}
             </div>
-          `)
+          `);
     }
   }
 }
 
 async function create_group() {
-  const group_image = document.getElementById("create-group-image").files[0]
-  const group_name = document.getElementById("create-group-name").value
-  const cur_user = await api.fetch_user()
+  const group_image = document.getElementById("create-group-image").files[0];
+  const group_name = document.getElementById("create-group-name").value;
+  const cur_user = await api.fetch_user();
 
   let data = {
     title: group_name,
     is_group: true,
-    room_owner_id: cur_user
-  }
+    room_owner_id: cur_user,
+  };
 
   if (group_image) {
     const file = await api
       .provider()
-      .storage.createFile("unique()", group_image, ["role:all"], [])
+      .storage.createFile("unique()", group_image, ["role:all"], []);
 
-    data["room_image"] = file.$id
+    data["room_image"] = file.$id;
   }
 
   const room = await api.createDocument(
     Server.roomCollectionId,
     data,
-    ["role:all"]
-  )
+    ["role:all"],
+  );
 
   await api.createDocument(
     Server.roomUsersCollectionId, {
       room_id: room.$id,
       user_id: cur_user,
     },
-    ["role:all"]
-  )
-  document.location.reload()
+    ["role:all"],
+  );
+  document.location.reload();
 }
 
 $(".btn-create-group").on("click", (e) => {
-  create_group()
-})
+  create_group();
+});
 
 async function add_users_to_group() {
-  console.log("getting users that can be added into this group")
+  console.log("getting users that can be added into this group");
 
-  $(".main-screen").addClass("add-user-on-board")
-  const contact_id = window.current_room
+  $(".main-screen").addClass("add-user-on-board");
+  const contact_id = window.current_room;
   const available_profiles = await api.listDocuments(
-    Server.profileCollectionId
-  )
+    Server.profileCollectionId,
+  );
 
-  let user_image = "./src/assets/dist/images/dummy.jpeg"
+  let user_image = "./src/assets/dist/images/dummy.jpeg";
 
   let room_users = await api.listDocuments(Server.roomUsersCollectionId, [
     Query.equal("room_id", contact_id),
-  ])
+  ]);
 
-  added_users = []
+  added_users = [];
 
   for (const row of room_users.documents) {
     if (row.room_id == contact_id) {
-      added_users.push(row.user_id)
+      added_users.push(row.user_id);
     }
   }
 
-  $(".available-users").html("")
+  $(".available-users").html("");
 
   for (const profile of available_profiles.documents) {
     if (profile.profile_image) {
       user_image = api
         .provider()
-        .storage.getFileDownload(profile.profile_image)
+        .storage.getFileDownload(profile.profile_image);
     }
 
     if (!added_users.includes(profile.user_id)) {
@@ -9838,8 +9860,8 @@ async function add_users_to_group() {
             <i class="fa fa-plus"></i>
           </a>
           </div>
-          `
-      )
+          `,
+      );
     }
   }
 }
@@ -9847,83 +9869,81 @@ async function add_users_to_group() {
 async function add_member(user_id, room_id = window.current_room) {
   await api.createDocument(
     Server.roomUsersCollectionId, { room_id: room_id, user_id: user_id },
-    ["role:all"]
-  )
+    ["role:all"],
+  );
 
-  await add_users_to_group()
-  await show_added_members(room_id)
+  await add_users_to_group();
+  await show_added_members(room_id);
 }
 
 async function delete_chat(user_id = null) {
-  console.log("deleting chat")
+  console.log("deleting chat");
   try {
     if (!user_id) {
-      user_id = await api.fetch_user()
+      user_id = await api.fetch_user();
     }
 
-    let room_id = window.current_room
+    let room_id = window.current_room;
 
     const room_users = await api.listDocuments(Server.roomUsersCollectionId, [
       Query.equal("room_id", room_id),
-    ])
+    ]);
 
     for (const row of room_users.documents) {
       if (row.user_id == user_id && row.room_id == room_id) {
-        await api.deleteDocument(Server.roomUsersCollectionId, row.$id)
-        break
+        await api.deleteDocument(Server.roomUsersCollectionId, row.$id);
+        break;
       }
     }
 
     // deleting room if we all users leave this
     const all_room_users = await api.listDocuments(
       Server.roomUsersCollectionId,
-      [Query.equal("room_id", room_id)]
-    )
+      [Query.equal("room_id", room_id)],
+    );
 
     if (all_room_users.documents.length == 0) {
-      await api.deleteDocument(Server.roomCollectionId, room_id)
+      await api.deleteDocument(Server.roomCollectionId, room_id);
 
       // deleting all room messages
       const room_messages = await api.listDocuments(
         Server.messageCollectionId,
-        [Query.equal("room_id", room_id)]
-      )
+        [Query.equal("room_id", room_id)],
+      );
 
       for (const row of room_messages.documents) {
-        await api.provider().storage.deleteFile(row.audio_link)
-        await api.deleteDocument(Server.roomUsersCollectionId, row.$id)
+        await api.provider().storage.deleteFile(row.audio_link);
+        await api.deleteDocument(Server.roomUsersCollectionId, row.$id);
       }
     }
 
-    window.location.reload()
+    window.location.reload();
   } catch (error) {
-    window.location.reload()
+    window.location.reload();
   }
 }
-//
-//
 
 async function delete_docs(collectionId) {
-  let r = await api.listDocuments(collectionId)
+  let r = await api.listDocuments(collectionId);
   for (const row of r.documents) {
-    row.$id
-    await api.deleteDocument(collectionId, row.$id)
+    row.$id;
+    await api.deleteDocument(collectionId, row.$id);
   }
 }
 
 async function delete_files() {
-  let r = await api.provider().storage.listFiles()
+  let r = await api.provider().storage.listFiles();
   for (const row of r.files) {
-    await api.provider().storage.deleteFile(row.$id)
+    await api.provider().storage.deleteFile(row.$id);
   }
 }
 
 function delete_db() {
-  delete_files()
-  delete_docs(Server.messageCollectionId)
-  delete_docs(Server.roomUsersCollectionId)
-  delete_docs(Server.roomCollectionId)
-  delete_docs(Server.profileCollectionId)
+  delete_files();
+  delete_docs(Server.messageCollectionId);
+  delete_docs(Server.roomUsersCollectionId);
+  delete_docs(Server.roomCollectionId);
+  delete_docs(Server.profileCollectionId);
 }
 
 // this function will wipe database
@@ -9935,279 +9955,279 @@ function delete_db() {
 
 $(document).on("click", ".btn-upload-memo", () => {
   // getting audio blob for the conversion of file
-  var fileOfBlob = new File([window.cur_blob], Math.random() + ".mp3")
+  var fileOfBlob = new File([window.cur_blob], Math.random() + ".mp3");
 
   // uploading it to server
   let promise = api
     .provider()
-    .storage.createFile("unique()", fileOfBlob, ["role:all"], ["role:all"])
+    .storage.createFile("unique()", fileOfBlob, ["role:all"], ["role:all"]);
 
   promise.then(
     async function(response) {
         // getting current user
-        let user = await api.fetch_user()
+        let user = await api.fetch_user();
 
         // creating message
         let data = {
           room_id: window.current_room,
           user_id: user,
           audio_link: response.$id,
-        }
+        };
 
         if (window.current_audio_id) {
-          data["reply_to"] = window.current_audio_id
-          data["reply_time"] = window.current_audio_time
+          data["reply_to"] = window.current_audio_id;
+          data["reply_time"] = window.current_audio_time;
         }
 
         let promise = api.createDocument(Server.messageCollectionId, data,
           [
             "role:all",
-          ])
+          ]);
 
         promise.then(
           function(response) {
             window.current_audio_id ? delete window.current_audio_id :
-              ""
+              "";
             window.current_audio_id ? delete window.current_audio_time :
-              ""
-            reply_to_completed()
+              "";
+            reply_to_completed();
           },
           function(error) {
-            console.log(error)
-          }
-        )
+            console.log(error);
+          },
+        );
       },
       function(error) {
-        console.log(error)
-      }
-  )
+        console.log(error);
+      },
+  );
 
   // del blob
-  delete window.cur_blob
-  $(".voice-memo-recorder-wrap").removeClass("recorded")
-})
+  delete window.cur_blob;
+  $(".voice-memo-recorder-wrap").removeClass("recorded");
+});
 
 $(document).on("click", ".btn-delete-memo", function() {
-  let confirmation = confirm("delete this audio?")
-  if (!confirmation) return
+  let confirmation = confirm("delete this audio?");
+  if (!confirmation) return;
 
-  delete window.cur_blob
-  $(".voice-memo-recorder-wrap").removeClass("recorded")
+  delete window.cur_blob;
+  $(".voice-memo-recorder-wrap").removeClass("recorded");
 
-  window.current_audio_id ? delete window.current_audio_id : ""
-  window.current_audio_id ? delete window.current_audio_time : ""
-  reply_to_completed()
-})
+  window.current_audio_id ? delete window.current_audio_id : "";
+  window.current_audio_id ? delete window.current_audio_time : "";
+  reply_to_completed();
+});
 
 /******************************************************
  * audio player
  ******************************************************/
 
 $(document).on("click", ".btn-play-audio", (e) => {
-  const el = e.target
-  const $this = $(el)
-  const $grand_wrap = $this.parents(".comment-voice-memo")
-  const $main_wrap = $this.parents(".voice-memo-wrapper")
+  const el = e.target;
+  const $this = $(el);
+  const $grand_wrap = $this.parents(".comment-voice-memo");
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
   const $audio_id = $main_wrap.find(".hidden-audio-id").find("span").attr(
-    "id")
-  const $audio_container = $main_wrap.find(".hidden-audio-container")
-  const $audio_exists = $audio_container.find(".hidden-audio")
-  const $otherAudios = $(".hidden-audio")
+    "id");
+  const $audio_container = $main_wrap.find(".hidden-audio-container");
+  const $audio_exists = $audio_container.find(".hidden-audio");
+  const $otherAudios = $(".hidden-audio");
 
   $otherAudios.each((i) => {
-    $otherAudios[i].pause()
-  })
+    $otherAudios[i].pause();
+  });
 
   // in case audio already fetched
   if ($audio_exists.length) {
-    $audio_exists[0].play()
-    return
+    $audio_exists[0].play();
+    return;
   }
 
-  $grand_wrap.addClass("loading")
+  $grand_wrap.addClass("loading");
 
   // in case audio not fetched till now
-  const file = "/private/files/" + $audio_id + ".mp3"
-  let audio = new Audio(file)
-  const $audio = $(audio)
-  $audio.addClass("hidden-audio")
-  $audio_container.append($audio)
+  const file = "/private/files/" + $audio_id + ".mp3";
+  let audio = new Audio(file);
+  const $audio = $(audio);
+  $audio.addClass("hidden-audio");
+  $audio_container.append($audio);
 
   // event bindings to newly fetched audio
-  $audio.on("timeupdate", audio_timeupdate)
-  $audio.on("play", audio_play)
-  $audio.on("pause", audio_pause)
-  $audio.on("ended", audio_ended)
+  $audio.on("timeupdate", audio_timeupdate);
+  $audio.on("play", audio_play);
+  $audio.on("pause", audio_pause);
+  $audio.on("ended", audio_ended);
 
   // load audio completely before play
   audio.addEventListener("durationchange", (e) => {
     if (audio.duration != Infinity) {
-      audio.currentTime = 0
+      audio.currentTime = 0;
       setTimeout(() => {
-        audio.play()
-        $grand_wrap.removeClass("loading")
-      }, 500)
-      return
+        audio.play();
+        $grand_wrap.removeClass("loading");
+      }, 500);
+      return;
     }
-  })
+  });
 
-  audio.load()
-  audio.currentTime = 24 * 60 * 60
-})
+  audio.load();
+  audio.currentTime = 24 * 60 * 60;
+});
 
 $(document).on("click", ".btn-pause-audio", (e) => {
-  const el = e.target
-  const $this = $(el)
-  const $main_wrap = $this.parents(".voice-memo-wrapper")
-  const $audio = $main_wrap.find(".hidden-audio")
+  const el = e.target;
+  const $this = $(el);
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $audio = $main_wrap.find(".hidden-audio");
 
-  $audio[0].pause()
-})
+  $audio[0].pause();
+});
 /******************************************************
  * helping function
  ******************************************************/
 
 function format_time(duration) {
-  let time = parseInt(duration)
+  let time = parseInt(duration);
   // hours = 3600s, skipping for now
 
   // minutes calculation
-  let minutes = parseInt(time / 60)
+  let minutes = parseInt(time / 60);
 
   if (minutes > 0) {
-    let minutes_time = minutes * 3600
-    time -= minutes_time
+    let minutes_time = minutes * 3600;
+    time -= minutes_time;
 
     if (minutes < 10) {
-      minutes = "0" + minutes
+      minutes = "0" + minutes;
     }
 
-    minutes = minutes + ":"
+    minutes = minutes + ":";
   } else {
-    minutes = "00:"
+    minutes = "00:";
   }
 
   // seconds calculation
-  let seconds = parseInt(time)
+  let seconds = parseInt(time);
   if (seconds < 10) {
-    seconds = "0" + seconds
+    seconds = "0" + seconds;
   }
 
-  let formatted_time = minutes + seconds
+  let formatted_time = minutes + seconds;
 
-  return formatted_time
+  return formatted_time;
 }
 
 // Audio Functions
 function audio_play(e) {
-  const audio = e.target
-  const $this = $(audio)
-  const $main_wrap = $this.parents(".voice-memo-wrapper")
-  const $player_controls = $main_wrap.find(".player-controls")
-  $player_controls.addClass("playing")
+  const audio = e.target;
+  const $this = $(audio);
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $player_controls = $main_wrap.find(".player-controls");
+  $player_controls.addClass("playing");
 }
 
 function audio_timeupdate(e) {
-  const audio = e.target
-  const $this = $(audio)
-  const $main_wrap = $this.parents(".voice-memo-wrapper")
-  const $cur_time = $main_wrap.find(".cur-time")
-  const current_time = audio.currentTime
-  const duration = audio.duration
-  const unit_per = duration / 100
-  const $slide_progress = $main_wrap.find(".player-progress-bar")
+  const audio = e.target;
+  const $this = $(audio);
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $cur_time = $main_wrap.find(".cur-time");
+  const current_time = audio.currentTime;
+  const duration = audio.duration;
+  const unit_per = duration / 100;
+  const $slide_progress = $main_wrap.find(".player-progress-bar");
 
-  $cur_time.html(format_time(current_time))
+  $cur_time.html(format_time(current_time));
 
-  let current_val = current_time / unit_per
+  let current_val = current_time / unit_per;
 
-  current_val = parseInt(current_val)
+  current_val = parseInt(current_val);
 
-  $slide_progress.val(current_val)
+  $slide_progress.val(current_val);
   let $bg =
     "linear-gradient(to right, #1a5594 0%, #1a5594 " +
     current_val +
     "%, #d3d3d3 " +
     current_val +
-    "%, #d3d3d3 100%)"
+    "%, #d3d3d3 100%)";
 
-  $slide_progress.css("background", $bg)
+  $slide_progress.css("background", $bg);
 }
 
 function audio_pause(e) {
-  const audio = e.target
-  const $this = $(audio)
-  const $main_wrap = $this.parents(".voice-memo-wrapper")
-  const $player_controls = $main_wrap.find(".player-controls")
-  $player_controls.removeClass("playing")
+  const audio = e.target;
+  const $this = $(audio);
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $player_controls = $main_wrap.find(".player-controls");
+  $player_controls.removeClass("playing");
 }
 
 function audio_ended(e) {
-  const audio = e.target
-  audio.currentTime = 0
-  const $this = $(audio)
-  const $main_wrap = $this.parents(".voice-memo-wrapper")
-  const $player_controls = $main_wrap.find(".player-controls")
-  $player_controls.removeClass("playing")
+  const audio = e.target;
+  audio.currentTime = 0;
+  const $this = $(audio);
+  const $main_wrap = $this.parents(".voice-memo-wrapper");
+  const $player_controls = $main_wrap.find(".player-controls");
+  $player_controls.removeClass("playing");
 }
 
 // DRIVER
 $(".btn-close-settings").on("click", () => {
-  $(".main-screen").removeClass("settings-on-board")
-})
+  $(".main-screen").removeClass("settings-on-board");
+});
 
 $(".open-settings").on("click", () => {
-  update_settings_panel()
-  $(".main-screen").addClass("settings-on-board")
-})
+  update_settings_panel();
+  $(".main-screen").addClass("settings-on-board");
+});
 
 $(".open-change-psssword").on("click", () => {
-  $(".main-screen").addClass("change-password-on-board")
-})
+  $(".main-screen").addClass("change-password-on-board");
+});
 
 $(".btn-close-change-password").on("click", () => {
-  $(".main-screen").removeClass("change-password-on-board")
-})
+  $(".main-screen").removeClass("change-password-on-board");
+});
 
 $(".btn-close-group").on("click", () => {
-  $(".main-screen").removeClass("create-group-on-board")
-})
+  $(".main-screen").removeClass("create-group-on-board");
+});
 
 $(".btn-close-add-user").on("click", () => {
-  $(".main-screen").removeClass("add-user-on-board")
-})
+  $(".main-screen").removeClass("add-user-on-board");
+});
 
 $(".btn-open-group").on("click", () => {
-  $(".main-screen").addClass("create-group-on-board")
-})
+  $(".main-screen").addClass("create-group-on-board");
+});
 
 api
   .provider()
   .subscribe(`collections.${Server.messageCollectionId}.documents`, (r) => {
     if (r.event == "database.documents.create") {
-      const data = r.payload
+      const data = r.payload;
       if (data.room_id == window.current_room) {
-        append_message(data)
+        append_message(data);
       } else {
         $(`[data-contact_id=${data.room_id}]`)
           .find("img")
-          .addClass("message_not_readed")
+          .addClass("message_not_readed");
       }
     }
-  })
+  });
 
 
 api
   .provider()
   .subscribe(`collections.${Server.roomUsersCollectionId}.documents`, async (
     r) => {
-      const cur_user = await api.fetch_user()
-      const data = r.payload
-      if (data.user_id == cur_user) {
-        get_rooms(data)
+    const cur_user = await api.fetch_user();
+    const data = r.payload;
+    if (data.user_id == cur_user) {
+      get_rooms(data);
 
-        if (window.current_room == data.room_id) {
-          document.location.reload()
-        }
+      if (window.current_room == data.room_id) {
+        document.location.reload();
       }
-    })
+    }
+  });
