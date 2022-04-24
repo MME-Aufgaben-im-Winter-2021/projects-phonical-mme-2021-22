@@ -1,4 +1,3 @@
-/* eslint-disable */
 const signup = async ({ email, password, name }) => {
   try {
     const account = await api.createAccount(email, password, name)

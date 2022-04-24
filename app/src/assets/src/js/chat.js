@@ -1,4 +1,6 @@
-/* eslint-disable */
+/* eslint-disable no-unused-vars */
+
+/* eslint-disable no-undef */
 async function update_settings_panel() {
   console.log("fetching profiles")
   const account = await api.getAccount()
