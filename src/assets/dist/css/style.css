@@ -1,13 +1,25 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap");
-/*
-// light theme*/
+
 :root {
     --primary: #f8cdcd;
     --secondary: #f09595;
-    --text-color: rgb(0, 0, 0);
+    --text-color: rgb(52, 30, 30);
 }
 
+/*
+// light theme
+:root {
+  // main screen and panel backgrounds
+  --primary: #edd87a;
+
+  // for button backgrounds and border colors
+  --secondary: #ebae4c;
+
+  // for the headings, paragraphs, button and text colors
+  --text-color: rgb(0, 0, 0);
+}
+*/
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -3063,12 +3075,16 @@
     box-sizing: border-box;
 }
 
+*,
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: var(--primary);
     font-family: "Space Grotesk", sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url("../images/bg-login.jpeg");
+    background-color: #eee;
     color: var(--text-color);
 }
 
@@ -3080,6 +3096,28 @@ button {
 
 i {
     color: var(--text-color);
+}
+
+/* width */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 10px;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+    background: #ebeef0;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .d-flex-between {
@@ -3107,13 +3145,16 @@ i {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background-image: url("../images/bg-login.jpeg");
     height: 100vh;
 }
 
@@ -3303,6 +3344,19 @@ i {
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    overflow: auto;
+    padding: 20px;
+}
+
+.chat-container .communication-panel .communication-section .me {
+    margin-left: auto;
 }
 
 .chat-container .communication-panel .header-bar {
@@ -3351,7 +3405,7 @@ i {
 
 .media-card img {
     width: 35px;
-    height: auto;
+    height: 35px;
     border-radius: 50%;
     margin-right: 10px;
 }
@@ -3363,27 +3417,41 @@ i {
     margin-right: 10px;
 }
 
+.contacts-section {
+    overflow: auto;
+}
+
 .contacts-section .media-card {
     cursor: pointer;
 }
 
 .contacts-section .media-card img {
-    max-height: 35px;
+    height: 35px;
+}
+
+.contacts-section .media-card img.message_not_readed {
+    border: 2px solid red;
+    padding: 2px;
 }
 
 .chat-footer-section {
-    height: 50px;
+    min-height: 50px;
     border-top: 1px solid var(--secondary);
     padding: 0 20px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.chat-footer-section.replying-to {
+    margin-bottom: 20px;
 }
 
 .action {
@@ -3475,6 +3543,7 @@ i {
 .chat-info-panel>img {
     width: 80%;
     height: auto;
+    min-height: 20vh;
     border-radius: 50%;
     margin-top: 50px;
     margin-left: 10%;
@@ -3510,6 +3579,11 @@ i {
 .participants {
     padding: 0 20px;
     margin-bottom: 10px;
+}
+
+.participants .added-members {
+    max-height: 35vh;
+    overflow: auto;
 }
 
 .participants .desc {
@@ -3592,7 +3666,20 @@ i {
     margin-top: 20px;
     width: 60%;
     margin-left: 20%;
-    border-radius: 50%;
+}
+
+.change-password-panel {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    max-width: 400px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: var(--primary);
+    padding: 20px;
 }
 
 .create-group-panel {
@@ -3614,11 +3701,47 @@ i {
     padding: 0 20px;
 }
 
+.add-user-to-group {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    max-width: 400px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: var(--primary);
+    padding: 20px 0;
+}
+
+.add-user-to-group .available-users {
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.add-user-on-board .add-user-to-group {
+    display: block;
+}
+
+.add-user-on-board .chat-overlay {
+    display: block;
+}
+
 .settings-on-board .chat-overlay {
     display: block;
 }
 
 .settings-on-board .settings-panel {
+    display: block;
+}
+
+.change-password-on-board .chat-overlay {
+    display: block;
+}
+
+.change-password-on-board .change-password-panel {
     display: block;
 }
 
@@ -3648,6 +3771,26 @@ i {
 
 .mt-3 {
     margin-top: 30px;
+}
+
+.contact-not-found {
+    padding: 0 10px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.users-to-add {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--secondary);
+}
+
+.users-to-add .media-card {
+    border-bottom: none;
 }
 
 /*******************************************************************************
@@ -3816,6 +3959,20 @@ i {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+}
+
+.audio h5 {
+    margin: 20px 0 10px 0;
+}
+
+.flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.flex .btn-icon i {
+    background-color: transparent;
 }
 
 /*******************************************************************************
