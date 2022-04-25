@@ -37,9 +37,7 @@ async function updateAccount() {
     Query.equal("user_id", user_id),
   ]);
 
-  const profile =
-    profiles.documents.filter((profile) => profile.user_id == user_id)[0] ||
-    null;
+  const profile = profiles.documents[0] || null;
 
   if (profile) {
     // deleting old image for storage friendly code
@@ -52,7 +50,9 @@ async function updateAccount() {
 
     if (old_profile_image && profile_image) {
       api.provider().storage.deleteFile(old_profile_image);
+    }
 
+		if(profile_image){
       // updating new image
       let file = await api
         .provider()
